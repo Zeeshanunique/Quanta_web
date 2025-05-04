@@ -12,39 +12,39 @@ const Solutions = () => {
     <Section id="solutions">
       <div className="container">
         <Heading
-          title="Our Solutions"
-          text="Build, deploy, and scale AI agents without writing a single line of code"
+          title="Vertical AI Solutions"
+          text="Domain-specialized AI agents that transform your industry without coding"
         />
 
         <div className="relative z-1 grid gap-8 md:grid-cols-2">
           <div className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden lg:p-15 glass-card glass-card-hover">
             <div className="absolute top-0 left-0 w-full h-full bg-n-8/90" />
             <div className="relative z-1">
-              <h4 className="h4 mb-6 text-gradient-teal">AgentForge Platform</h4>
+              <h4 className="h4 mb-6 text-gradient-teal">Vertical AI Platform</h4>
               <ul className="body-2">
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Visual workflow builder with drag-and-drop interface</p>
+                  <p className="ml-4">Industry-specific AI agents pre-trained for your vertical</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">100+ pre-built AI agent templates for common tasks</p>
+                  <p className="ml-4">Domain knowledge built-in for healthcare, finance, legal, and more</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Multi-modal AI processing for text, images, and voice</p>
+                  <p className="ml-4">Private training on your proprietary vertical data</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Deep integrations with 1000+ apps and software tools</p>
+                  <p className="ml-4">Integrations with industry-specific software and tools</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Real-time analytics and performance monitoring</p>
+                  <p className="ml-4">Compliance-ready for your industry's regulations</p>
                 </li>
               </ul>
               <Button onClick={() => navigate('/product')} className="mt-8">
-                See All Features
+                Explore Platform
               </Button>
             </div>
           </div>
@@ -52,31 +52,31 @@ const Solutions = () => {
           <div className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden lg:p-15 glass-card glass-card-hover">
             <div className="absolute top-0 left-0 w-full h-full bg-n-8/90" />
             <div className="relative z-1">
-              <h4 className="h4 mb-6 text-gradient-purple">Key Benefits</h4>
+              <h4 className="h4 mb-6 text-gradient-purple">Vertical Advantage</h4>
               <ul className="body-2">
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Save 20+ hours per week through intelligent automation</p>
+                  <p className="ml-4">95% higher accuracy than general AI for industry tasks</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Reduce operational costs by up to 60%</p>
+                  <p className="ml-4">30-50% cost reduction through specialized automation</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Scale operations without increasing headcount</p>
+                  <p className="ml-4">Domain-specific insights unavailable from general AI</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Eliminate human error in repetitive business processes</p>
+                  <p className="ml-4">70% faster deployment than building custom solutions</p>
                 </li>
                 <li className="flex items-start py-4 border-t border-n-6">
                   <img width={24} height={24} src={check} alt="check" />
-                  <p className="ml-4">Deploy AI solutions in days instead of months</p>
+                  <p className="ml-4">Continuous improvement from industry-specific data</p>
                 </li>
               </ul>
               <Button onClick={() => navigate('/services')} className="mt-8">
-                Explore Use Cases
+                View Industry Solutions
               </Button>
             </div>
           </div>

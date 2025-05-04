@@ -11,7 +11,7 @@ const IndustryCard = ({ industry, description, useCases, icon }) => (
       <p className="body-2 mb-6 text-n-3">{description}</p>
       
       <div className="mb-6">
-        <h5 className="h5 mb-2 text-gradient-blue">Popular Use Cases</h5>
+        <h5 className="h5 mb-2 text-gradient-blue">Vertical AI Capabilities</h5>
         <ul className="space-y-2">
           {useCases.map((useCase, index) => (
             <li key={index} className="body-2 text-n-3 flex items-start">
@@ -25,49 +25,49 @@ const IndustryCard = ({ industry, description, useCases, icon }) => (
   </div>
 );
 
-const IndustrySolutions = () => {
+const Markets = () => {
   const industryData = [
     {
-      industry: "Healthcare",
-      icon: "🏥",
-      description: "AI agents that streamline patient care, reduce administrative burden, and improve clinical outcomes.",
+      industry: "Manufacturing",
+      icon: "🏭",
+      description: "Specialized vertical AI agents for predictive maintenance, quality control, and supply chain optimization.",
       useCases: [
-        "Automated patient intake and scheduling",
-        "Medical records analysis and summarization",
-        "Clinical decision support systems",
-        "Insurance claims processing and verification"
+        "Equipment failure prediction with industry-specific parameters",
+        "Quality inspection automation with visual defect recognition",
+        "Supply chain optimization with manufacturing constraints awareness",
+        "Production planning with domain-specific efficiency models"
       ]
     },
     {
-      industry: "Financial Services",
-      icon: "💰",
-      description: "Intelligent automation for risk assessment, customer service, and regulatory compliance.",
+      industry: "Insurance",
+      icon: "🛡️",
+      description: "Domain-expert AI agents for claims processing, risk assessment, and policy management.",
       useCases: [
-        "Fraud detection and prevention",
-        "Automated underwriting and credit scoring",
-        "Personalized financial advice generation",
-        "Regulatory compliance monitoring"
+        "Claims processing with insurance-specific document understanding",
+        "Risk assessment using actuarial principles and industry data",
+        "Policy recommendation with regulatory compliance built-in",
+        "Fraud detection using insurance-specific pattern recognition"
       ]
     },
     {
-      industry: "E-commerce & Retail",
-      icon: "🛒",
-      description: "Enhance customer experience, optimize inventory, and personalize marketing at scale.",
+      industry: "Energy & Utilities",
+      icon: "⚡",
+      description: "Vertical AI agents optimized for energy forecasting, grid management, and renewable integration.",
       useCases: [
-        "Intelligent product recommendations",
-        "Inventory management and demand forecasting",
-        "Automated customer support chatbots",
-        "Dynamic pricing optimization"
+        "Load forecasting with weather pattern integration",
+        "Grid optimization with power distribution knowledge",
+        "Renewable energy integration with intermittency modeling",
+        "Equipment maintenance scheduling with utility-specific parameters"
       ]
     }
   ];
 
   return (
-    <Section id="industries">
+    <Section id="markets">
       <div className="container">
         <Heading
-          title="Industry Solutions"
-          text="Powerful AI automation tailored to your industry's specific needs"
+          title="Additional Vertical Markets"
+          text="Specialized AI agents fine-tuned for your industry's unique challenges"
         />
 
         <div className="grid gap-8 mt-16 md:grid-cols-3">
@@ -86,4 +86,4 @@ const IndustrySolutions = () => {
   );
 };
 
-export default IndustrySolutions; 
+export default Markets; 

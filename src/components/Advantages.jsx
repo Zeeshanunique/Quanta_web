@@ -26,30 +26,30 @@ const AdvantageCard = ({ title, items }) => (
 const Advantages = () => {
   const advantages = [
     {
-      title: "AI-Powered Precision",
+      title: "Domain-Specific Expertise",
       items: [
-        "99.7% accuracy in task execution and data processing",
-        "Self-learning algorithms that improve with each use",
-        "Real-time error detection and automatic correction",
-        "Consistent results across all business processes"
+        "Industry-specialized AI agents with deep vertical knowledge",
+        "Pre-trained on industry terminology, regulations, and processes",
+        "Continuous learning from your proprietary business data",
+        "Up to 95% higher accuracy than general-purpose AI models"
       ]
     },
     {
-      title: "No-Code Simplicity",
+      title: "Seamless Integration",
       items: [
-        "Visual workflow builder requires zero programming knowledge",
-        "Pre-built templates for common business processes",
-        "Intuitive drag-and-drop interface for all skill levels",
-        "Launch your first automation in under 15 minutes"
+        "Connects with your existing industry software and tools",
+        "Custom workflows tailored to your vertical's unique needs",
+        "API-first architecture for enterprise scalability",
+        "Deployment in days instead of months with our no-code platform"
       ]
     },
     {
-      title: "Enterprise-Grade Security",
+      title: "Industry-Compliant Security",
       items: [
-        "SOC 2 Type II and GDPR compliant infrastructure",
-        "End-to-end encryption for all data in transit and at rest",
-        "Role-based access controls and detailed audit logs",
-        "Regular security updates and vulnerability testing"
+        "Vertical-specific compliance (HIPAA, FINRA, GDPR, etc.)",
+        "Private deployment options for sensitive industry data",
+        "Governance controls tailored to regulatory requirements",
+        "Regular security updates aligned with industry standards"
       ]
     }
   ];
@@ -59,7 +59,7 @@ const Advantages = () => {
       <div className="container">
         <Heading
           title="Why Choose AgentForge"
-          text="Our platform combines powerful AI capabilities with intuitive design"
+          text="Specialized vertical AI agents that understand your industry's unique challenges"
         />
 
         <div className="grid gap-8 mt-16 md:grid-cols-3">

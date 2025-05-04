@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../hooks/useTheme';
 // Import SVG components
@@ -16,14 +16,16 @@ const ValoraFloating = () => {
   const secondaryColor = isLight ? 'rgba(70, 133, 244, 0.2)' : 'rgba(100, 153, 255, 0.3)';
   const accentColor = isLight ? 'rgba(172, 106, 255, 0.3)' : 'rgba(172, 106, 255, 0.4)';
   
-  // AI nodes (vertices in the "neural network")
-  const aiNodes = Array.from({ length: 12 }).map((_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 5 + 3,
-    pulseDelay: Math.random() * 4
-  }));
+  // Generate AI nodes with useMemo to prevent regeneration on each render
+  const aiNodes = useMemo(() => {
+    return Array.from({ length: 12 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 5 + 3,
+      pulseDelay: Math.random() * 4
+    }));
+  }, []);
   
   // Floating elements config - simplified to match Valora's cleaner style
   const floatingElements = [
@@ -78,28 +80,48 @@ const ValoraFloating = () => {
     }
   ];
 
-  // Generate random connections between AI nodes (for neural network effect)
-  const generateConnections = () => {
-    const connections = [];
+  // Generate random connections between AI nodes using useMemo
+  const connections = useMemo(() => {
+    const result = [];
+    const addedPairs = new Set();
+    
     aiNodes.forEach((node, i) => {
       // Create 1-3 connections per node
       const connectionCount = Math.floor(Math.random() * 3) + 1;
       for (let j = 0; j < connectionCount; j++) {
         const targetIndex = Math.floor(Math.random() * aiNodes.length);
         if (targetIndex !== i) {
-          connections.push({
-            id: `${i}-${targetIndex}`,
-            source: i,
-            target: targetIndex,
-            animated: Math.random() > 0.5
-          });
+          // Create a unique identifier for this connection pair
+          const pairId = i < targetIndex ? `${i}-${targetIndex}` : `${targetIndex}-${i}`;
+          
+          // Only add if this pair hasn't been added before
+          if (!addedPairs.has(pairId)) {
+            addedPairs.add(pairId);
+            result.push({
+              id: `connection-${i}-${targetIndex}-${j}`, // Ensure unique keys
+              source: i,
+              target: targetIndex,
+              animated: Math.random() > 0.5
+            });
+          }
         }
       }
     });
-    return connections;
-  };
+    return result;
+  }, [aiNodes]);
 
-  const connections = generateConnections();
+  // Generate dots with useMemo
+  const dots = useMemo(() => {
+    return Array.from({ length: 10 }).map((_, index) => ({
+      id: `dot-${index}`,
+      size: Math.random() * 3 + 1,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      duration: Math.random() * 15 + 20,
+      delay: Math.random() * 5,
+      moveY: -(Math.random() * 30 + 10)
+    }));
+  }, []);
 
   return (
     <div className="fixed inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
@@ -124,7 +146,7 @@ const ValoraFloating = () => {
       {/* Main floating elements (blobs/gradients) */}
       {floatingElements.map((element, index) => (
         <motion.div
-          key={index}
+          key={`element-${index}`}
           className="absolute rounded-full"
           style={{
             ...element.position,
@@ -153,9 +175,9 @@ const ValoraFloating = () => {
       {/* AI Neural Network Effect */}
       <div className="absolute inset-0">
         {/* AI Nodes */}
-        {aiNodes.map((node, index) => (
+        {aiNodes.map((node) => (
           <motion.div
-            key={`node-${index}`}
+            key={`node-${node.id}`}
             className="absolute rounded-full bg-color-1"
             style={{
               left: `${node.x}%`,
@@ -223,28 +245,28 @@ const ValoraFloating = () => {
       </div>
       
       {/* Very subtle floating dots */}
-      {Array.from({ length: 10 }).map((_, index) => (
+      {dots.map((dot) => (
         <motion.div
-          key={`dot-${index}`}
+          key={dot.id}
           className="absolute rounded-full"
           style={{
-            width: Math.random() * 3 + 1 + 'px',
-            height: Math.random() * 3 + 1 + 'px',
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
+            width: dot.size + 'px',
+            height: dot.size + 'px',
+            top: `${dot.top}%`,
+            left: `${dot.left}%`,
             backgroundColor: primaryColor.replace('0.25', '0.4'),
             opacity: isLight ? 0.15 : 0.2,
           }}
           animate={{
-            y: [0, -(Math.random() * 30 + 10), 0],
+            y: [0, dot.moveY, 0],
             opacity: [0.1, 0.3, 0.1],
           }}
           transition={{
-            duration: Math.random() * 15 + 20,
+            duration: dot.duration,
             repeat: Infinity,
             repeatType: "reverse",
             ease: "easeInOut",
-            delay: Math.random() * 5,
+            delay: dot.delay,
           }}
         />
       ))}

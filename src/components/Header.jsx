@@ -16,12 +16,12 @@ const navigation = [
   },
   {
     id: "1",
-    title: "Platform",
+    title: "Vertical AI Platform",
     url: "/product",
   },
   {
     id: "2",
-    title: "Services",
+    title: "Industry Solutions",
     url: "/services",
   },
   {
