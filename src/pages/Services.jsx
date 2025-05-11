@@ -4,7 +4,8 @@ import Section from '../components/ui/Section';
 import Heading from '../components/ui/Heading';
 import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
-import { check } from '../assets';
+import { motion } from 'framer-motion';
+import check from '../assets/check.svg';
 import { useTheme } from '../hooks/useTheme';
 
 const Services = () => {
@@ -195,28 +196,45 @@ const Services = () => {
   return (
     <>
       <Helmet>
-        <title>AgentForge Vertical AI Agents | Industry-Specific AI Solutions</title>
-        <meta name="description" content="Specialized vertical AI agents with deep domain expertise for healthcare, finance, legal, and manufacturing industries. Superior accuracy through industry-specific training." />
-        <meta name="keywords" content="vertical AI agents, domain-specific AI, industry AI solutions, specialized AI, healthcare AI, financial AI, legal AI" />
+        <title>Quanta AI | Industry-Grade AI Services</title>
+        <meta name="description" content="Specialized AI services for Marketing, Healthcare, Finance, Manufacturing, Customer Service, and Supply Chain industries with industry-grade automation and deep domain expertise." />
+        <meta name="keywords" content="AI services, industry AI, vertical AI, domain-specific AI, healthcare AI, finance AI, marketing AI, customer service AI" />
       </Helmet>
 
       <Section className={`pt-[12rem] -mt-[5.25rem] ${isLight ? 'light' : ''}`} crosses>
         <div className="container">
           {/* Hero Section */}
-          <div className="max-w-[800px] mx-auto text-center mb-12">
-            <h1 className="h1 mb-6">Vertical AI <span className="text-gradient-purple">Agents</span></h1>
-            <p className={`body-1 mb-8 ${isLight ? 'text-n-6' : 'text-n-2'}`}>
-              Industry-specialized AI with deep domain expertise for superior accuracy and relevance
+          <motion.div 
+            className="relative z-10 max-w-[62rem] mx-auto text-center mb-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
+          >
+            <h1 className="h1 mb-6"><span className="text-gradient-purple">Industry-Grade AI Services</span></h1>
+            <p className={`body-1 mb-8 max-w-3xl mx-auto ${isLight ? 'text-n-6' : 'text-n-2'}`}>
+              Specialist AI services tailored to your industry's unique challenges, workflows, and compliance requirements
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button onClick={() => navigate('/contact')} className="bg-gradient-to-r from-color-1 to-color-2">
-                Request Demo
+              <Button onClick={() => navigate('/contact')}>
+                Schedule Consultation
               </Button>
               <Button onClick={() => navigate('/product')} white>
-                Explore Platform
+                Explore Solutions
               </Button>
             </div>
-          </div>
+            
+            <div className="mt-12 px-4 py-3 bg-n-7/80 rounded-xl border border-n-6 inline-flex items-center mx-auto">
+              <span className="text-xs uppercase tracking-wider text-color-1 mr-3">TRUSTED BY INDUSTRY LEADERS</span>
+              <div className="w-px h-4 bg-n-6 mr-3"></div>
+              <div className="flex items-center space-x-4 text-n-3">
+                <span>Fortune 500</span>
+                <span>•</span>
+                <span>Global Healthcare</span>
+                <span>•</span>
+                <span>Financial Institutions</span>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Vertical AI Advantages */}
           <div className={`p-8 rounded-2xl mb-16 border ${isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'}`}>
@@ -388,19 +406,21 @@ const Services = () => {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className={`p-10 rounded-2xl border text-center ${isLight ? 'bg-n-1 border-n-3' : 'bg-gradient-to-b from-n-7 to-n-8 border-n-6'}`}>
-            <h2 className="h2 mb-4">Ready to transform your industry with vertical AI?</h2>
-            <p className={`body-1 mb-8 max-w-3xl mx-auto ${isLight ? 'text-n-6' : 'text-n-3'}`}>
-              Get started with AI agents specifically designed for your industry's unique challenges and workflows
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button onClick={() => navigate('/contact')} className="bg-gradient-to-r from-color-1 to-color-2">
-                Request Industry Assessment
-              </Button>
-              <Button onClick={() => navigate('/product')} white>
-                Learn About Our Platform
-              </Button>
+          {/* CTA Section */}
+          <div className="mt-20 bg-conic-gradient p-0.5 rounded-2xl">
+            <div className="bg-n-8 rounded-[0.9rem] p-8 md:p-16 text-center">
+              <h2 className="h2 mb-4">Ready to deploy <span className="text-gradient-purple">industry-grade AI</span> in your organization?</h2>
+              <p className="body-1 text-n-3 mb-8 max-w-3xl mx-auto">
+                Our AI solutions are tailored to your specific industry needs with specialized models, workflows, and compliance frameworks.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button onClick={() => navigate('/contact')} white className="min-w-[160px]">
+                  Schedule Demo
+                </Button>
+                <Button onClick={() => navigate('/contact')} className="min-w-[160px]">
+                  Contact Sales
+                </Button>
+              </div>
             </div>
           </div>
         </div>

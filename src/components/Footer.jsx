@@ -73,8 +73,8 @@ const Footer = () => {
                 <img src={logo} width={190} height={40} alt="AgentForge" />
               </Link>
               <p className="body-2 text-n-4 mb-8 max-w-md">
-                Empowering businesses with high-accuracy AI automation agents. 
-                Build tailored solutions with our no-code platform in Dubai, Saudi Arabia, and Singapore.
+                Transforming industries with enterprise-grade AI automation solutions.
+                Purpose-built agents delivering superior performance through specialized domain knowledge.
               </p>
               
               <div className="flex gap-4">

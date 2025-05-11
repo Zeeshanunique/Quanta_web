@@ -109,7 +109,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <Section id="pricing">
+      {/* <Section id="pricing">
         <div className="container">
           <Heading
             title="Simple, Transparent Pricing"
@@ -129,7 +129,7 @@ const ContactForm = () => {
             ))}
           </div>
         </div>
-      </Section>
+      </Section> */}
     
       <Section id="contact">
         <div className="container">

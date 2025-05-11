@@ -480,7 +480,7 @@ const Contact = () => {
       </Section>
       
       {/* Add global CSS animations */}
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes pulse {
           0% {
             transform: scale(1);
@@ -522,9 +522,9 @@ const Contact = () => {
             opacity: 0.8;
           }
         }
-      `}</style>
+      ` }} />
     </>
   );
 };
 
-export default Contact; 
+export default Contact;
