@@ -209,7 +209,7 @@ const Contact = () => {
                       <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
                     </svg>
                     <a href="mailto:contact@agentforge.ai" className="text-n-1 hover:text-color-1 transition-colors">
-                      contact@agentforge.ai
+                      contact@quanta.co.in
                     </a>
                   </div>
                   <div className="flex items-center">
@@ -217,7 +217,7 @@ const Contact = () => {
                       <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="currentColor"/>
                     </svg>
                     <a href="tel:+11234567890" className="text-n-1 hover:text-color-1 transition-colors">
-                      +1 (123) 456-7890
+                      +91 7463996212
                     </a>
                   </div>
                 </div>
@@ -251,16 +251,16 @@ const Contact = () => {
                     working together to democratize AI automation technology.
                   </p>
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-n-6 flex items-center justify-center text-sm font-bold mr-4">AT</div>
+                    <div className="w-12 h-12 rounded-full bg-n-6 flex items-center justify-center text-sm font-bold mr-4">ZA</div>
                     <div>
-                      <div className="text-sm font-semibold">Alex Thompson</div>
+                      <div className="text-sm font-semibold">Zeeshan Ali</div>
                       <div className="text-xs text-n-3">Founder & CEO</div>
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full bg-n-6 flex items-center justify-center text-sm font-bold mr-4">SC</div>
+                    <div className="w-12 h-12 rounded-full bg-n-6 flex items-center justify-center text-sm font-bold mr-4">SP</div>
                     <div>
-                      <div className="text-sm font-semibold">Dr. Sophia Chen</div>
+                      <div className="text-sm font-semibold">Sanjana Padama</div>
                       <div className="text-xs text-n-3">CTO</div>
                     </div>
                   </div>
