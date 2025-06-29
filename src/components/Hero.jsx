@@ -8,23 +8,23 @@ import GlowingGrid from './animations/GlowingGrid';
 
 const Hero = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('build');
+  const [activeTab, setActiveTab] = useState('customer');
 
   const tabContent = {
-    build: {
-      title: "Visual Agent Builder",
-      description: "Intuitive drag-and-drop interface to create custom AI workflows without technical expertise",
-      features: ["No coding required", "Pre-built templates", "Custom logic blocks", "Domain-specific components"]
+    customer: {
+      title: "Customer Experience",
+      description: "Conversational AI Employees that power every stage of the customer lifecycle",
+      features: ["24/7 Customer Support", "Automated Onboarding", "Personalized Interactions", "Issue Resolution"]
     },
-    deploy: {
-      title: "One-Click Deployment",
-      description: "Deploy your agents to production environments instantly with automated scaling",
-      features: ["Cloud or on-premise", "Version control", "Resource allocation", "Automated testing"]
+    employee: {
+      title: "Employee Experience", 
+      description: "Automate every step of your employee lifecycle from recruiting and onboarding to benefits",
+      features: ["Smart Recruiting", "Automated Onboarding", "Benefits Management", "Performance Tracking"]
     },
-    optimize: {
-      title: "Continuous Optimization",
-      description: "Monitor and improve your AI agents' performance with advanced analytics",
-      features: ["Real-time analytics", "A/B testing", "Performance insights", "Predictive maintenance"]
+    sales: {
+      title: "Sales and Marketing",
+      description: "Unlock revenue potential and sales efficiency - go-to-market 10x faster",
+      features: ["Lead Generation", "Sales Automation", "Market Analysis", "Revenue Optimization"]
     }
   };
 
@@ -37,19 +37,20 @@ const Hero = () => {
         <div className="container">
           <div className="relative z-10 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]">
             <h1 className="h1 mb-6 relative">
-              <span className="text-gradient-purple">Agentic AI Automation</span> That Works Like Magic
+              <span className="text-gradient-purple">One employee</span><br />
+              <span className="text-gradient-blue">Infinite roles</span>
             </h1>
             <p className="body-1 max-w-3xl mx-auto mb-8 text-n-2 relative">
-              AgentForge is the no-code platform that lets anyone build powerful AI agents for their business. 
-              Automate complex tasks, increase productivity, and unlock new insights - all without technical expertise.
+              Meet Ema, your Universal AI Employee. Powered by the most sophisticated AI Agents. 
+              Ema goes beyond automation—she learns, adapts, and evolves to boost productivity across every role in your enterprise.
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center relative">
-              <Button onClick={() => navigate('/product')} white>
-                Explore Platform
+              <Button onClick={() => navigate('/contact')} white>
+                Hire Ema
               </Button>
-              <Button onClick={() => navigate('/contact')}>
-                Get Started Free
+              <Button onClick={() => navigate('/product')}>
+                Learn More
               </Button>
             </div>
           </div>
@@ -63,24 +64,24 @@ const Hero = () => {
                     <GlowingGrid color="#AC6AFF" />
                   </div>
                   
-                  {/* AI Agent Builder Interface */}
+                  {/* Ema AI Employee Interface */}
                   <div className="bg-n-8/80 border-b border-n-6 relative z-10 px-4 py-2 flex justify-between items-center">
                     <div className="flex items-center space-x-3">
                       <div className="w-4 h-4 rounded-full bg-color-1 animate-pulse"></div>
-                      <span className="text-sm font-mono text-color-1">Agent Builder v3.5</span>
+                      <span className="text-sm font-mono text-color-1">Ema Universal AI Employee</span>
                     </div>
                     <div className="flex space-x-3">
                       <div className="px-2 py-1 rounded-md bg-n-7/50 border border-n-1/20 text-xs text-n-1">
-                        {'{ mode: agentBuilder }'}
+                        {'{ EmaFusion™ Active }'}
                       </div>
                       <div className="px-2 py-1 rounded-md bg-green-500/20 border border-green-500/30 text-xs text-green-400">
-                        ONLINE
+                        DEPLOYED
                       </div>
                     </div>
                   </div>
                   
                   <div className="flex-1 relative z-10 flex">
-                    {/* Agent Builder Sidebar */}
+                    {/* Solutions Sidebar */}
                     <div className="w-36 border-r border-n-6 bg-n-8/50 p-2">
                       {Object.keys(tabContent).map((tab) => (
                         <motion.button
@@ -94,13 +95,13 @@ const Hero = () => {
                           whileHover={{ x: 2 }}
                         >
                           <div className={`w-1.5 h-1.5 rounded-full mr-2 ${activeTab === tab ? 'bg-color-1' : 'bg-n-4'}`}></div>
-                          {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                          {tab === 'customer' ? 'Customer' : tab === 'employee' ? 'Employee' : 'Sales'}
                         </motion.button>
                       ))}
 
                       <div className="mt-6 pt-4 border-t border-n-6">
-                        <div className="text-[10px] uppercase text-n-3 mb-2 px-3">Quick Access</div>
-                        {['Templates', 'Marketplace', 'Docs'].map((item, i) => (
+                        <div className="text-[10px] uppercase text-n-3 mb-2 px-3">Quick Deploy</div>
+                        {['Pre-built Agents', 'Integrations', 'Security'].map((item, i) => (
                           <motion.button
                             key={i}
                             className="w-full px-3 py-2 mb-1 text-xs text-n-3 hover:text-n-1 flex items-center"
@@ -131,28 +132,28 @@ const Hero = () => {
                         <div className="grid grid-cols-3 gap-4">
                           <div className="col-span-2 bg-n-8/80 border border-n-1/10 rounded-xl overflow-hidden">
                             <div className="bg-n-7 px-4 py-2 border-b border-n-6 flex justify-between items-center">
-                              <div className="text-sm font-medium text-n-1">Agent Workflow Builder</div>
+                              <div className="text-sm font-medium text-n-1">Generative Workflow Engine™</div>
                               <div className="flex space-x-2">
                                 <div className="w-2 h-2 rounded-full bg-color-1"></div>
                                 <div className="w-2 h-2 rounded-full bg-n-4"></div>
                                 <div className="w-2 h-2 rounded-full bg-n-4"></div>
                               </div>
                             </div>
-                            <div className="p-4 grid grid-cols-3 gap-3 text-center">
-                              {["Input Handler", "Data Processor", "Decision Engine", "Response Generator", "Memory Manager", "Output Controller"].map((node, i) => (
+                            <div className="p-4 grid grid-cols-2 gap-3 text-center">
+                              {tabContent[activeTab].features.map((feature, i) => (
                                 <motion.div 
                                   key={i}
-                                  className="flex flex-col items-center py-2 px-1 bg-n-7/50 border border-n-1/10 rounded-lg"
+                                  className="flex flex-col items-center py-3 px-2 bg-n-7/50 border border-n-1/10 rounded-lg"
                                   whileHover={{ y: -3, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: i * 0.1 }}
                                 >
                                   <div className="w-8 h-8 rounded-lg bg-color-1/20 flex items-center justify-center mb-2">
-                                    <span className="text-xs text-color-1 font-mono">{i+1}</span>
+                                    <span className="text-xs text-color-1 font-mono">✓</span>
                                   </div>
-                                  <div className="text-xs font-medium text-n-1">{node}</div>
-                                  <div className="text-[10px] text-n-3 mt-1">connected</div>
+                                  <div className="text-xs font-medium text-n-1">{feature}</div>
+                                  <div className="text-[10px] text-n-3 mt-1">active</div>
                                 </motion.div>
                               ))}
                             </div>
@@ -160,21 +161,21 @@ const Hero = () => {
                           
                           <div className="bg-n-8/80 border border-n-1/10 rounded-xl overflow-hidden">
                             <div className="bg-n-7 px-4 py-2 border-b border-n-6">
-                              <div className="text-sm font-medium text-n-1">Agent Performance</div>
+                              <div className="text-sm font-medium text-n-1">Ema Performance</div>
                             </div>
                             <div className="p-4">
                               <div className="space-y-3 mb-4">
-                                {['Accuracy', 'Processing Speed', 'Learning Capacity'].map((metric, i) => (
+                                {['Accuracy', 'Cost Efficiency', 'Deployment Speed'].map((metric, i) => (
                                   <div key={i}>
                                     <div className="flex justify-between text-xs mb-1">
                                       <span className="text-n-3">{metric}</span>
-                                      <span className="text-color-1 font-mono">{90 + i * 3}%</span>
+                                      <span className="text-color-1 font-mono">{metric === 'Accuracy' ? '99.7%' : metric === 'Cost Efficiency' ? '80%' : '10x'}</span>
                                     </div>
                                     <div className="h-1.5 bg-n-6 rounded-full overflow-hidden">
                                       <motion.div 
                                         className={`h-full ${i === 0 ? 'bg-green-500' : i === 1 ? 'bg-blue-500' : 'bg-purple-500'}`} 
                                         initial={{ width: 0 }}
-                                        animate={{ width: `${90 + i * 3}%` }} 
+                                        animate={{ width: `${95 + i * 2}%` }} 
                                         transition={{ duration: 1.5, delay: i * 0.2 }}
                                       />
                                     </div>
@@ -183,9 +184,9 @@ const Hero = () => {
                               </div>
                               
                               <div className="mt-4 pt-4 border-t border-n-6">
-                                <div className="text-xs font-medium text-n-1 mb-2">Agent Capabilities</div>
+                                <div className="text-xs font-medium text-n-1 mb-2">EmaFusion™ Model</div>
                                 <div className="flex flex-wrap gap-1">
-                                  {['NLP', 'ML', 'Text Analysis', 'API Access', 'Memory', 'Learning'].map((tag, i) => (
+                                  {['2T+ Parameters', 'Private Models', 'Public LLMs', 'Secure', 'Compliant', 'Future-proof'].map((tag, i) => (
                                     <div key={i} className="px-2 py-1 bg-n-7/60 border border-n-1/10 rounded-full text-[10px] text-n-2">
                                       {tag}
                                     </div>
@@ -199,31 +200,30 @@ const Hero = () => {
                     </div>
                   </div>
                   
-                  {/* Animated dots in corners */}
-                  <motion.div 
-                    className="absolute top-20 left-4 w-2 h-2 bg-color-1 rounded-full"
-                    animate={{ 
-                      opacity: [0.2, 1, 0.2],
-                      scale: [1, 1.5, 1]
-                    }}
-                    transition={{ repeat: Infinity, duration: 4 }}
-                  />
-                  <motion.div 
-                    className="absolute bottom-12 right-12 w-3 h-3 bg-color-2 rounded-full"
-                    animate={{ 
-                      opacity: [0.2, 1, 0.2],
-                      scale: [1, 1.5, 1]
-                    }}
-                    transition={{ repeat: Infinity, duration: 5, delay: 1 }}
-                  />
-                  <motion.div 
-                    className="absolute top-1/3 right-8 w-2 h-2 bg-color-5 rounded-full"
-                    animate={{ 
-                      opacity: [0.2, 1, 0.2],
-                      scale: [1, 1.5, 1]
-                    }}
-                    transition={{ repeat: Infinity, duration: 3, delay: 2 }}
-                  />
+                  {/* Bottom Workflow Visualization */}
+                  <div className="bg-n-8/80 border-t border-n-6 relative z-10 px-4 py-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-6">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                          <span className="text-xs text-n-2">Enterprise Ready</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
+                          <span className="text-xs text-n-2">Integrated with 500+ Apps</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-3 h-3 rounded-full bg-purple-500 animate-pulse"></div>
+                          <span className="text-xs text-n-2">Conversational Deployment</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xs text-n-3">Powered by</span>
+                        <span className="text-xs font-bold text-color-1">EmaFusion™</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
