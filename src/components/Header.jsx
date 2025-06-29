@@ -8,38 +8,57 @@ import MenuSvg from "../assets/svg/MenuSvg";
 import { HamburgerMenu } from "./design/Header";
 import { useTheme } from '../hooks/useTheme';
 
+const navigationDropdowns = {
+  solutions: [
+    { title: "Customer Support", url: "/solutions/customer-support" },
+    { title: "Data Professional", url: "/solutions/data-professional" },
+    { title: "Employee Assistant", url: "/solutions/employee-assistant" },
+    { title: "Pharmacist Assistant", url: "/solutions/pharmacist-assistant" },
+    { title: "Proposal Manager", url: "/solutions/proposal-manager" },
+    { title: "Compliance Analyst", url: "/solutions/compliance-analyst" },
+    { title: "FAQs", url: "/faqs" },
+    { title: "Partners", url: "/partners" },
+    { title: "Integrations", url: "/integrations" }
+  ],
+  resources: [
+    { title: "Blogs", url: "/blogs" },
+    { title: "Customers", url: "/customers" },
+    { title: "Videos", url: "/videos" }
+  ],
+  company: [
+    { title: "About", url: "/about" },
+    { title: "Join the team", url: "/careers" },
+    { title: "News", url: "/news" },
+    { title: "Our Advisors", url: "/advisors" }
+  ]
+};
+
 const navigation = [
   {
     id: "0",
-    title: "Home",
-    url: "/",
+    title: "Solutions",
+    hasDropdown: true,
+    dropdownItems: navigationDropdowns.solutions
   },
   {
     id: "1",
-    title: "Customer Experience",
-    url: "/product",
+    title: "Resources",
+    hasDropdown: true,
+    dropdownItems: navigationDropdowns.resources
   },
   {
     id: "2",
-    title: "Employee Experience", 
-    url: "/services",
-  },
-  {
-    id: "3",
-    title: "Sales & Marketing",
-    url: "/about",
-  },
-  {
-    id: "4",
-    title: "Contact",
-    url: "/contact",
-  },
+    title: "Company",
+    hasDropdown: true,
+    dropdownItems: navigationDropdowns.company
+  }
 ];
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [openNavigation, setOpenNavigation] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const { theme } = useTheme();
   const isLight = theme === 'light';
 
@@ -54,13 +73,19 @@ const Header = () => {
   };
 
   const handleNavItemClick = (url) => {
+    setActiveDropdown(null);
     toggleNavigation();
     navigate(url);
+  };
+
+  const handleDropdownToggle = (dropdownId) => {
+    setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };
 
   // Close navigation when location changes
   useEffect(() => {
     setOpenNavigation(false);
+    setActiveDropdown(null);
     enablePageScroll();
   }, [location]);
 
@@ -73,24 +98,70 @@ const Header = () => {
       } ${openNavigation && !isLight ? "bg-n-8" : ""}`}
     >
       <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-        <div className="flex items-center ">
+        <div className="flex items-center w-full">
           <Link to="/" className="block w-[12rem] xl:mr-8">
             <img src={logo} width={190} height={40} alt="Ema" />
           </Link>
 
-          <nav className="hidden lg:flex items-center ml-auto">
+          <nav className="hidden lg:flex items-center ml-auto relative">
             {navigation.map((item) => (
-              <Link
-                key={item.id}
-                to={item.url}
-                className={`px-6 py-5 transition-colors ${
-                  location.pathname === item.url 
-                    ? "text-color-1" 
-                    : isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
-                }`}
-              >
-                {item.title}
-              </Link>
+              <div key={item.id} className="relative group">
+                {item.hasDropdown ? (
+                  <div
+                    className="relative"
+                    onMouseEnter={() => setActiveDropdown(item.id)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <button
+                      className={`px-6 py-5 transition-colors flex items-center ${
+                        isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
+                      }`}
+                    >
+                      {item.title}
+                      <svg 
+                        className={`ml-1 w-4 h-4 transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {activeDropdown === item.id && (
+                      <div className={`absolute top-full left-0 w-64 py-2 ${
+                        isLight ? 'bg-n-1 border border-n-3' : 'bg-n-8 border border-n-6'
+                      } rounded-lg shadow-xl z-50`}>
+                        {item.dropdownItems.map((dropdownItem, index) => (
+                          <Link
+                            key={index}
+                            to={dropdownItem.url}
+                            className={`block px-4 py-3 transition-colors ${
+                              isLight 
+                                ? "text-n-8 hover:text-color-1 hover:bg-n-2" 
+                                : "text-n-1 hover:text-color-1 hover:bg-n-7"
+                            }`}
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            {dropdownItem.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    to={item.url}
+                    className={`px-6 py-5 transition-colors ${
+                      location.pathname === item.url 
+                        ? "text-color-1" 
+                        : isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+                )}
+              </div>
             ))}
           </nav>
         </div>
@@ -123,17 +194,55 @@ const Header = () => {
           <div className="h-[calc(100%-4.5rem)] overflow-auto">
             <nav className="flex flex-col h-full p-5">
               {navigation.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavItemClick(item.url)}
-                  className={`block text-left py-4 transition-colors ${
-                    location.pathname === item.url 
-                      ? "text-color-1" 
-                      : isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
-                  }`}
-                >
-                  {item.title}
-                </button>
+                <div key={item.id}>
+                  {item.hasDropdown ? (
+                    <div>
+                      <button
+                        onClick={() => handleDropdownToggle(item.id)}
+                        className={`w-full text-left py-4 transition-colors flex items-center justify-between ${
+                          isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
+                        }`}
+                      >
+                        {item.title}
+                        <svg 
+                          className={`w-4 h-4 transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      
+                      {activeDropdown === item.id && (
+                        <div className="pl-4 pb-2">
+                          {item.dropdownItems.map((dropdownItem, index) => (
+                            <button
+                              key={index}
+                              onClick={() => handleNavItemClick(dropdownItem.url)}
+                              className={`block w-full text-left py-2 transition-colors ${
+                                isLight ? "text-n-6 hover:text-color-1" : "text-n-3 hover:text-color-1"
+                              }`}
+                            >
+                              {dropdownItem.title}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => handleNavItemClick(item.url)}
+                      className={`block text-left py-4 transition-colors ${
+                        location.pathname === item.url 
+                          ? "text-color-1" 
+                          : isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
+                      }`}
+                    >
+                      {item.title}
+                    </button>
+                  )}
+                </div>
               ))}
 
               <div className="mt-auto pt-10">
