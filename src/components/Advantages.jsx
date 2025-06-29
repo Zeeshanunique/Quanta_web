@@ -4,7 +4,7 @@ import Heading from "./ui/Heading";
 import { check } from "../assets";
 import { motion } from "framer-motion";
 
-const AdvantageCard = ({ title, items, icon, stats }) => (
+const AdvantageCard = ({ title, items, icon, stats, description }) => (
   <motion.div 
     className="relative p-6 border border-n-1/10 rounded-3xl overflow-hidden glass-card"
     whileHover={{ y: -10, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
@@ -14,8 +14,10 @@ const AdvantageCard = ({ title, items, icon, stats }) => (
   >
     <div className="absolute top-0 left-0 w-full h-full bg-n-8/90" />
     <div className="relative z-1">
-      <div className="text-3xl mb-4">{icon}</div>
+      <div className="text-4xl mb-4">{icon}</div>
       <h4 className="h4 mb-4 text-gradient-blue">{title}</h4>
+      
+      <p className="text-sm text-n-3 mb-4">{description}</p>
       
       {/* Stats */}
       {stats && (
@@ -29,7 +31,7 @@ const AdvantageCard = ({ title, items, icon, stats }) => (
         </div>
       )}
       
-      <div className="grid grid-cols-2 gap-3 mt-4">
+      <div className="grid grid-cols-1 gap-3 mt-4">
         {items.map((item, index) => (
           <div
             key={index}
@@ -47,45 +49,48 @@ const AdvantageCard = ({ title, items, icon, stats }) => (
 const Advantages = () => {
   const advantages = [
     {
-      title: "Domain Expertise",
-      icon: "🧠",
+      title: "Customer Experience",
+      icon: "🤝",
+      description: "Conversational AI Employees that power every stage of the customer lifecycle",
       items: [
-        "AI with industry knowledge",
-        "Pre-trained models",
-        "Continuous learning",
-        "High accuracy"
+        "24/7 customer support agents",
+        "Automated customer onboarding",
+        "Intelligent ticket routing",
+        "Personalized interactions"
       ],
       stats: {
-        accuracy: "95%",
-        coverage: "100%"
+        uptime: "99.9%",
+        satisfaction: "95%"
       }
     },
     {
-      title: "Fast Integration",
-      icon: "⚡",
+      title: "Employee Experience",
+      icon: "👥",
+      description: "Automate every step of your employee lifecycle from recruiting and onboarding to benefits",
       items: [
-        "Connect to existing tools",
-        "Custom workflows",
-        "API-first design",
-        "No-code setup"
+        "Smart recruiting assistants",
+        "Automated onboarding flows",
+        "Benefits administration",
+        "Performance management"
       ],
       stats: {
-        deploy: "3 days",
-        setup: "1 hour"
+        efficiency: "10x",
+        deployment: "1 day"
       }
     },
     {
-      title: "Enterprise Security",
-      icon: "🔒",
+      title: "Sales and Marketing",
+      icon: "📈",
+      description: "Unlock revenue potential and sales efficiency - go-to-market 10x faster",
       items: [
-        "Industry compliance",
-        "Private deployment",
-        "Governance controls",
-        "Regular updates"
+        "Lead qualification agents",
+        "Sales pipeline automation",
+        "Marketing campaign optimization",
+        "Revenue forecasting"
       ],
       stats: {
-        compliance: "100%",
-        protection: "24/7"
+        conversion: "40%",
+        speed: "10x"
       }
     }
   ];
@@ -94,8 +99,8 @@ const Advantages = () => {
     <Section id="advantages">
       <div className="container">
         <Heading
-          title="Why AgentForge"
-          text="Industry-specialized AI with key advantages"
+          title="Automate any business process with AI Agents"
+          text="Reimagine the future of work with Ema"
         />
 
         <div className="grid gap-8 mt-16 md:grid-cols-3">
@@ -106,8 +111,24 @@ const Advantages = () => {
               items={advantage.items}
               icon={advantage.icon}
               stats={advantage.stats}
+              description={advantage.description}
             />
           ))}
+        </div>
+        
+        <div className="text-center mt-16">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="h3 mb-6 text-gradient-purple">Your Universal AI Employee</h3>
+            <p className="text-lg text-n-2 mb-8">
+              Ema goes beyond automation—she learns, adapts, and evolves to boost productivity across every role in your enterprise. 
+              Pre-integrated with hundreds of apps, Ema is easy to configure and deploy.
+            </p>
+            <div className="flex justify-center">
+              <button className="px-8 py-3 bg-color-1 text-white rounded-lg font-medium hover:bg-color-1/90 transition-colors">
+                Hire Ema Today
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </Section>
