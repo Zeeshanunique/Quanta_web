@@ -19,8 +19,6 @@ const PricingTier = ({ title, price, features, popular, cta, index }) => (
   >
     <MagicCard 
       className={`p-8 rounded-3xl overflow-hidden h-full relative ${popular ? 'border-color-1' : 'border-n-1/10'}`}
-      gradientColor={popular ? "#AC6AFF" : index === 0 ? "#14B8A6" : "#F59E0B"}
-      gradientOpacity={popular ? 0.15 : 0.1}
     >
       {popular && (
         <BorderBeam 
@@ -276,9 +274,7 @@ const ContactForm = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <MagicCard 
-              className="p-8 lg:p-15 rounded-3xl overflow-hidden"
-              gradientColor="#AC6AFF"
-              gradientOpacity={0.08}
+              className="p-8 rounded-3xl overflow-hidden"
             >
               <BorderBeam 
                 size={350} 
