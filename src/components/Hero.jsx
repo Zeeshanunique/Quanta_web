@@ -5,7 +5,7 @@ import Button from './ui/Button';
 import Section from './ui/Section';
 import ValoraFloating from './animations/ValoraFloating';
 import GlowingGrid from './animations/GlowingGrid';
-import { Meteors, ShimmerButton, BorderBeam, MagicCard } from './magicui';
+import { ShimmerButton, BorderBeam, MagicCard } from './magicui';
 
 const Hero = () => {
   const navigate = useNavigate();

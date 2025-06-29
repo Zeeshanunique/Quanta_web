@@ -2,7 +2,7 @@ import React from "react";
 import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam, Meteors, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
+import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
 
 const IndustryCard = ({ industry, metrics, useCases, icon, index }) => (
   <motion.div
@@ -45,15 +45,10 @@ const IndustryCard = ({ industry, metrics, useCases, icon, index }) => (
             {icon}
           </motion.div>
           <motion.div 
-            className="bg-n-7/50 px-3 py-1 rounded-full text-xs text-color-1 font-medium border border-color-1/20"
+            className="absolute top-2 right-2 px-2 py-1 text-xs bg-n-7/50 border border-n-1/20 rounded-full text-color-1 font-medium"
             initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ 
-              delay: 0.3 + index * 0.2,
-              type: "spring",
-              stiffness: 200
-            }}
             animate={{ 
+              scale: 1,
               boxShadow: [
                 "0 0 0 0 rgba(172, 106, 255, 0)",
                 "0 0 0 4px rgba(172, 106, 255, 0.2)",
@@ -61,9 +56,11 @@ const IndustryCard = ({ industry, metrics, useCases, icon, index }) => (
               ]
             }}
             transition={{ 
+              delay: 0.3 + index * 0.2,
+              type: "spring",
+              stiffness: 200,
               repeat: Infinity,
-              duration: 3,
-              delay: index * 0.5
+              duration: 3
             }}
           >
             AI Solution

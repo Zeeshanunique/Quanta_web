@@ -2,7 +2,7 @@ import React from "react";
 import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam, Meteors, ShimmerButton, Marquee } from "./magicui";
+import { MagicCard, BorderBeam, ShimmerButton, Marquee } from "./magicui";
 
 const SuccessStoryCard = ({ story, index }) => (
   <motion.div
@@ -198,24 +198,6 @@ const SuccessStories = () => {
 
   return (
     <Section className="relative overflow-hidden">
-      {/* Background meteors effect */}
-      <Meteors number={12} className="opacity-15" />
-      
-      {/* Floating decorative elements */}
-      <motion.div 
-        className="absolute top-10 right-20 w-28 h-28 bg-gradient-to-r from-color-3/10 to-color-4/10 rounded-full blur-xl"
-        animate={{ 
-          x: [0, -30, 0],
-          y: [0, 20, 0],
-          scale: [1, 1.3, 1]
-        }}
-        transition={{ 
-          repeat: Infinity,
-          duration: 12,
-          ease: "easeInOut"
-        }}
-      />
-      
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

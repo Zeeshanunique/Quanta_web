@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 import Heading from '../components/ui/Heading';
 import { useTheme } from '../hooks/useTheme';
 import { motion } from 'framer-motion';
-import { Meteors, MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
+import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
 
 const Contact = () => {
   const { theme } = useTheme();

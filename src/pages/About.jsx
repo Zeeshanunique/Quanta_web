@@ -5,7 +5,7 @@ import Heading from '../components/ui/Heading';
 import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MagicCard, BorderBeam, Meteors, ShimmerButton, AnimatedList, AnimatedListItem } from '../components/magicui';
+import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, AnimatedListItem } from '../components/magicui';
 
 const About = () => {
   const navigate = useNavigate();
@@ -68,10 +68,8 @@ const About = () => {
         <meta name="keywords" content="AgentForge team, AI automation mission, no-code AI company, AI experts" />
       </Helmet>
 
-      <Section className="pt-[12rem] -mt-[5.25rem]" crosses>
-        <div className="container relative">
-          <Meteors number={15} />
-          
+      <Section className="pt-[12rem] -mt-[5.25rem] relative overflow-hidden" crosses>
+        <div className="container relative z-10">
           <motion.div 
             className="max-w-[800px] mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 30 }}

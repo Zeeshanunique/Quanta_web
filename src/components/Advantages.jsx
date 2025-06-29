@@ -3,7 +3,7 @@ import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import { check } from "../assets";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam, Meteors } from "./magicui";
+import { MagicCard, BorderBeam } from "./magicui";
 
 const AdvantageCard = ({ title, items, icon, stats, index }) => (
   <motion.div

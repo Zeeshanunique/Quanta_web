@@ -3,7 +3,7 @@ import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import Button from "./ui/Button";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam, Meteors, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
+import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
 
 const PricingTier = ({ title, price, features, popular, cta, index }) => (
   <motion.div
