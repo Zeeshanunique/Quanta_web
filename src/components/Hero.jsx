@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Button from './ui/Button';
 import Section from './ui/Section';
 import ValoraFloating from './animations/ValoraFloating';
-import GlowingGrid from './animations/GlowingGrid';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -13,18 +12,18 @@ const Hero = () => {
   const tabContent = {
     customer: {
       title: "Customer Experience",
-      description: "Conversational AI Employees that power every stage of the customer lifecycle",
-      features: ["24/7 Customer Support", "Automated Onboarding", "Personalized Interactions", "Issue Resolution"]
+      description: "Conversational AI Employees That Power Every Stage of the Customer Lifecycle",
+      subtitle: "Transform customer interactions with AI that understands context and delivers personalized experiences across all touchpoints."
     },
     employee: {
       title: "Employee Experience", 
       description: "Automate every step of your employee lifecycle from recruiting and onboarding to benefits",
-      features: ["Smart Recruiting", "Automated Onboarding", "Benefits Management", "Performance Tracking"]
+      subtitle: "Streamline HR processes and create exceptional employee experiences from day one to career growth."
     },
     sales: {
       title: "Sales and Marketing",
       description: "Unlock revenue potential and sales efficiency - go-to-market 10x faster",
-      features: ["Lead Generation", "Sales Automation", "Market Analysis", "Revenue Optimization"]
+      subtitle: "Accelerate your sales cycle and maximize revenue with AI-powered lead generation and customer insights."
     }
   };
 
@@ -35,199 +34,220 @@ const Hero = () => {
       
       <Section id="hero" className="pt-[12rem] -mt-[5.25rem]" crosses>
         <div className="container">
+          {/* Hero Text */}
           <div className="relative z-10 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]">
-            <h1 className="h1 mb-6 relative">
+            <motion.h1 
+              className="h1 mb-6 relative"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <span className="text-gradient-purple">One employee</span><br />
               <span className="text-gradient-blue">Infinite roles</span>
-            </h1>
-            <p className="body-1 max-w-3xl mx-auto mb-8 text-n-2 relative">
+            </motion.h1>
+            
+            <motion.p 
+              className="body-1 max-w-4xl mx-auto mb-8 text-n-2 relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               Meet Ema, your Universal AI Employee. Powered by the most sophisticated AI Agents. 
               Ema goes beyond automation—she learns, adapts, and evolves to boost productivity across every role in your enterprise.
-            </p>
+            </motion.p>
             
-            <div className="flex flex-wrap gap-4 justify-center relative">
-              <Button onClick={() => navigate('/contact')} white>
+            <motion.div 
+              className="flex flex-wrap gap-4 justify-center relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <Button onClick={() => navigate('/contact')} className="px-8 py-3">
                 Hire Ema
               </Button>
-              <Button onClick={() => navigate('/product')}>
+              <Button onClick={() => navigate('/about')} white className="px-8 py-3">
                 Learn More
               </Button>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="relative max-w-[90%] mx-auto z-10">
-            <div className="relative z-1 p-0.5 rounded-2xl bg-conic-gradient">
-              <div className="relative rounded-[1rem] overflow-hidden bg-n-8">
-                <div className="aspect-[16/9] flex flex-col bg-n-7 text-n-1 glass-card overflow-hidden relative">
-                  {/* GlowingGrid as background */}
-                  <div className="absolute inset-0 z-0 opacity-40">
-                    <GlowingGrid color="#AC6AFF" />
-                  </div>
-                  
-                  {/* Ema AI Employee Interface */}
-                  <div className="bg-n-8/80 border-b border-n-6 relative z-10 px-4 py-2 flex justify-between items-center">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-4 h-4 rounded-full bg-color-1 animate-pulse"></div>
-                      <span className="text-sm font-mono text-color-1">Ema Universal AI Employee</span>
-                    </div>
-                    <div className="flex space-x-3">
-                      <div className="px-2 py-1 rounded-md bg-n-7/50 border border-n-1/20 text-xs text-n-1">
-                        {'{ EmaFusion™ Active }'}
-                      </div>
-                      <div className="px-2 py-1 rounded-md bg-green-500/20 border border-green-500/30 text-xs text-green-400">
-                        DEPLOYED
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex-1 relative z-10 flex">
-                    {/* Solutions Sidebar */}
-                    <div className="w-36 border-r border-n-6 bg-n-8/50 p-2">
-                      {Object.keys(tabContent).map((tab) => (
-                        <motion.button
-                          key={tab}
-                          className={`w-full px-3 py-2 mb-1 text-xs font-medium rounded-lg transition-colors flex items-center ${
-                            activeTab === tab 
-                            ? 'bg-n-7 border border-n-1/10 text-n-1' 
-                            : 'text-n-3 hover:text-n-1'
-                          }`}
-                          onClick={() => setActiveTab(tab)}
-                          whileHover={{ x: 2 }}
-                        >
-                          <div className={`w-1.5 h-1.5 rounded-full mr-2 ${activeTab === tab ? 'bg-color-1' : 'bg-n-4'}`}></div>
-                          {tab === 'customer' ? 'Customer' : tab === 'employee' ? 'Employee' : 'Sales'}
-                        </motion.button>
-                      ))}
+          {/* Interactive Tabs Section */}
+          <motion.div 
+            className="relative max-w-[90%] mx-auto z-10 mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            {/* Tab Navigation */}
+            <div className="flex justify-center mb-8">
+              <div className="bg-n-7/50 backdrop-blur-sm border border-n-1/10 rounded-2xl p-2 inline-flex">
+                {Object.keys(tabContent).map((tab) => (
+                  <motion.button
+                    key={tab}
+                    className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                      activeTab === tab 
+                        ? 'bg-color-1 text-n-8 shadow-lg' 
+                        : 'text-n-3 hover:text-n-1 hover:bg-n-6/50'
+                    }`}
+                    onClick={() => setActiveTab(tab)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {tabContent[tab].title}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
 
-                      <div className="mt-6 pt-4 border-t border-n-6">
-                        <div className="text-[10px] uppercase text-n-3 mb-2 px-3">Quick Deploy</div>
-                        {['Pre-built Agents', 'Integrations', 'Security'].map((item, i) => (
-                          <motion.button
-                            key={i}
-                            className="w-full px-3 py-2 mb-1 text-xs text-n-3 hover:text-n-1 flex items-center"
-                            whileHover={{ x: 2 }}
-                          >
-                            <div className="w-1.5 h-1.5 rounded-full mr-2 bg-n-4"></div>
-                            {item}
-                          </motion.button>
-                        ))}
-                      </div>
-                    </div>
+            {/* Tab Content */}
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
+              <div className="relative z-1 p-0.5 rounded-3xl bg-conic-gradient">
+                <div className="relative rounded-[1.5rem] overflow-hidden bg-n-8/90 backdrop-blur-sm">
+                  <div className="p-12 text-center">
+                    <h3 className="h3 mb-6 text-gradient-blue">
+                      {tabContent[activeTab].title}
+                    </h3>
+                    <p className="text-xl mb-4 text-n-1 font-medium">
+                      {tabContent[activeTab].description}
+                    </p>
+                    <p className="text-lg text-n-3 max-w-3xl mx-auto">
+                      {tabContent[activeTab].subtitle}
+                    </p>
                     
-                    {/* Main Content Area */}
-                    <div className="flex-1 p-4">
-                      <motion.div
-                        key={activeTab}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className="h-full"
-                      >
-                        <div className="mb-4">
-                          <h3 className="text-lg font-medium text-n-1">{tabContent[activeTab].title}</h3>
-                          <p className="text-sm text-n-3">{tabContent[activeTab].description}</p>
-                        </div>
-                        
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="col-span-2 bg-n-8/80 border border-n-1/10 rounded-xl overflow-hidden">
-                            <div className="bg-n-7 px-4 py-2 border-b border-n-6 flex justify-between items-center">
-                              <div className="text-sm font-medium text-n-1">Generative Workflow Engine™</div>
-                              <div className="flex space-x-2">
-                                <div className="w-2 h-2 rounded-full bg-color-1"></div>
-                                <div className="w-2 h-2 rounded-full bg-n-4"></div>
-                                <div className="w-2 h-2 rounded-full bg-n-4"></div>
-                              </div>
-                            </div>
-                            <div className="p-4 grid grid-cols-2 gap-3 text-center">
-                              {tabContent[activeTab].features.map((feature, i) => (
-                                <motion.div 
-                                  key={i}
-                                  className="flex flex-col items-center py-3 px-2 bg-n-7/50 border border-n-1/10 rounded-lg"
-                                  whileHover={{ y: -3, boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
-                                  initial={{ opacity: 0, y: 10 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: i * 0.1 }}
-                                >
-                                  <div className="w-8 h-8 rounded-lg bg-color-1/20 flex items-center justify-center mb-2">
-                                    <span className="text-xs text-color-1 font-mono">✓</span>
-                                  </div>
-                                  <div className="text-xs font-medium text-n-1">{feature}</div>
-                                  <div className="text-[10px] text-n-3 mt-1">active</div>
-                                </motion.div>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <div className="bg-n-8/80 border border-n-1/10 rounded-xl overflow-hidden">
-                            <div className="bg-n-7 px-4 py-2 border-b border-n-6">
-                              <div className="text-sm font-medium text-n-1">Ema Performance</div>
-                            </div>
-                            <div className="p-4">
-                              <div className="space-y-3 mb-4">
-                                {['Accuracy', 'Cost Efficiency', 'Deployment Speed'].map((metric, i) => (
-                                  <div key={i}>
-                                    <div className="flex justify-between text-xs mb-1">
-                                      <span className="text-n-3">{metric}</span>
-                                      <span className="text-color-1 font-mono">{metric === 'Accuracy' ? '99.7%' : metric === 'Cost Efficiency' ? '80%' : '10x'}</span>
-                                    </div>
-                                    <div className="h-1.5 bg-n-6 rounded-full overflow-hidden">
-                                      <motion.div 
-                                        className={`h-full ${i === 0 ? 'bg-green-500' : i === 1 ? 'bg-blue-500' : 'bg-purple-500'}`} 
-                                        initial={{ width: 0 }}
-                                        animate={{ width: `${95 + i * 2}%` }} 
-                                        transition={{ duration: 1.5, delay: i * 0.2 }}
-                                      />
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                              
-                              <div className="mt-4 pt-4 border-t border-n-6">
-                                <div className="text-xs font-medium text-n-1 mb-2">EmaFusion™ Model</div>
-                                <div className="flex flex-wrap gap-1">
-                                  {['2T+ Parameters', 'Private Models', 'Public LLMs', 'Secure', 'Compliant', 'Future-proof'].map((tag, i) => (
-                                    <div key={i} className="px-2 py-1 bg-n-7/60 border border-n-1/10 rounded-full text-[10px] text-n-2">
-                                      {tag}
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                  </div>
-                  
-                  {/* Bottom Workflow Visualization */}
-                  <div className="bg-n-8/80 border-t border-n-6 relative z-10 px-4 py-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-6">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-                          <span className="text-xs text-n-2">Enterprise Ready</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
-                          <span className="text-xs text-n-2">Integrated with 500+ Apps</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full bg-purple-500 animate-pulse"></div>
-                          <span className="text-xs text-n-2">Conversational Deployment</span>
-                        </div>
+                    {/* Visual indicators */}
+                    <div className="flex justify-center items-center gap-8 mt-8">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-sm text-n-2">AI Active</span>
                       </div>
-                      
-                      <div className="flex items-center space-x-2">
-                        <span className="text-xs text-n-3">Powered by</span>
-                        <span className="text-xs font-bold text-color-1">EmaFusion™</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
+                        <span className="text-sm text-n-2">Real-time Processing</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-purple-500 animate-pulse"></div>
+                        <span className="text-sm text-n-2">Enterprise Ready</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Why Hire Ema Section */}
+          <motion.div
+            className="relative z-10"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <div className="text-center mb-16">
+              <h2 className="h2 mb-4">Why Hire Ema</h2>
+              <p className="h4 text-gradient-purple">Multiply your workforce in minutes</p>
             </div>
-          </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Simple */}
+              <motion.div
+                className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden glass-card"
+                whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
+                <div className="absolute top-0 left-0 w-full h-full bg-n-8/90 backdrop-blur-sm" />
+                <div className="relative z-1">
+                  <div className="text-5xl mb-6">⚡</div>
+                  <h3 className="h4 mb-4 text-gradient-blue">Simple</h3>
+                  <p className="text-n-3 mb-6">
+                    With its Generative Workflow Engine™ and Pre-built AI Agents, Ema conversationally activates new AI employees to execute any complex workflow in the enterprise. Pre-integrated with hundreds of apps, Ema is easy to configure and deploy.
+                  </p>
+                  <button className="text-color-1 hover:text-color-2 transition-colors font-medium">
+                    Explore Pre-built AI Agents →
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Trusted */}
+              <motion.div
+                className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden glass-card"
+                whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+              >
+                <div className="absolute top-0 left-0 w-full h-full bg-n-8/90 backdrop-blur-sm" />
+                <div className="relative z-1">
+                  <div className="text-5xl mb-6">🔒</div>
+                  <h3 className="h4 mb-4 text-gradient-blue">Trusted</h3>
+                  <p className="text-n-3 mb-6">
+                    Ema's data governance redacts sensitive information before passing it to public LLMs. Enjoy compliance with all leading standards and get unbeatable security with top-tier encryption and customizable, private models.
+                  </p>
+                  <button className="text-color-1 hover:text-color-2 transition-colors font-medium">
+                    Explore Trust and Security →
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Accurate */}
+              <motion.div
+                className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden glass-card"
+                whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.4 }}
+              >
+                <div className="absolute top-0 left-0 w-full h-full bg-n-8/90 backdrop-blur-sm" />
+                <div className="relative z-1">
+                  <div className="text-5xl mb-6">🎯</div>
+                  <h3 className="h4 mb-4 text-gradient-blue">Accurate</h3>
+                  <p className="text-n-3 mb-6">
+                    Ema maximizes accuracy at the lowest possible cost, thanks to 2T+ parameter proprietary EmaFusion™ model that intelligently blends the best public and private models. Plus, Ema is future proof - she's constantly adding new models to avoid over reliance on one technology stack.
+                  </p>
+                  <button className="text-color-1 hover:text-color-2 transition-colors font-medium">
+                    Explore EmaFusion™ →
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* How Ema Works Section */}
+          <motion.div
+            className="relative z-10 mt-32 text-center"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.6 }}
+          >
+            <div className="mb-16">
+              <h2 className="h2 mb-4">How Ema Works</h2>
+              <p className="h4 text-gradient-purple">Automate any business process with AI Agents</p>
+            </div>
+
+            <div className="relative max-w-4xl mx-auto">
+              <div className="relative z-1 p-0.5 rounded-3xl bg-conic-gradient">
+                <div className="relative rounded-[1.5rem] overflow-hidden bg-n-8/90 backdrop-blur-sm">
+                  <div className="p-16 text-center">
+                    <div className="text-8xl mb-8">🤖</div>
+                    <h3 className="h3 mb-6 text-gradient-blue">Ema</h3>
+                    <p className="text-xl mb-8 text-n-1 font-medium">Your Universal AI Employee</p>
+                    
+                    <Button onClick={() => navigate('/contact')} className="px-12 py-4 text-lg">
+                      Hire Ema today
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </Section>
     </>
