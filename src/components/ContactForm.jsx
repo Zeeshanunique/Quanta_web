@@ -3,7 +3,7 @@ import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import Button from "./ui/Button";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
+import { MagicCard, BorderBeam, Meteors, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
 
 const PricingTier = ({ title, price, features, popular, cta, index }) => (
   <motion.div
@@ -60,9 +60,22 @@ const PricingTier = ({ title, price, features, popular, cta, index }) => (
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5 + index * 0.2, type: "spring" }}
         >
-          <span className="text-3xl font-bold text-color-1">
+          <motion.span 
+            className="text-3xl font-bold text-color-1"
+            animate={{ 
+              textShadow: popular ? [
+                "0 0 0px rgba(172, 106, 255, 0)",
+                "0 0 10px rgba(172, 106, 255, 0.4)",
+                "0 0 0px rgba(172, 106, 255, 0)"
+              ] : "none"
+            }}
+            transition={{ 
+              repeat: popular ? Infinity : 0,
+              duration: 3
+            }}
+          >
             {price}
-          </span>
+          </motion.span>
           {price !== 'Custom' && <span className="text-n-3 ml-1">/month</span>}
         </motion.div>
         
@@ -189,6 +202,8 @@ const ContactForm = () => {
   return (
     <>
       <Section id="pricing" className="relative overflow-hidden">
+        {/* Background meteors effect */}
+        <Meteors number={18} className="opacity-15" />
         
         {/* Floating decorative elements */}
         <motion.div 
@@ -239,6 +254,8 @@ const ContactForm = () => {
       </Section>
     
       <Section id="contact" className="relative overflow-hidden">
+        {/* Background meteors effect */}
+        <Meteors number={10} className="opacity-10" />
         
         <div className="container relative z-10">
           <motion.div

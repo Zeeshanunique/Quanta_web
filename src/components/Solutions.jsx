@@ -54,13 +54,13 @@ const Solutions = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Heading
-            title="Vertical AI Solutions"
-            text="Industry-specialized AI agents"
-          />
+        <Heading
+          title="Vertical AI Solutions"
+          text="Industry-specialized AI agents"
+        />
         </motion.div>
 
-        <motion.div 
+          <motion.div 
           className="relative z-1 grid gap-8 md:grid-cols-2"
           variants={containerVariants}
           initial="hidden"
@@ -69,8 +69,6 @@ const Solutions = () => {
           <motion.div variants={itemVariants} className="relative">
             <MagicCard 
               className="p-8 rounded-3xl overflow-hidden lg:p-12 h-full"
-              gradientColor="#14B8A6"
-              gradientOpacity={0.15}
             >
               <BorderBeam 
                 size={250} 
@@ -83,9 +81,9 @@ const Solutions = () => {
                 <motion.h4 
                   className="h4 mb-6 text-gradient-teal"
                   initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                >
+          >
                   Platform Features
                 </motion.h4>
                 
@@ -151,8 +149,6 @@ const Solutions = () => {
           <motion.div variants={itemVariants} className="relative">
             <MagicCard 
               className="p-8 rounded-3xl overflow-hidden lg:p-12 h-full"
-              gradientColor="#8B5CF6"
-              gradientOpacity={0.15}
             >
               <BorderBeam 
                 size={250} 
@@ -165,13 +161,13 @@ const Solutions = () => {
                 <motion.h4 
                   className="h4 mb-6 text-gradient-purple"
                   initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                >
+          >
                   Performance Edge
                 </motion.h4>
-                
-                <div className="grid grid-cols-2 gap-4 mb-6">
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
                   {performanceMetrics.map((metric, index) => (
                     <motion.div 
                       key={index}

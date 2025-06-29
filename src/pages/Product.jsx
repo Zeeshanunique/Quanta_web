@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import check from '../assets/check.svg';
 import { useTheme } from '../hooks/useTheme';
-import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
+import { Meteors, MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
 
 const Product = () => {
   const navigate = useNavigate();

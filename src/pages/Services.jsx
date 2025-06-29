@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import check from '../assets/check.svg';
 import { useTheme } from '../hooks/useTheme';
-import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
+import { Meteors, MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -202,8 +202,10 @@ const Services = () => {
         <meta name="keywords" content="AI services, industry AI, vertical AI, domain-specific AI, healthcare AI, finance AI, marketing AI, customer service AI" />
       </Helmet>
 
-      <Section className="pt-[12rem] -mt-[5.25rem] relative overflow-hidden" crosses>
-        <div className="container relative z-10">
+      <Section className={`pt-[12rem] -mt-[5.25rem] ${isLight ? 'light' : ''}`} crosses>
+        <div className="container relative">
+          <Meteors number={20} />
+          
           {/* Hero Section */}
           <motion.div 
             className="relative z-10 max-w-[62rem] mx-auto text-center mb-16"

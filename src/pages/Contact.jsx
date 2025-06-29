@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 import Heading from '../components/ui/Heading';
 import { useTheme } from '../hooks/useTheme';
 import { motion } from 'framer-motion';
-import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
+import { Meteors, MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
 
 const Contact = () => {
   const { theme } = useTheme();
@@ -125,7 +125,9 @@ const Contact = () => {
 
       <Section className="pt-[12rem] -mt-[5.25rem]" crosses>
         <div className="container relative">
-          {/* Hero Section */}
+          {/* Background Meteors */}
+          <Meteors number={25} />
+          
           <motion.div 
             className="max-w-[800px] mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -167,7 +169,7 @@ const Contact = () => {
             <div>
               <MagicCard 
                 className={`relative p-8 rounded-2xl border mb-10 overflow-hidden ${
-                  isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
+                isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
                 }`}
                 gradientColor={isLight ? "#cbd5e1" : "#1e293b"}
               >
@@ -245,7 +247,7 @@ const Contact = () => {
               {/* Floating particles animation card */}
               <MagicCard 
                 className={`relative p-8 rounded-2xl border mb-10 overflow-hidden ${
-                  isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
+                isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
                 }`}
                 gradientColor={isLight ? "#a855f7" : "#7c3aed"}
               >
@@ -308,7 +310,7 @@ const Contact = () => {
               
               <MagicCard 
                 className={`p-6 rounded-2xl border mb-10 ${
-                  isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
+                isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
                 }`}
                 gradientColor={isLight ? "#06b6d4" : "#0891b2"}
               >
@@ -393,7 +395,7 @@ const Contact = () => {
               {showThanks ? (
                 <MagicCard 
                   className={`p-8 rounded-2xl border text-center h-full flex flex-col items-center justify-center ${
-                    isLight ? 'bg-n-1 border-color-1' : 'bg-n-7 border-color-1'
+                  isLight ? 'bg-n-1 border-color-1' : 'bg-n-7 border-color-1'
                   }`}
                   gradientColor={isLight ? "#10b981" : "#059669"}
                 >
@@ -416,7 +418,7 @@ const Contact = () => {
               ) : (
                 <MagicCard 
                   className={`p-8 rounded-2xl border ${
-                    isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
+                  isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
                   }`}
                   gradientColor={isLight ? "#3b82f6" : "#2563eb"}
                 >
@@ -559,7 +561,7 @@ const Contact = () => {
                 <MagicCard 
                   key={index} 
                   className={`p-6 rounded-2xl border ${
-                    isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
+                  isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
                   }`}
                   gradientColor={
                     index % 4 === 0 ? (isLight ? "#3b82f6" : "#2563eb") :

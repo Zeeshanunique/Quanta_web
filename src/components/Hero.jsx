@@ -5,7 +5,7 @@ import Button from './ui/Button';
 import Section from './ui/Section';
 import ValoraFloating from './animations/ValoraFloating';
 import GlowingGrid from './animations/GlowingGrid';
-import { ShimmerButton, BorderBeam, MagicCard } from './magicui';
+import { Meteors, ShimmerButton, BorderBeam, MagicCard } from './magicui';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -34,20 +34,12 @@ const Hero = () => {
       {/* Fullscreen background animation */}
       <ValoraFloating />
       
-      <Section
-        className="pt-[12rem] -mt-[5.25rem]"
-        crosses
-        crossesOffset="lg:translate-y-[5.25rem]"
-        customPaddings
-        id="hero"
-      >
-        <div className="container relative">
-          <motion.div 
-            className="relative z-1 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+      <Section id="hero" className="pt-[12rem] -mt-[5.25rem] relative overflow-hidden" crosses>
+        {/* Meteors background effect */}
+        <Meteors number={30} className="opacity-30" />
+        
+        <div className="container">
+          <div className="relative z-10 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]">
             <motion.h1 
               className="h1 mb-6 relative"
               initial={{ opacity: 0, y: 30 }}
@@ -85,7 +77,7 @@ const Hero = () => {
                 Get Started Free
               </ShimmerButton>
             </motion.div>
-          </motion.div>
+          </div>
 
           <motion.div 
             className="relative max-w-[90%] mx-auto z-10"
@@ -103,9 +95,7 @@ const Hero = () => {
               />
               <div className="relative rounded-[1rem] overflow-hidden bg-n-8">
                 <MagicCard 
-                  className="aspect-[16/9] flex flex-col bg-n-7 text-n-1 glass-card overflow-hidden border-0"
-                  gradientColor="#AC6AFF"
-                  gradientOpacity={0.1}
+                  className="relative p-6 md:p-8 rounded-3xl overflow-hidden"
                 >
                   {/* GlowingGrid as background */}
                   <div className="absolute inset-0 z-0 opacity-40">

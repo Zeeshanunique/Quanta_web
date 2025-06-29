@@ -3,7 +3,7 @@ import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import { check } from "../assets";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam } from "./magicui";
+import { MagicCard, BorderBeam, Meteors } from "./magicui";
 
 const AdvantageCard = ({ title, items, icon, stats, index }) => (
   <motion.div
@@ -19,8 +19,6 @@ const AdvantageCard = ({ title, items, icon, stats, index }) => (
   >
     <MagicCard 
       className="p-6 rounded-3xl overflow-hidden h-full"
-      gradientColor={index === 0 ? "#3B82F6" : index === 1 ? "#F59E0B" : "#10B981"}
-      gradientOpacity={0.1}
     >
       <BorderBeam 
         size={200} 
@@ -180,7 +178,10 @@ const Advantages = () => {
   ];
 
   return (
-    <Section className="relative overflow-hidden">
+    <Section id="advantages" className="relative overflow-hidden">
+      {/* Background meteors effect */}
+      <Meteors number={20} className="opacity-20" />
+      
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

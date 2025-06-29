@@ -2,7 +2,7 @@ import React from "react";
 import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
+import { MagicCard, BorderBeam, Meteors, ShimmerButton, AnimatedList, AnimatedListItem } from "./magicui";
 
 const IndustryCard = ({ industry, metrics, useCases, icon, index }) => (
   <motion.div
@@ -18,8 +18,6 @@ const IndustryCard = ({ industry, metrics, useCases, icon, index }) => (
   >
     <MagicCard 
       className="p-6 rounded-3xl overflow-hidden h-full"
-      gradientColor={index === 0 ? "#EC4899" : index === 1 ? "#F59E0B" : "#8B5CF6"}
-      gradientOpacity={0.12}
     >
       <BorderBeam 
         size={220} 
@@ -45,7 +43,7 @@ const IndustryCard = ({ industry, metrics, useCases, icon, index }) => (
             {icon}
           </motion.div>
           <motion.div 
-            className="absolute top-2 right-2 px-2 py-1 text-xs bg-n-7/50 border border-n-1/20 rounded-full text-color-1 font-medium"
+            className="bg-n-7/50 px-3 py-1 rounded-full text-xs text-color-1 font-medium border border-color-1/20"
             initial={{ scale: 0 }}
             animate={{ 
               scale: 1,
@@ -60,7 +58,8 @@ const IndustryCard = ({ industry, metrics, useCases, icon, index }) => (
               type: "spring",
               stiffness: 200,
               repeat: Infinity,
-              duration: 3
+              duration: 3,
+              delay: index * 0.5
             }}
           >
             AI Solution
@@ -212,7 +211,38 @@ const IndustrySolutions = () => {
   ];
 
   return (
-    <Section className="relative overflow-hidden">
+    <Section id="industries" className="relative overflow-hidden">
+      {/* Background meteors effect */}
+      <Meteors number={15} className="opacity-20" />
+      
+      {/* Floating decorative elements */}
+      <motion.div 
+        className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-color-1/10 to-color-2/10 rounded-full blur-xl"
+        animate={{ 
+          x: [0, 30, 0],
+          y: [0, -20, 0],
+          scale: [1, 1.2, 1]
+        }}
+        transition={{ 
+          repeat: Infinity,
+          duration: 8,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-r from-color-5/10 to-color-6/10 rounded-full blur-xl"
+        animate={{ 
+          x: [0, -20, 0],
+          y: [0, 30, 0],
+          scale: [1.2, 1, 1.2]
+        }}
+        transition={{ 
+          repeat: Infinity,
+          duration: 10,
+          ease: "easeInOut"
+        }}
+      />
+      
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

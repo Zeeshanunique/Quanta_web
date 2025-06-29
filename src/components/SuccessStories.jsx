@@ -2,7 +2,7 @@ import React from "react";
 import Section from "./ui/Section";
 import Heading from "./ui/Heading";
 import { motion } from "framer-motion";
-import { MagicCard, BorderBeam, ShimmerButton, Marquee } from "./magicui";
+import { MagicCard, BorderBeam, Meteors, ShimmerButton, Marquee } from "./magicui";
 
 const SuccessStoryCard = ({ story, index }) => (
   <motion.div
@@ -17,9 +17,7 @@ const SuccessStoryCard = ({ story, index }) => (
     className="relative"
   >
     <MagicCard 
-      className={`p-6 rounded-3xl overflow-hidden h-full ${story.class}`}
-      gradientColor={index === 0 ? "#14B8A6" : index === 1 ? "#F59E0B" : "#8B5CF6"}
-      gradientOpacity={0.12}
+      className="p-6 rounded-3xl overflow-hidden h-full"
     >
       <BorderBeam 
         size={200} 
@@ -161,7 +159,7 @@ const SuccessStories = () => {
     },
     {
       company: "Capital Trust",
-      industry: "Financial Services", 
+      industry: "Financial Services",
       quote: "5x faster risk assessment with 42% better accuracy. Game-changing for our operations.",
       author: "Michael Rivera",
       role: "VP of Risk Technology",
@@ -176,7 +174,7 @@ const SuccessStories = () => {
       company: "Barrister & Associates",
       industry: "Legal",
       quote: "8x faster document review with legal-specific AI. Incredible efficiency gains.",
-      author: "Sarah Johnson", 
+      author: "Sarah Johnson",
       role: "Legal Operations Director",
       class: "col-span-2 md:col-span-1",
       stats: {
@@ -198,16 +196,34 @@ const SuccessStories = () => {
 
   return (
     <Section className="relative overflow-hidden">
+      {/* Background meteors effect */}
+      <Meteors number={12} className="opacity-15" />
+      
+      {/* Floating decorative elements */}
+      <motion.div 
+        className="absolute top-10 right-20 w-28 h-28 bg-gradient-to-r from-color-3/10 to-color-4/10 rounded-full blur-xl"
+        animate={{ 
+          x: [0, -30, 0],
+          y: [0, 20, 0],
+          scale: [1, 1.3, 1]
+        }}
+        transition={{ 
+          repeat: Infinity,
+          duration: 12,
+          ease: "easeInOut"
+        }}
+      />
+      
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Heading
-            title="Success Stories"
-            text="Real results from industry-specific AI agents"
-          />
+        <Heading
+          title="Success Stories"
+          text="Real results from industry-specific AI agents"
+        />
         </motion.div>
 
         {/* Trusted by section with Marquee */}
@@ -222,8 +238,8 @@ const SuccessStories = () => {
           </div>
           <Marquee className="py-4" pauseOnHover>
             {companyLogos.map((company, index) => (
-              <motion.div
-                key={index}
+            <motion.div 
+              key={index}
                 className="flex items-center space-x-3 mx-8 px-6 py-3 bg-n-7/30 rounded-xl border border-n-1/10 hover:bg-n-7/50 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
               >
@@ -253,8 +269,6 @@ const SuccessStories = () => {
         >
           <MagicCard 
             className="p-8 rounded-3xl"
-            gradientColor="#AC6AFF"
-            gradientOpacity={0.1}
           >
             <BorderBeam 
               size={300} 
