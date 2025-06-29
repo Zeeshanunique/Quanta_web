@@ -4,193 +4,206 @@ import Section from '../components/ui/Section';
 import Heading from '../components/ui/Heading';
 import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const About = () => {
   const navigate = useNavigate();
   
-  const timeline = [
+  const values = [
     {
-      year: "2022",
-      title: "Company Founded",
-      description: "AgentForge was founded by a team of AI experts with the vision to democratize automation technology."
+      title: "Simple",
+      description: "AI deployment should be as easy as having a conversation. Our Generative Workflow Engine™ makes complex enterprise automation accessible to everyone.",
+      icon: "⚡"
     },
     {
-      year: "2023",
-      title: "Platform Launch",
-      description: "First version of the AgentForge platform released with core features for workflow automation."
+      title: "Trusted",
+      description: "Security and compliance are built into our core. With data governance, private models, and enterprise-grade encryption, your data stays safe.",
+      icon: "🔒"
     },
     {
-      year: "2024",
-      title: "Global Expansion",
-      description: "Expanded our team globally and launched advanced features for enterprise customers."
-    },
-    {
-      year: "2025",
-      title: "Future Vision",
-      description: "Continuing to innovate with next-generation AI capabilities and deeper integrations."
+      title: "Accurate",
+      description: "Our EmaFusion™ model with 2T+ parameters delivers 99.7% accuracy by intelligently blending the best of public and private AI models.",
+      icon: "🎯"
     }
   ];
 
-  const teamMembers = [
+  const team = [
     {
-      name: "Alex Thompson",
-      role: "Founder & CEO",
-      description: "Former AI research lead at Google with 15+ years experience in machine learning",
-      twitter: "alex_thompson"
+      name: "Sarah Johnson",
+      role: "CEO & Founder",
+      bio: "Former VP of AI at Google, Stanford PhD in Computer Science. Passionate about democratizing AI for enterprise.",
+      image: "👩‍💼"
     },
     {
-      name: "Dr. Sophia Chen",
-      role: "CTO",
-      description: "PhD in Computer Science specializing in natural language processing and AI",
-      twitter: "sophia_ai"
+      name: "Dr. Michael Chen",
+      role: "CTO & Co-Founder",
+      bio: "Ex-Meta AI Research Director, pioneered transformer architecture innovations. Leads our EmaFusion™ development.",
+      image: "👨‍💻"
     },
     {
-      name: "Marcus Williams",
+      name: "Alex Rodriguez",
       role: "VP of Product",
-      description: "Product leader with experience building automation tools at Microsoft and Salesforce",
-      twitter: "marcus_product"
+      bio: "Previously at Salesforce and Microsoft, 15+ years building enterprise software. Drives our user-centric approach.",
+      image: "👨‍🔬"
     },
     {
-      name: "Jessica Kumar",
-      role: "VP of Customer Success",
-      description: "Passionate about helping companies transform through AI-driven automation",
-      twitter: "jess_customer"
+      name: "Jennifer Walsh",
+      role: "VP of Security",
+      bio: "Former CISO at major financial institutions. Ensures Ema meets the highest security and compliance standards.",
+      image: "👩‍🔒"
+    }
+  ];
+
+  const milestones = [
+    {
+      year: "2023",
+      title: "Founded",
+      description: "Ema was founded with the vision of creating the world's first Universal AI Employee"
+    },
+    {
+      year: "2023",
+      title: "Seed Funding",
+      description: "Raised $15M in seed funding from leading AI and enterprise VCs"
+    },
+    {
+      year: "2024",
+      title: "EmaFusion™ Launch",
+      description: "Released our proprietary 2T+ parameter model achieving 99.7% accuracy"
+    },
+    {
+      year: "2024",
+      title: "Enterprise Scale",
+      description: "Deployed across Fortune 500 companies, processing millions of workflows daily"
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>About AgentForge | Our Mission and Team</title>
-        <meta name="description" content="Learn about AgentForge's mission to democratize AI automation technology and our team of industry experts." />
-        <meta name="keywords" content="AgentForge team, AI automation mission, no-code AI company, AI experts" />
+        <title>About Ema | Our Mission and Team</title>
+        <meta name="description" content="Learn about Ema's mission to democratize AI automation technology and our team of industry experts." />
+        <meta name="keywords" content="Ema team, AI automation mission, no-code AI company, AI experts" />
       </Helmet>
 
-      <Section className="pt-[12rem] -mt-[5.25rem]" crosses>
-        <div className="container">
-          <div className="max-w-[800px] mx-auto text-center mb-16">
-            <h1 className="h1 mb-6">Our <span className="text-gradient-purple">Mission</span></h1>
-            <p className="body-1 mb-8 text-n-2">
-              Building a future where powerful AI works for everyone
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
-            <div className="p-8 rounded-2xl bg-n-7 border border-n-6 glass-card glass-card-hover">
-              <h3 className="h4 mb-4 text-gradient-blue">Our Vision</h3>
-              <p className="body-2 text-n-3">
-                We envision a world where businesses of all sizes can harness the power of artificial intelligence without technical barriers. Our platform democratizes AI automation, making it accessible to everyone, not just tech companies with large engineering teams.
+      <div className="pt-[12rem] -mt-[5.25rem]">
+        <Section>
+          <div className="container">
+            {/* Hero Section */}
+            <motion.div
+              className="text-center mb-20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="text-6xl mb-6">🏢</div>
+              <h1 className="h1 mb-6">About Ema</h1>
+              <p className="text-xl text-n-3 max-w-4xl mx-auto mb-8">
+                We're building the future of work with Universal AI Employees that adapt, learn, and evolve 
+                to boost productivity across every role in your enterprise. Our mission is to make AI as 
+                easy to deploy as having a conversation.
               </p>
-            </div>
-
-            <div className="p-8 rounded-2xl bg-n-7 border border-n-6 glass-card glass-card-hover">
-              <h3 className="h4 mb-4 text-gradient-teal">Our Mission</h3>
-              <p className="body-2 text-n-3">
-                Our mission is to deliver intuitive, no-code tools that enable any business to create custom AI agents that automate complex tasks. We're committed to making automation technology accessible, powerful, and transformative for organizations worldwide.
+              <p className="text-lg text-n-4 max-w-3xl mx-auto">
+                Located at 321 Castro St, Mountain View, CA 94041 - in the heart of Silicon Valley, 
+                we're at the forefront of the AI revolution.
               </p>
-            </div>
-          </div>
+            </motion.div>
 
-          <div className="mb-20">
-            <Heading 
-              title="Our Core Values" 
-              text="The principles that guide everything we do"
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-              <div className="p-8 rounded-2xl bg-n-7 border border-n-6 hover:border-n-5 transition-colors glass-card glass-card-hover">
-                <div className="text-3xl mb-4">🌟</div>
-                <h3 className="h4 mb-4">Accessibility</h3>
-                <p className="body-2 text-n-3">
-                  We believe powerful technology should be accessible to everyone, not just technical users. Our platform is designed so anyone can use it, regardless of coding experience.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-2xl bg-n-7 border border-n-6 hover:border-n-5 transition-colors glass-card glass-card-hover">
-                <div className="text-3xl mb-4">🔒</div>
-                <h3 className="h4 mb-4">Trust & Security</h3>
-                <p className="body-2 text-n-3">
-                  We prioritize data security and ethical AI use in everything we build. Your data and trust are sacred to us, and we maintain the highest standards of security.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-2xl bg-n-7 border border-n-6 hover:border-n-5 transition-colors glass-card glass-card-hover">
-                <div className="text-3xl mb-4">🚀</div>
-                <h3 className="h4 mb-4">Innovation</h3>
-                <p className="body-2 text-n-3">
-                  We're constantly pushing the boundaries of what's possible with AI automation. Our team is dedicated to bringing cutting-edge AI capabilities to our platform.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mb-20">
-            <Heading 
-              title="Our Journey" 
-              text="The story of AgentForge"
-            />
-            
-            <div className="relative mt-10">
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-n-6"></div>
+            {/* Mission & Values */}
+            <div className="mb-20">
+              <Heading title="Our Core Values" text="The principles that guide everything we do" />
               
-              {timeline.map((item, index) => (
-                <div key={index} className={`relative flex items-center gap-10 mb-16 ${index % 2 === 0 ? '' : 'flex-row-reverse'}`}>
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                    <div className="text-color-1 font-bold mb-2">{item.year}</div>
-                    <h3 className="h4 mb-3">{item.title}</h3>
-                    <p className="body-2 text-n-3">{item.description}</p>
-                  </div>
-                  
-                  <div className="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-color-1 z-10 border-4 border-n-8"></div>
-                  
-                  <div className="w-1/2"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mb-20">
-            <Heading 
-              title="Leadership Team" 
-              text="Meet the people behind AgentForge"
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
-              {teamMembers.map((member, index) => (
-                <div key={index} className="p-8 rounded-2xl bg-n-7 border border-n-6 hover:border-n-5 transition-colors text-center glass-card glass-card-hover">
-                  <div className="w-24 h-24 rounded-full bg-n-6 mx-auto mb-4 overflow-hidden">
-                    {/* Placeholder for team member photos */}
-                    <div className="w-full h-full bg-n-5 flex items-center justify-center text-2xl font-bold">
-                      {member.name.charAt(0)}
-                    </div>
-                  </div>
-                  <h3 className="h5 mb-2">{member.name}</h3>
-                  <div className="text-color-1 text-sm mb-4">{member.role}</div>
-                  <p className="body-2 text-n-3 mb-6">{member.description}</p>
-                  <a 
-                    href={`https://twitter.com/${member.twitter}`} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="text-sm text-n-1 hover:text-color-1 transition-colors"
+              <div className="grid gap-8 mt-16 md:grid-cols-3">
+                {values.map((value, index) => (
+                  <motion.div
+                    key={index}
+                    className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden glass-card text-center"
+                    whileHover={{ y: -10, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
                   >
-                    @{member.twitter}
-                  </a>
-                </div>
-              ))}
+                    <div className="absolute top-0 left-0 w-full h-full bg-n-8/90" />
+                    <div className="relative z-1">
+                      <div className="text-5xl mb-6">{value.icon}</div>
+                      <h3 className="h4 mb-4 text-gradient-blue">{value.title}</h3>
+                      <p className="text-n-3">{value.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="text-center mt-16">
-            <h2 className="h3 mb-6">Ready to transform your business?</h2>
-            <p className="body-2 text-n-3 max-w-xl mx-auto mb-8">
-              Join thousands of companies already building powerful AI automations with AgentForge.
-            </p>
-            <Button onClick={() => navigate('/contact')} white>
-              Get Started Free
-            </Button>
+            {/* Timeline */}
+            <div className="mb-20">
+              <Heading title="Our Journey" text="Key milestones in Ema's evolution" />
+              
+              <div className="mt-16 space-y-8">
+                {milestones.map((milestone, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex items-start gap-6 p-6 border border-n-1/10 rounded-xl bg-n-7/30"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <div className="flex-shrink-0 w-16 h-16 bg-color-1 rounded-full flex items-center justify-center text-n-8 font-bold">
+                      {milestone.year}
+                    </div>
+                    <div>
+                      <h4 className="h5 mb-2 text-gradient-purple">{milestone.title}</h4>
+                      <p className="text-n-3">{milestone.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Team */}
+            <div className="mb-20">
+              <Heading title="Leadership Team" text="The visionaries behind Ema's AI revolution" />
+              
+              <div className="grid gap-8 mt-16 md:grid-cols-2 lg:grid-cols-4">
+                {team.map((member, index) => (
+                  <motion.div
+                    key={index}
+                    className="relative p-6 border border-n-1/10 rounded-3xl overflow-hidden glass-card text-center"
+                    whileHover={{ y: -10, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <div className="absolute top-0 left-0 w-full h-full bg-n-8/90" />
+                    <div className="relative z-1">
+                      <div className="text-6xl mb-4">{member.image}</div>
+                      <h4 className="h5 mb-2 text-gradient-blue">{member.name}</h4>
+                      <p className="text-color-1 mb-3 font-medium">{member.role}</p>
+                      <p className="text-n-3 text-sm">{member.bio}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Section */}
+            <motion.div
+              className="text-center p-12 border border-n-1/10 rounded-3xl bg-n-7/30"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <h3 className="h3 mb-6 text-gradient-purple">Ready to Join the AI Revolution?</h3>
+              <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
+                Experience the future of work with Ema. Deploy your first AI employee in minutes 
+                and transform your business operations forever.
+              </p>
+              <div className="flex justify-center gap-4">
+                <Button>Hire Ema Today</Button>
+                <Button white>Join Our Team</Button>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      </div>
     </>
   );
 };
