@@ -6,42 +6,42 @@ import { motion } from "framer-motion";
 const SuccessStories = () => {
   const testimonials = [
     {
-      company: "Global Health Networks",
-      industry: "Healthcare",
-      quote: "93% automation accuracy for clinical documentation.",
-      author: "Dr. Emily Chen",
-      role: "Chief Medical Information Officer",
+      company: "TechFlow Solutions",
+      industry: "Customer Experience",
+      quote: "Ema transformed our customer support with 98% satisfaction rates and 24/7 availability.",
+      author: "Sarah Martinez",
+      role: "VP of Customer Success",
       class: "col-span-2 md:col-span-1",
       stats: {
-        metric: "Results",
-        accuracy: "93%",
-        timeSaved: "75%"
+        metric: "Impact",
+        satisfaction: "98%",
+        response: "<2s"
       }
     },
     {
-      company: "Capital Trust",
-      industry: "Financial Services",
-      quote: "5x faster risk assessment with 42% better accuracy.",
-      author: "Michael Rivera",
-      role: "VP of Risk Technology",
+      company: "DataCorp Inc",
+      industry: "Employee Experience",
+      quote: "Our Employee Assistant agent reduced onboarding time by 50% while ensuring 100% compliance.",
+      author: "James Chen",
+      role: "Chief People Officer",
       class: "col-span-2 md:col-span-1",
       stats: {
         metric: "Results",
-        speed: "5x",
-        accuracy: "42%"
+        efficiency: "50%",
+        compliance: "100%"
       }
     },
     {
-      company: "Barrister & Associates",
-      industry: "Legal",
-      quote: "8x faster document review with legal-specific AI.",
-      author: "Sarah Johnson",
-      role: "Legal Operations Director",
+      company: "Global Sales Network",
+      industry: "Sales & Marketing",
+      quote: "Ema's sales agents increased our win rate by 40% and accelerated our go-to-market by 10x.",
+      author: "Michael Thompson",
+      role: "VP of Sales Operations",
       class: "col-span-2 md:col-span-1",
       stats: {
-        metric: "Results",
-        speed: "8x",
-        accuracy: "95%"
+        metric: "Growth",
+        winRate: "40%",
+        speed: "10x"
       }
     }
    
@@ -51,8 +51,8 @@ const SuccessStories = () => {
     <Section>
       <div className="container">
         <Heading
-          title="Success Stories"
-          text="Real results from industry-specific AI agents"
+          title="Customer Success Stories"
+          text="Real results from enterprises deploying Ema AI agents"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">

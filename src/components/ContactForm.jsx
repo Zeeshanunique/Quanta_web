@@ -133,10 +133,10 @@ const ContactForm = () => {
     
       <Section id="contact">
         <div className="container">
-          <Heading
-            title="Get Started Today"
-            text="Experience how our AI automation platform can transform your business operations"
-          />
+                  <Heading
+          title="Hire Ema Today"
+          text="Meet your Universal AI Employee. One employee, infinite roles."
+        />
 
           <div className="max-w-[48rem] mx-auto mt-16">
             <div className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden lg:p-15 glass-card">
