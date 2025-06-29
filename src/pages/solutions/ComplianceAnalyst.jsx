@@ -117,7 +117,7 @@ const ComplianceAnalyst = () => {
           >
             <h3 className="h3 mb-6 text-gradient-purple">Ready to Automate Compliance?</h3>
             <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
-              Deploy Ema's Compliance Analyst Agent and ensure continuous regulatory adherence with AI-powered monitoring.
+              Deploy Quanta's Compliance Analyst Agent and ensure continuous regulatory adherence with AI-powered monitoring.
             </p>
             <div className="flex justify-center gap-4">
               <Button>Hire Compliance Analyst Agent</Button>

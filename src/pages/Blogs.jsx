@@ -8,7 +8,7 @@ const Blogs = () => {
   const blogPosts = [
     {
       title: "The Future of AI Employees: How Universal AI is Transforming Enterprise Operations",
-      excerpt: "Discover how AI employees like Ema are revolutionizing the way businesses operate, from customer support to data analysis.",
+      excerpt: "Discover how AI employees like Quanta are revolutionizing the way businesses operate, from customer support to data analysis.",
       date: "March 15, 2024",
       author: "Sarah Chen",
       category: "AI Innovation",
@@ -16,8 +16,8 @@ const Blogs = () => {
       image: "🤖"
     },
     {
-      title: "EmaFusion™ Model: Achieving 99.7% Accuracy in Enterprise AI",
-      excerpt: "Deep dive into our proprietary 2T+ parameter model that intelligently blends public and private AI for unmatched accuracy.",
+      title: "Advanced AI Models: Achieving 99.7% Accuracy in Enterprise AI",
+      excerpt: "Deep dive into our proprietary AI technology that intelligently optimizes performance for your specific business needs.",
       date: "March 10, 2024",
       author: "Dr. Michael Rodriguez",
       category: "Technology",
@@ -35,7 +35,7 @@ const Blogs = () => {
     },
     {
       title: "Data Security in the Age of AI: Privacy-First Enterprise Solutions",
-      excerpt: "Exploring how Ema's data governance and private models ensure your sensitive information stays secure.",
+      excerpt: "Exploring how Quanta's data governance and private models ensure your sensitive information stays secure.",
       date: "February 28, 2024",
       author: "Jennifer Walsh",
       category: "Security",
@@ -44,7 +44,7 @@ const Blogs = () => {
     },
     {
       title: "Customer Success Story: 80% Cost Reduction with AI Employee Automation",
-      excerpt: "How TechFlow Solutions transformed their operations and achieved remarkable ROI with Ema's AI agents.",
+      excerpt: "How TechFlow Solutions transformed their operations and achieved remarkable ROI with Quanta's AI agents.",
       date: "February 22, 2024",
       author: "Mark Thompson",
       category: "Case Study",
@@ -77,7 +77,7 @@ const Blogs = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="text-6xl mb-6">📚</div>
-            <h1 className="h1 mb-6">Ema Blog</h1>
+            <h1 className="h1 mb-6">Quanta Blog</h1>
             <p className="text-xl text-n-3 max-w-3xl mx-auto">
               Insights, updates, and deep dives into the world of Universal AI Employees and enterprise automation
             </p>
@@ -154,7 +154,7 @@ const Blogs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <h3 className="h3 mb-6 text-gradient-purple">Stay Updated with Ema</h3>
+            <h3 className="h3 mb-6 text-gradient-purple">Stay Updated with Quanta</h3>
             <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
               Get the latest insights, product updates, and AI industry news delivered to your inbox.
             </p>

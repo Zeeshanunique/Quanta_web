@@ -100,7 +100,7 @@ const Advantages = () => {
       <div className="container">
         <Heading
           title="Automate any business process with AI Agents"
-          text="Reimagine the future of work with Ema"
+          text="Reimagine the future of work with Quanta"
         />
 
         <div className="grid gap-8 mt-16 md:grid-cols-3">
@@ -120,12 +120,12 @@ const Advantages = () => {
           <div className="max-w-3xl mx-auto">
             <h3 className="h3 mb-6 text-gradient-purple">Your Universal AI Employee</h3>
             <p className="text-lg text-n-2 mb-8">
-              Ema goes beyond automation—she learns, adapts, and evolves to boost productivity across every role in your enterprise. 
-              Pre-integrated with hundreds of apps, Ema is easy to configure and deploy.
+                          Quanta goes beyond automation—she learns, adapts, and evolves to boost productivity across every role in your enterprise.
+            Pre-integrated with hundreds of apps, Quanta is easy to configure and deploy.
             </p>
             <div className="flex justify-center">
               <button className="px-8 py-3 bg-color-1 text-white rounded-lg font-medium hover:bg-color-1/90 transition-colors">
-                Hire Ema Today
+                Hire Quanta Today
               </button>
             </div>
           </div>

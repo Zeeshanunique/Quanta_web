@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
-import logo from '../assets1/svg/qunataheader.svg'; // Should be replaced with Ema logo
+import QuantaLogo from '../assets/QuantaLogo';
 import Button from "./ui/Button";
 import ThemeToggle from "./ui/ThemeToggle";
 import MenuSvg from "../assets/svg/MenuSvg";
-import { HamburgerMenu } from "./design/Header";
 import { useTheme } from '../hooks/useTheme';
 
 const navigationDropdowns = {
@@ -99,8 +98,8 @@ const Header = () => {
     >
       <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
         <div className="flex items-center w-full">
-          <Link to="/" className="block w-[12rem] xl:mr-8">
-            <img src={logo} width={190} height={40} alt="Ema" />
+          <Link to="/" className="block xl:mr-8">
+            <QuantaLogo width={160} height={40} className="hover:opacity-80 transition-opacity" />
           </Link>
 
           <nav className="hidden lg:flex items-center ml-auto relative">
@@ -171,7 +170,7 @@ const Header = () => {
             <ThemeToggle className="mr-6" />
             
             <Button onClick={() => navigate('/contact')}>
-              Hire Ema
+              Try Quanta Free
             </Button>
           </div>
 
@@ -186,81 +185,83 @@ const Header = () => {
         </div>
       </div>
 
-      <HamburgerMenu
-        openNavigation={openNavigation}
-        className={isLight ? "light-menu" : ""}
-      >
-        <div className="flex flex-col h-full overflow-auto scroll-smooth scrollbar-none">
-          <div className="h-[calc(100%-4.5rem)] overflow-auto">
-            <nav className="flex flex-col h-full p-5">
-              {navigation.map((item) => (
-                <div key={item.id}>
-                  {item.hasDropdown ? (
-                    <div>
+      {/* Mobile Navigation */}
+      {openNavigation && (
+        <div className={`lg:hidden fixed top-[5rem] left-0 w-full h-[calc(100vh-5rem)] ${
+          isLight ? 'bg-n-1' : 'bg-n-8'
+        } z-40`}>
+          <div className="flex flex-col h-full overflow-auto scroll-smooth scrollbar-none">
+            <div className="h-[calc(100%-4.5rem)] overflow-auto">
+              <nav className="flex flex-col h-full p-5">
+                {navigation.map((item) => (
+                  <div key={item.id}>
+                    {item.hasDropdown ? (
+                      <div>
+                        <button
+                          onClick={() => handleDropdownToggle(item.id)}
+                          className={`w-full text-left py-4 transition-colors flex items-center justify-between ${
+                            isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
+                          }`}
+                        >
+                          {item.title}
+                          <svg 
+                            className={`w-4 h-4 transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        
+                        {activeDropdown === item.id && (
+                          <div className="pl-4 pb-2">
+                            {item.dropdownItems.map((dropdownItem, index) => (
+                              <button
+                                key={index}
+                                onClick={() => handleNavItemClick(dropdownItem.url)}
+                                className={`block w-full text-left py-2 transition-colors ${
+                                  isLight ? "text-n-6 hover:text-color-1" : "text-n-3 hover:text-color-1"
+                                }`}
+                              >
+                                {dropdownItem.title}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
                       <button
-                        onClick={() => handleDropdownToggle(item.id)}
-                        className={`w-full text-left py-4 transition-colors flex items-center justify-between ${
-                          isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
+                        onClick={() => handleNavItemClick(item.url)}
+                        className={`block text-left py-4 transition-colors ${
+                          location.pathname === item.url 
+                            ? "text-color-1" 
+                            : isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
                         }`}
                       >
                         {item.title}
-                        <svg 
-                          className={`w-4 h-4 transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
                       </button>
-                      
-                      {activeDropdown === item.id && (
-                        <div className="pl-4 pb-2">
-                          {item.dropdownItems.map((dropdownItem, index) => (
-                            <button
-                              key={index}
-                              onClick={() => handleNavItemClick(dropdownItem.url)}
-                              className={`block w-full text-left py-2 transition-colors ${
-                                isLight ? "text-n-6 hover:text-color-1" : "text-n-3 hover:text-color-1"
-                              }`}
-                            >
-                              {dropdownItem.title}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => handleNavItemClick(item.url)}
-                      className={`block text-left py-4 transition-colors ${
-                        location.pathname === item.url 
-                          ? "text-color-1" 
-                          : isLight ? "text-n-8 hover:text-color-1" : "text-n-1 hover:text-color-1"
-                      }`}
-                    >
-                      {item.title}
-                    </button>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                ))}
 
-              <div className="mt-auto pt-10">
-                <div className="flex items-center justify-center mb-6">
-                  <ThemeToggle />
+                <div className="mt-auto pt-10">
+                  <div className="flex items-center justify-center mb-6">
+                    <ThemeToggle />
+                  </div>
+                  
+                  <Button
+                    onClick={() => handleNavItemClick('/contact')}
+                    className="w-full mb-3"
+                  >
+                    Try Quanta Free
+                  </Button>
                 </div>
-                
-                <Button
-                  onClick={() => handleNavItemClick('/contact')}
-                  className="w-full mb-3"
-                >
-                  Hire Ema
-                </Button>
-              </div>
-            </nav>
+              </nav>
+            </div>
           </div>
         </div>
-      </HamburgerMenu>
+      )}
     </div>
   );
 };

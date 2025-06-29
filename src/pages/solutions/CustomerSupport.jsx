@@ -117,7 +117,7 @@ const CustomerSupport = () => {
           >
             <h3 className="h3 mb-6 text-gradient-purple">Ready to Transform Your Customer Support?</h3>
             <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
-              Deploy Ema's Customer Support Agent in minutes and start delivering exceptional customer experiences.
+              Deploy Quanta's Customer Support Agent in minutes and start delivering exceptional customer experiences.
             </p>
             <div className="flex justify-center gap-4">
               <Button>Hire Customer Support Agent</Button>

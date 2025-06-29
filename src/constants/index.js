@@ -22,7 +22,7 @@ import {
     },
     {
       id: "1",
-      title: "Why Ema",
+      title: "Why Quanta",
       url: "#solutions",
     },
     {
@@ -33,7 +33,7 @@ import {
     {
       id: "3",
       title: "Pre-built Agents",
-      url: "#markets",
+      url: "#successstories",
     },
     {
       id: "4",
@@ -42,7 +42,7 @@ import {
     },
     {
       id: "5",
-      title: "Hire Ema",
+      title: "Hire Quanta",
       url: "#contact",
       onlyMobile: true,
     },
@@ -55,34 +55,34 @@ import {
   export const companyLogos = [yourlogo, yourlogo, yourlogo, yourlogo, yourlogo];
   
   export const collabText =
-    "With its Generative Workflow Engine™ and Pre-built AI Agents, Ema conversationally activates new AI employees to execute any complex workflow in the enterprise.";
+    "With its Generative Workflow Engine™ and Pre-built AI Agents, Quanta conversationally activates new AI employees to execute any complex workflow in the enterprise.";
   
   export const collabText2 =
-    "Multiply your workforce in minutes with Ema, your Universal AI Employee"
+    "Multiply your workforce in minutes with Quanta, your Universal AI Employee"
   
   export const socials = [
     {
       id: "0",
       title: "Discord",
       iconUrl: discordBlack,
-      url: "https://discord.gg/ema",
+      url: "https://discord.gg/quanta",
     },
     {
       id: "1",
       title: "Twitter",
       iconUrl: twitter,
-      url: "https://twitter.com/ema_ai",
+      url: "https://twitter.com/quanta_ai",
     },
     {
       id: "2",
       title: "Instagram",
       iconUrl: instagram,
-      url: "https://www.instagram.com/ema_ai",
+      url: "https://www.instagram.com/quanta_ai",
     },
     {
       id: "3",
       title: "LinkedIn",
       iconUrl: linkedin,
-      url: "https://www.linkedin.com/company/ema-ai",
+      url: "https://www.linkedin.com/company/quanta-ai",
     }
   ];

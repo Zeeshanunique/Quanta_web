@@ -117,7 +117,7 @@ const PharmacistAssistant = () => {
           >
             <h3 className="h3 mb-6 text-gradient-purple">Ready to Enhance Pharmaceutical Operations?</h3>
             <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
-              Deploy Ema's Pharmacist Assistant Agent and improve medication safety while streamlining operations.
+              Deploy Quanta's Pharmacist Assistant Agent and improve medication safety while streamlining operations.
             </p>
             <div className="flex justify-center gap-4">
               <Button>Hire Pharmacist Assistant Agent</Button>

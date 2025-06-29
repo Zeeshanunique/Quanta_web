@@ -134,7 +134,7 @@ const ContactForm = () => {
       <Section id="contact">
         <div className="container">
                   <Heading
-          title="Hire Ema Today"
+          title="Hire Quanta Today"
           text="Meet your Universal AI Employee. One employee, infinite roles."
         />
 

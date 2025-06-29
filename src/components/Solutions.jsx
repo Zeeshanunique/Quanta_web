@@ -13,7 +13,7 @@ const Solutions = () => {
     <Section id="solutions">
       <div className="container">
         <Heading
-          title="Why Hire Ema"
+          title="Why Hire Quanta"
           text="Multiply your workforce in minutes"
         />
 
@@ -30,7 +30,7 @@ const Solutions = () => {
               <h4 className="h4 mb-6 text-gradient-teal">Simple</h4>
               
               <p className="text-sm text-n-3 mb-6">
-                With its Generative Workflow Engine™ and Pre-built AI Agents, Ema conversationally activates new AI employees to execute any complex workflow in the enterprise.
+                With its Generative Workflow Engine™ and Pre-built AI Agents, Quanta conversationally activates new AI employees to execute any complex workflow in the enterprise.
               </p>
               
               <div className="grid grid-cols-1 gap-3">
@@ -73,7 +73,7 @@ const Solutions = () => {
               <h4 className="h4 mb-6 text-gradient-purple">Trusted</h4>
               
               <p className="text-sm text-n-3 mb-6">
-                Ema's data governance redacts sensitive information before passing it to public LLMs. Enjoy compliance with all leading standards and unbeatable security.
+                Quanta's data governance redacts sensitive information before passing it to public LLMs. Enjoy compliance with all leading standards and unbeatable security.
               </p>
               
               <div className="grid grid-cols-1 gap-3 mb-6">
@@ -116,13 +116,13 @@ const Solutions = () => {
               <h4 className="h4 mb-6 text-gradient-blue">Accurate</h4>
               
               <p className="text-sm text-n-3 mb-6">
-                Ema maximizes accuracy at the lowest possible cost, thanks to 2T+ parameter proprietary EmaFusion™ model that intelligently blends the best public and private models.
+                Quanta maximizes accuracy at the lowest possible cost, thanks to our proprietary AI technology that intelligently optimizes performance for your specific business needs.
               </p>
               
               <div className="grid grid-cols-1 gap-3 mb-6">
                 <div className="flex items-center py-2 px-3 rounded-lg bg-n-7/50 border border-n-1/10">
                   <img width={16} height={16} src={check} alt="check" className="mr-2" />
-                  <p className="text-xs">2T+ parameter EmaFusion™ model</p>
+                                      <p className="text-xs">Enterprise-grade AI technology</p>
                 </div>
                 
                 <div className="flex items-center py-2 px-3 rounded-lg bg-n-7/50 border border-n-1/10">
@@ -142,7 +142,7 @@ const Solutions = () => {
               </div>
               
               <Button onClick={() => navigate('/about')} className="mt-4 w-full">
-                Explore EmaFusion™
+                                  Learn More
               </Button>
             </div>
           </motion.div>

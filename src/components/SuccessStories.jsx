@@ -8,7 +8,7 @@ const SuccessStories = () => {
     {
       company: "TechFlow Solutions",
       industry: "Customer Experience",
-      quote: "Ema transformed our customer support with 98% satisfaction rates and 24/7 availability.",
+      quote: "Quanta transformed our customer support with 98% satisfaction rates and 24/7 availability.",
       author: "Sarah Martinez",
       role: "VP of Customer Success",
       class: "col-span-2 md:col-span-1",
@@ -34,7 +34,7 @@ const SuccessStories = () => {
     {
       company: "Global Sales Network",
       industry: "Sales & Marketing",
-      quote: "Ema's sales agents increased our win rate by 40% and accelerated our go-to-market by 10x.",
+      quote: "Quanta's sales agents increased our win rate by 40% and accelerated our go-to-market by 10x.",
       author: "Michael Thompson",
       role: "VP of Sales Operations",
       class: "col-span-2 md:col-span-1",
@@ -52,7 +52,7 @@ const SuccessStories = () => {
       <div className="container">
         <Heading
           title="Customer Success Stories"
-          text="Real results from enterprises deploying Ema AI agents"
+          text="Real results from enterprises deploying Quanta AI agents"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">

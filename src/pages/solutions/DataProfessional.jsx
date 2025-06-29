@@ -117,7 +117,7 @@ const DataProfessional = () => {
           >
             <h3 className="h3 mb-6 text-gradient-purple">Ready to Unleash Your Data's Potential?</h3>
             <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
-              Deploy Ema's Data Professional Agent and transform your data operations with AI-powered insights.
+              Deploy Quanta's Data Professional Agent and transform your data operations with AI-powered insights.
             </p>
             <div className="flex justify-center gap-4">
               <Button>Hire Data Professional Agent</Button>

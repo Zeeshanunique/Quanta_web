@@ -143,7 +143,7 @@ const Routerr = () => {
           <div className="pt-[12rem] -mt-[5.25rem] min-h-screen flex items-center justify-center">
             <div className="text-center">
               <h1 className="h1 mb-6">Integrations</h1>
-              <p className="text-xl text-n-3">Coming Soon - 500+ app integrations with Ema</p>
+              <p className="text-xl text-n-3">Coming Soon - 500+ app integrations with Quanta</p>
             </div>
           </div>
           <Footer />
@@ -192,7 +192,7 @@ const Routerr = () => {
           <div className="pt-[12rem] -mt-[5.25rem] min-h-screen flex items-center justify-center">
             <div className="text-center">
               <h1 className="h1 mb-6">Join the Team</h1>
-              <p className="text-xl text-n-3">Coming Soon - Exciting opportunities at Ema</p>
+              <p className="text-xl text-n-3">Coming Soon - Exciting opportunities at Quanta</p>
             </div>
           </div>
           <Footer />
