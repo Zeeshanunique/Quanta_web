@@ -16,7 +16,7 @@ const IndustryCard = ({ industry, metrics, useCases, icon }) => (
       <div className="flex justify-between items-center mb-5">
         <div className="text-3xl">{icon}</div>
         <div className="bg-n-7/50 px-3 py-1 rounded-full text-xs text-color-1 font-medium">
-          AI Solution
+          Pre-built Agent
         </div>
       </div>
       
@@ -33,10 +33,11 @@ const IndustryCard = ({ industry, metrics, useCases, icon }) => (
       </div>
       
       <div className="mb-4">
-        <h5 className="text-sm font-medium text-color-1 mb-3">Key Applications</h5>
-        <div className="grid grid-cols-2 gap-2">
+        <h5 className="text-sm font-medium text-color-1 mb-3">Agent Capabilities</h5>
+        <div className="grid grid-cols-1 gap-2">
           {useCases.map((useCase, index) => (
-            <div key={index} className="text-xs bg-n-7/30 border border-n-1/10 p-2 rounded-lg text-n-2">
+            <div key={index} className="flex items-center text-xs bg-n-7/30 border border-n-1/10 p-2 rounded-lg text-n-2">
+              <span className="text-color-1 mr-2">✓</span>
               {useCase}
             </div>
           ))}
@@ -49,51 +50,51 @@ const IndustryCard = ({ industry, metrics, useCases, icon }) => (
 const IndustrySolutions = () => {
   const industryData = [
     {
-      industry: "Healthcare",
-      icon: "🏥",
+      industry: "Customer Support Agent",
+      icon: "🎧",
       metrics: {
-        "Accuracy": "93%",
-        "Time Saved": "75%",
-        "Compliance": "HIPAA",
-        "Error Rate": "<1%"
+        "Response Time": "<2s",
+        "Satisfaction": "98%",
+        "Availability": "24/7",
+        "Resolution": "87%"
       },
       useCases: [
-        "Clinical documentation",
-        "Patient risk analysis",
-        "Medical coding",
-        "Care optimization"
+        "Intelligent ticket routing",
+        "Multi-language support", 
+        "Knowledge base integration",
+        "Escalation management"
       ]
     },
     {
-      industry: "Financial Services",
-      icon: "💰",
+      industry: "Data Professional",
+      icon: "📊",
       metrics: {
-        "Fraud Detection": "99.6%",
-        "Cost Reduction": "42%",
-        "Compliance": "FINRA",
-        "Processing": "Instant"
+        "Processing": "10TB/day",
+        "Accuracy": "99.9%",
+        "Time Saved": "90%",
+        "Insights": "Real-time"
       },
       useCases: [
-        "Fraud prevention",
-        "Regulatory monitoring",
-        "Portfolio analysis",
-        "Risk assessment"
+        "Data analysis automation",
+        "Report generation",
+        "Anomaly detection",
+        "Predictive analytics"
       ]
     },
     {
-      industry: "Legal",
-      icon: "⚖️",
+      industry: "Employee Assistant",
+      icon: "👤",
       metrics: {
-        "Accuracy": "97%",
-        "Review Speed": "8x",
-        "Citations": "Automatic",
-        "Coverage": "All jurisdictions"
+        "Onboarding": "50% faster",
+        "HR Queries": "Instant",
+        "Compliance": "100%",
+        "Satisfaction": "95%"
       },
       useCases: [
-        "Contract analysis",
-        "Case research",
-        "Document generation",
-        "Due diligence"
+        "Employee onboarding",
+        "Benefits administration",
+        "Policy assistance",
+        "Performance tracking"
       ]
     }
   ];
@@ -102,8 +103,8 @@ const IndustrySolutions = () => {
     <Section id="industries">
       <div className="container">
         <Heading
-          title="Industry Solutions"
-          text="AI specialized for your sector"
+          title="Pre-built AI Agents"
+          text="Ready-to-deploy AI employees for every business function"
         />
 
         <div className="grid gap-8 mt-16 md:grid-cols-3">
@@ -116,6 +117,24 @@ const IndustrySolutions = () => {
               useCases={industry.useCases}
             />
           ))}
+        </div>
+
+        <div className="text-center mt-16">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="h3 mb-6 text-gradient-purple">Deploy Any Agent in Minutes</h3>
+            <p className="text-lg text-n-2 mb-8">
+              All agents come pre-integrated with hundreds of apps and are ready for conversational deployment. 
+              No technical setup required.
+            </p>
+            <div className="flex justify-center space-x-4">
+              <button className="px-8 py-3 bg-color-1 text-white rounded-lg font-medium hover:bg-color-1/90 transition-colors">
+                Explore All Agents
+              </button>
+              <button className="px-8 py-3 border border-n-1/20 text-n-1 rounded-lg font-medium hover:bg-n-7/50 transition-colors">
+                Request Custom Agent
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </Section>
