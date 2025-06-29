@@ -4,45 +4,45 @@ import Heading from '../../components/ui/Heading';
 import Button from '../../components/ui/Button';
 import { motion } from 'framer-motion';
 
-const CustomerSupport = () => {
+const DataProfessional = () => {
   const features = [
     {
-      title: "24/7 Availability",
-      description: "Always-on customer support with instant response times",
-      icon: "🕒"
+      title: "Data Analysis Automation",
+      description: "Automated data processing and analysis at enterprise scale",
+      icon: "⚡"
     },
     {
-      title: "Multi-language Support",
-      description: "Communicate with customers in their preferred language",
-      icon: "🌍"
+      title: "Report Generation",
+      description: "Intelligent report creation with insights and visualizations",
+      icon: "📈"
     },
     {
-      title: "Intelligent Routing",
-      description: "Smart ticket classification and routing to appropriate agents",
-      icon: "🎯"
+      title: "Anomaly Detection",
+      description: "Real-time identification of data irregularities and patterns",
+      icon: "🔍"
     },
     {
-      title: "Knowledge Base Integration",
-      description: "Access to comprehensive product and service information",
-      icon: "📚"
+      title: "Predictive Analytics",
+      description: "Advanced forecasting and trend analysis capabilities",
+      icon: "🔮"
     },
     {
-      title: "Escalation Management",
-      description: "Seamless handoff to human agents when needed",
-      icon: "🔄"
+      title: "Data Quality Assurance",
+      description: "Continuous monitoring and validation of data integrity",
+      icon: "✅"
     },
     {
-      title: "Performance Analytics",
-      description: "Real-time insights into customer satisfaction and resolution rates",
-      icon: "📊"
+      title: "Multi-source Integration",
+      description: "Seamless connection to databases, APIs, and data warehouses",
+      icon: "🔗"
     }
   ];
 
   const benefits = [
-    { metric: "98%", label: "Customer Satisfaction" },
-    { metric: "<2s", label: "Response Time" },
-    { metric: "87%", label: "First Contact Resolution" },
-    { metric: "24/7", label: "Availability" }
+    { metric: "99.9%", label: "Data Accuracy" },
+    { metric: "10TB/day", label: "Processing Capacity" },
+    { metric: "90%", label: "Time Saved" },
+    { metric: "Real-time", label: "Insights" }
   ];
 
   return (
@@ -55,11 +55,11 @@ const CustomerSupport = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="text-6xl mb-6">🎧</div>
-              <h1 className="h1 mb-6">Customer Support Agent</h1>
+              <div className="text-6xl mb-6">📊</div>
+              <h1 className="h1 mb-6">Data Professional Agent</h1>
               <p className="text-xl text-n-3 mb-8">
-                Transform your customer experience with AI-powered support that never sleeps. 
-                Deliver instant, accurate, and personalized assistance across all channels.
+                Supercharge your data operations with AI that understands your business context. 
+                Process, analyze, and generate insights from massive datasets automatically.
               </p>
               
               <div className="flex justify-center gap-4 mb-12">
@@ -86,7 +86,7 @@ const CustomerSupport = () => {
           </div>
 
           {/* Features */}
-          <Heading title="Key Capabilities" text="Everything you need for exceptional customer support" />
+          <Heading title="Key Capabilities" text="Advanced data processing and analytics capabilities" />
           
           <div className="grid gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
@@ -115,12 +115,12 @@ const CustomerSupport = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <h3 className="h3 mb-6 text-gradient-purple">Ready to Transform Your Customer Support?</h3>
+            <h3 className="h3 mb-6 text-gradient-purple">Ready to Unleash Your Data's Potential?</h3>
             <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
-              Deploy Ema's Customer Support Agent in minutes and start delivering exceptional customer experiences.
+              Deploy Ema's Data Professional Agent and transform your data operations with AI-powered insights.
             </p>
             <div className="flex justify-center gap-4">
-              <Button>Hire Customer Support Agent</Button>
+              <Button>Hire Data Professional Agent</Button>
               <Button white>Schedule Demo</Button>
             </div>
           </motion.div>
@@ -130,4 +130,4 @@ const CustomerSupport = () => {
   );
 };
 
-export default CustomerSupport; 
+export default DataProfessional; 
