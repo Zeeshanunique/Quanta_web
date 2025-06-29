@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import check from '../assets/check.svg';
 import { useTheme } from '../hooks/useTheme';
-import { Meteors, MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -203,40 +202,28 @@ const Services = () => {
       </Helmet>
 
       <Section className={`pt-[12rem] -mt-[5.25rem] ${isLight ? 'light' : ''}`} crosses>
-        <div className="container relative">
-          <Meteors number={20} />
-          
+        <div className="container">
           {/* Hero Section */}
           <motion.div 
             className="relative z-10 max-w-[62rem] mx-auto text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.7 }}
           >
             <h1 className="h1 mb-6"><span className="text-gradient-purple">Industry-Grade AI Services</span></h1>
             <p className={`body-1 mb-8 max-w-3xl mx-auto ${isLight ? 'text-n-6' : 'text-n-2'}`}>
               Specialist AI services tailored to your industry's unique challenges, workflows, and compliance requirements
             </p>
-            <motion.div 
-              className="flex flex-wrap justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <ShimmerButton onClick={() => navigate('/contact')}>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button onClick={() => navigate('/contact')}>
                 Schedule Consultation
-              </ShimmerButton>
-              <ShimmerButton onClick={() => navigate('/product')} className="border border-n-6 text-n-1 bg-transparent hover:bg-n-6">
+              </Button>
+              <Button onClick={() => navigate('/product')} white>
                 Explore Solutions
-              </ShimmerButton>
-            </motion.div>
+              </Button>
+            </div>
             
-            <motion.div 
-              className="mt-12 px-4 py-3 bg-n-7/80 rounded-xl border border-n-6 inline-flex items-center mx-auto"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
+            <div className="mt-12 px-4 py-3 bg-n-7/80 rounded-xl border border-n-6 inline-flex items-center mx-auto">
               <span className="text-xs uppercase tracking-wider text-color-1 mr-3">TRUSTED BY INDUSTRY LEADERS</span>
               <div className="w-px h-4 bg-n-6 mr-3"></div>
               <div className="flex items-center space-x-4 text-n-3">
@@ -246,15 +233,11 @@ const Services = () => {
                 <span>•</span>
                 <span>Financial Institutions</span>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Vertical AI Advantages */}
-          <MagicCard 
-            className={`p-8 rounded-2xl mb-16 border ${isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'}`}
-            gradientColor={isLight ? "#3b82f6" : "#2563eb"}
-          >
-            <BorderBeam size={300} duration={15} delay={0} />
+          <div className={`p-8 rounded-2xl mb-16 border ${isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'}`}>
             <div className="text-center mb-10">
               <h2 className="h3 mb-4">Why Vertical AI Outperforms General-Purpose AI</h2>
               <p className={`body-2 max-w-3xl mx-auto ${isLight ? 'text-n-6' : 'text-n-3'}`}>
@@ -264,66 +247,37 @@ const Services = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <motion.div 
-                className={`p-6 rounded-xl border ${isLight ? 'bg-n-2/50 border-n-3' : 'bg-n-6 border-n-5'}`}
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <motion.div 
-                  className="text-2xl mb-3"
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >🎯</motion.div>
+              <div className={`p-6 rounded-xl border ${isLight ? 'bg-n-2/50 border-n-3' : 'bg-n-6 border-n-5'}`}>
+                <div className="text-2xl mb-3">🎯</div>
                 <h4 className="h5 mb-2">Domain Expertise</h4>
                 <p className={`body-2 ${isLight ? 'text-n-6' : 'text-n-3'}`}>
                   Built with deep knowledge of your industry's terminology, processes, regulations, and workflows
                   for superior understanding and accuracy.
                 </p>
-              </motion.div>
+              </div>
               
-              <motion.div 
-                className={`p-6 rounded-xl border ${isLight ? 'bg-n-2/50 border-n-3' : 'bg-n-6 border-n-5'}`}
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <motion.div 
-                  className="text-2xl mb-3"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >⚡</motion.div>
+              <div className={`p-6 rounded-xl border ${isLight ? 'bg-n-2/50 border-n-3' : 'bg-n-6 border-n-5'}`}>
+                <div className="text-2xl mb-3">⚡</div>
                 <h4 className="h5 mb-2">Performance Advantage</h4>
                 <p className={`body-2 ${isLight ? 'text-n-6' : 'text-n-3'}`}>
                   Up to 75% higher accuracy than general-purpose AI on industry-specific tasks,
                   with significantly lower error rates.
                 </p>
-              </motion.div>
+              </div>
               
-              <motion.div 
-                className={`p-6 rounded-xl border ${isLight ? 'bg-n-2/50 border-n-3' : 'bg-n-6 border-n-5'}`}
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <motion.div 
-                  className="text-2xl mb-3"
-                  animate={{ rotate: [0, 180, 360] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                >🔗</motion.div>
+              <div className={`p-6 rounded-xl border ${isLight ? 'bg-n-2/50 border-n-3' : 'bg-n-6 border-n-5'}`}>
+                <div className="text-2xl mb-3">🔗</div>
                 <h4 className="h5 mb-2">Seamless Integration</h4>
                 <p className={`body-2 ${isLight ? 'text-n-6' : 'text-n-3'}`}>
                   Connects natively with industry-standard tools and platforms, fitting perfectly into your
                   existing workflows and systems.
                 </p>
-              </motion.div>
+              </div>
             </div>
-          </MagicCard>
+          </div>
 
           {/* Industry Use Cases */}
-          <motion.div 
-            className="mb-20"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <div className="mb-20">
             <div className="text-center mb-10">
               <h2 className="h3 mb-4">Vertical AI Applications By Industry</h2>
               <p className={`body-2 max-w-3xl mx-auto mb-10 ${isLight ? 'text-n-6' : 'text-n-3'}`}>
@@ -333,60 +287,23 @@ const Services = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {industryUseCases.map((industry, index) => (
-                <MagicCard 
-                  key={index} 
-                  className={`p-8 rounded-2xl border ${isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'}`}
-                  gradientColor={
-                    index % 4 === 0 ? (isLight ? "#f59e0b" : "#d97706") :
-                    index % 4 === 1 ? (isLight ? "#10b981" : "#059669") :
-                    index % 4 === 2 ? (isLight ? "#3b82f6" : "#2563eb") :
-                    (isLight ? "#a855f7" : "#7c3aed")
-                  }
-                >
-                  <BorderBeam 
-                    size={250} 
-                    duration={12 + index * 2} 
-                    delay={index * 1.5}
-                    colorFrom={
-                      index % 4 === 0 ? "#f59e0b" :
-                      index % 4 === 1 ? "#10b981" :
-                      index % 4 === 2 ? "#3b82f6" :
-                      "#a855f7"
-                    }
-                    colorTo={
-                      index % 4 === 0 ? "#b45309" :
-                      index % 4 === 1 ? "#047857" :
-                      index % 4 === 2 ? "#1d4ed8" :
-                      "#6b21a8"
-                    }
-                  />
+                <div key={index} className={`p-8 rounded-2xl border ${isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'}`}>
                   <div className="flex items-center gap-4 mb-6">
-                    <motion.span 
-                      className="text-4xl"
-                      whileHover={{ scale: 1.2, rotate: 15 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {industry.icon}
-                    </motion.span>
+                    <span className="text-4xl">{industry.icon}</span>
                     <h3 className="h4">{industry.industry}</h3>
                   </div>
-                  <AnimatedList>
+                  <ul className="space-y-4">
                     {industry.useCases.map((useCase, i) => (
-                      <motion.li 
-                        key={i} 
-                        className="flex gap-3"
-                        whileHover={{ x: 5 }}
-                        transition={{ duration: 0.2 }}
-                      >
+                      <li key={i} className="flex gap-3">
                         <img src={check} alt="Check" className="h-6 w-6 flex-shrink-0" />
                         <p className={`body-2 ${isLight ? 'text-n-6' : 'text-n-3'}`}>{useCase}</p>
-                      </motion.li>
+                      </li>
                     ))}
-                  </AnimatedList>
-                </MagicCard>
+                  </ul>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Services Tabs */}
           <div className="mb-20">
