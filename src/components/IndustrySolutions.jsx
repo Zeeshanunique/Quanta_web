@@ -215,38 +215,7 @@ const IndustrySolutions = () => {
   ];
 
   return (
-    <Section id="industries" className="relative overflow-hidden">
-      {/* Background meteors effect */}
-      <Meteors number={15} className="opacity-20" />
-      
-      {/* Floating decorative elements */}
-      <motion.div 
-        className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-color-1/10 to-color-2/10 rounded-full blur-xl"
-        animate={{ 
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ 
-          repeat: Infinity,
-          duration: 8,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-r from-color-5/10 to-color-6/10 rounded-full blur-xl"
-        animate={{ 
-          x: [0, -20, 0],
-          y: [0, 30, 0],
-          scale: [1.2, 1, 1.2]
-        }}
-        transition={{ 
-          repeat: Infinity,
-          duration: 10,
-          ease: "easeInOut"
-        }}
-      />
-      
+    <Section className="relative overflow-hidden">
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

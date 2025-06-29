@@ -180,10 +180,7 @@ const Advantages = () => {
   ];
 
   return (
-    <Section id="advantages" className="relative overflow-hidden">
-      {/* Background meteors effect */}
-      <Meteors number={20} className="opacity-20" />
-      
+    <Section className="relative overflow-hidden">
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
