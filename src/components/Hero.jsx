@@ -34,12 +34,20 @@ const Hero = () => {
       {/* Fullscreen background animation */}
       <ValoraFloating />
       
-      <Section id="hero" className="pt-[12rem] -mt-[5.25rem] relative overflow-hidden" crosses>
-        {/* Meteors background effect */}
-        <Meteors number={30} className="opacity-30" />
-        
-        <div className="container">
-          <div className="relative z-10 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]">
+      <Section
+        className="pt-[12rem] -mt-[5.25rem]"
+        crosses
+        crossesOffset="lg:translate-y-[5.25rem]"
+        customPaddings
+        id="hero"
+      >
+        <div className="container relative">
+          <motion.div 
+            className="relative z-1 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <motion.h1 
               className="h1 mb-6 relative"
               initial={{ opacity: 0, y: 30 }}
@@ -77,7 +85,7 @@ const Hero = () => {
                 Get Started Free
               </ShimmerButton>
             </motion.div>
-          </div>
+          </motion.div>
 
           <motion.div 
             className="relative max-w-[90%] mx-auto z-10"
