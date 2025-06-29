@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
-import logo from '../assets1/svg/qunataheader.svg'; // Should be replaced with AgentForge logo
+import logo from '../assets1/svg/qunataheader.svg'; // Should be replaced with Ema logo
 import Button from "./ui/Button";
 import ThemeToggle from "./ui/ThemeToggle";
 import MenuSvg from "../assets/svg/MenuSvg";
@@ -16,17 +16,17 @@ const navigation = [
   },
   {
     id: "1",
-    title: "Vertical AI Platform",
+    title: "Customer Experience",
     url: "/product",
   },
   {
     id: "2",
-    title: "Industry Solutions",
+    title: "Employee Experience", 
     url: "/services",
   },
   {
     id: "3",
-    title: "About",
+    title: "Sales & Marketing",
     url: "/about",
   },
   {
@@ -75,7 +75,7 @@ const Header = () => {
       <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
         <div className="flex items-center ">
           <Link to="/" className="block w-[12rem] xl:mr-8">
-            <img src={logo} width={190} height={40} alt="AgentForge" />
+            <img src={logo} width={190} height={40} alt="Ema" />
           </Link>
 
           <nav className="hidden lg:flex items-center ml-auto">
@@ -100,7 +100,7 @@ const Header = () => {
             <ThemeToggle className="mr-6" />
             
             <Button onClick={() => navigate('/contact')}>
-              Request Demo
+              Hire Ema
             </Button>
           </div>
 
@@ -145,7 +145,7 @@ const Header = () => {
                   onClick={() => handleNavItemClick('/contact')}
                   className="w-full mb-3"
                 >
-                  Request Demo
+                  Hire Ema
                 </Button>
               </div>
             </nav>

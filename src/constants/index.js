@@ -17,22 +17,22 @@ import {
   export const navigation = [
     {
       id: "0",
-      title: "Vision",
+      title: "Solutions",
       url: "#hero",
     },
     {
       id: "1",
-      title: "Solutions",
+      title: "Why Ema",
       url: "#solutions",
     },
     {
       id: "2",
-      title: "Advantages",
+      title: "How it Works",
       url: "#advantages",
     },
     {
       id: "3",
-      title: "Markets",
+      title: "Pre-built Agents",
       url: "#markets",
     },
     {
@@ -42,7 +42,7 @@ import {
     },
     {
       id: "5",
-      title: "Get Demo",
+      title: "Hire Ema",
       url: "#contact",
       onlyMobile: true,
     },
@@ -55,34 +55,34 @@ import {
   export const companyLogos = [yourlogo, yourlogo, yourlogo, yourlogo, yourlogo];
   
   export const collabText =
-    "With smart automation and top-notch security, it's the perfect solution for Business looking to work smarter.";
+    "With its Generative Workflow Engine™ and Pre-built AI Agents, Ema conversationally activates new AI employees to execute any complex workflow in the enterprise.";
   
   export const collabText2 =
-    "Unlock Efficiency & Peace of Mind: Smart Automation Meets Top-notch Security in our AI Solutions"
+    "Multiply your workforce in minutes with Ema, your Universal AI Employee"
   
   export const socials = [
     {
       id: "0",
       title: "Discord",
       iconUrl: discordBlack,
-      url: "https://discord.gg/3rg7VbpC",
+      url: "https://discord.gg/ema",
     },
     {
       id: "1",
       title: "Twitter",
       iconUrl: twitter,
-      url: "https://twitter.com/quanta_com",
+      url: "https://twitter.com/ema_ai",
     },
     {
       id: "2",
       title: "Instagram",
       iconUrl: instagram,
-      url: "https://www.instagram.com/quanta_com",
+      url: "https://www.instagram.com/ema_ai",
     },
     {
       id: "3",
-      title: "Linkdin",
+      title: "LinkedIn",
       iconUrl: linkedin,
-      url: "https://www.linkedin.com/company/quantadb",
+      url: "https://www.linkedin.com/company/ema-ai",
     }
   ];
