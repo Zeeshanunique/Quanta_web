@@ -125,9 +125,7 @@ const Contact = () => {
 
       <Section className="pt-[12rem] -mt-[5.25rem]" crosses>
         <div className="container relative">
-          {/* Background Meteors */}
-          <Meteors number={25} />
-          
+          {/* Hero Section */}
           <motion.div 
             className="max-w-[800px] mx-auto text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
