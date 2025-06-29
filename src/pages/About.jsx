@@ -4,6 +4,8 @@ import Section from '../components/ui/Section';
 import Heading from '../components/ui/Heading';
 import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { MagicCard, BorderBeam, Meteors, ShimmerButton, AnimatedList, AnimatedListItem } from '../components/magicui';
 
 const About = () => {
   const navigate = useNavigate();
