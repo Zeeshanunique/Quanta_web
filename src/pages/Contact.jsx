@@ -4,6 +4,8 @@ import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
 import Heading from '../components/ui/Heading';
 import { useTheme } from '../hooks/useTheme';
+import { motion } from 'framer-motion';
+import { Meteors, MagicCard, BorderBeam, ShimmerButton, AnimatedList, Marquee } from '../components/magicui';
 
 const Contact = () => {
   const { theme } = useTheme();
@@ -122,30 +124,56 @@ const Contact = () => {
       </Helmet>
 
       <Section className="pt-[12rem] -mt-[5.25rem]" crosses>
-        <div className="container">
-          <div className="max-w-[800px] mx-auto text-center mb-16">
+        <div className="container relative">
+          {/* Background Meteors */}
+          <Meteors number={25} />
+          
+          <motion.div 
+            className="max-w-[800px] mx-auto text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <h1 className="h1 mb-6">Get in <span className="text-gradient-purple">Touch</span></h1>
             <p className={`body-1 mb-6 ${isLight ? 'text-n-8' : 'text-n-2'}`}>
               We're here to help you transform your business with AI automation
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button onClick={() => handleTabChange('information')} className={activeTab === 'information' ? 'bg-color-1' : (isLight ? 'bg-n-3' : 'bg-n-6')}>
+            <motion.div 
+              className="flex flex-wrap justify-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <ShimmerButton 
+                onClick={() => handleTabChange('information')} 
+                className={`${activeTab === 'information' ? 'bg-color-1' : (isLight ? 'bg-n-3' : 'bg-n-6')} transition-all duration-300`}
+              >
                 Request Information
-              </Button>
-              <Button onClick={() => handleTabChange('demo')} className={activeTab === 'demo' ? 'bg-color-1' : (isLight ? 'bg-n-3' : 'bg-n-6')}>
+              </ShimmerButton>
+              <ShimmerButton 
+                onClick={() => handleTabChange('demo')} 
+                className={`${activeTab === 'demo' ? 'bg-color-1' : (isLight ? 'bg-n-3' : 'bg-n-6')} transition-all duration-300`}
+              >
                 Schedule a Demo
-              </Button>
-              <Button onClick={() => handleTabChange('support')} className={activeTab === 'support' ? 'bg-color-1' : (isLight ? 'bg-n-3' : 'bg-n-6')}>
+              </ShimmerButton>
+              <ShimmerButton 
+                onClick={() => handleTabChange('support')} 
+                className={`${activeTab === 'support' ? 'bg-color-1' : (isLight ? 'bg-n-3' : 'bg-n-6')} transition-all duration-300`}
+              >
                 Get Support
-              </Button>
-            </div>
-          </div>
+              </ShimmerButton>
+            </motion.div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
             <div>
-              <div className={`relative p-8 rounded-2xl border mb-10 glass-card glass-card-hover overflow-hidden ${
-                isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
-              }`}>
+              <MagicCard 
+                className={`relative p-8 rounded-2xl border mb-10 overflow-hidden ${
+                  isLight ? 'bg-n-1 border-n-3' : 'bg-n-7 border-n-6'
+                }`}
+                gradientColor={isLight ? "#cbd5e1" : "#1e293b"}
+              >
+                <BorderBeam size={250} duration={12} delay={9} />
                 <div className="relative z-10">
                   <h3 className="h4 mb-4 text-gradient-blue">Global AI Solutions</h3>
                   <p className={`body-2 mb-6 ${isLight ? 'text-n-6' : 'text-n-3'}`}>
@@ -179,9 +207,9 @@ const Contact = () => {
                     ))}
                   </div>
                   
-                  {/* Pulsating location dots */}
+                  {/* Enhanced pulsating location dots */}
                   {pulsatingDots.map((dot, index) => (
-                    <div 
+                    <motion.div 
                       key={index}
                       className="absolute rounded-full bg-color-1"
                       style={{
@@ -189,7 +217,20 @@ const Contact = () => {
                         top: `${dot.y}%`,
                         width: `${dot.size}px`,
                         height: `${dot.size}px`,
-                        animation: `pulse 2s infinite ${dot.delay}s`
+                      }}
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.8, 1, 0.8],
+                        boxShadow: [
+                          '0 0 10px rgba(134, 239, 172, 0.5)',
+                          '0 0 25px rgba(134, 239, 172, 0.8)',
+                          '0 0 10px rgba(134, 239, 172, 0.5)'
+                        ]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: dot.delay
                       }}
                     >
                       <div 
@@ -198,30 +239,10 @@ const Contact = () => {
                           animation: `pulse 2s infinite ${dot.delay}s`
                         }}
                       ></div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-                
-                {/* Contact details */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10 mt-4">
-                  <div className="flex items-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-color-1 mr-3">
-                      <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
-                    </svg>
-                    <a href="mailto:contact@agentforge.ai" className="text-n-1 hover:text-color-1 transition-colors">
-                      contact@quanta.co.in
-                    </a>
-                  </div>
-                  <div className="flex items-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-color-1 mr-3">
-                      <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="currentColor"/>
-                    </svg>
-                    <a href="tel:+11234567890" className="text-n-1 hover:text-color-1 transition-colors">
-                      +91 7463996212
-                    </a>
-                  </div>
-                </div>
-              </div>
+              </MagicCard>
               
               {/* Floating particles animation card */}
               <div className={`relative p-8 rounded-2xl border mb-10 glass-card glass-card-hover overflow-hidden ${
