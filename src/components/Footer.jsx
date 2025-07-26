@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import QuantaLogo from '../assets/QuantaLogo';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import MagneticHover from './ui/MagneticHover';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

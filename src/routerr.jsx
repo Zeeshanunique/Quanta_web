@@ -1,94 +1,95 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Product from './pages/Product';
-import Services from './pages/Services';
-import About from './pages/About';
-import Contact from './pages/Contact';
+import Loading from './components/ui/Loading';
+
+// Lazy load all pages for better performance
+const Home = React.lazy(() => import('./pages/Home'));
+const Product = React.lazy(() => import('./pages/Product'));
+const Services = React.lazy(() => import('./pages/Services'));
+const About = React.lazy(() => import('./pages/About'));
+const Contact = React.lazy(() => import('./pages/Contact'));
 
 // Solution pages
-import CustomerSupport from './pages/solutions/CustomerSupport';
-import DataProfessional from './pages/solutions/DataProfessional';
-import EmployeeAssistant from './pages/solutions/EmployeeAssistant';
-import PharmacistAssistant from './pages/solutions/PharmacistAssistant';
-import ProposalManager from './pages/solutions/ProposalManager';
-import ComplianceAnalyst from './pages/solutions/ComplianceAnalyst';
+const CustomerSupport = React.lazy(() => import('./pages/solutions/CustomerSupport'));
+const DataProfessional = React.lazy(() => import('./pages/solutions/DataProfessional'));
+const EmployeeAssistant = React.lazy(() => import('./pages/solutions/EmployeeAssistant'));
+const PharmacistAssistant = React.lazy(() => import('./pages/solutions/PharmacistAssistant'));
+const ProposalManager = React.lazy(() => import('./pages/solutions/ProposalManager'));
+const ComplianceAnalyst = React.lazy(() => import('./pages/solutions/ComplianceAnalyst'));
 
 // Other pages
-import FAQs from './pages/FAQs';
-import Blogs from './pages/Blogs';
+const FAQs = React.lazy(() => import('./pages/FAQs'));
+const Blogs = React.lazy(() => import('./pages/Blogs'));
 
 const Routerr = () => {
   const location = useLocation();
+  
+  const PageWrapper = ({ children }) => (
+    <Suspense 
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <Loading size="large" text="Loading page..." />
+        </div>
+      }
+    >
+      <Header />
+      {children}
+      <Footer />
+    </Suspense>
+  );
   
   return (
     <Routes location={location} key={location.pathname}>
       {/* Main pages */}
       <Route path="/" element={
-        <>
-          <Header />
+        <PageWrapper>
           <Home />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
       
       <Route path="/product" element={
-        <>
-          <Header />
+        <PageWrapper>
           <Product />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
       
       <Route path="/services" element={
-        <>
-          <Header />
+        <PageWrapper>
           <Services />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
       
       <Route path="/about" element={
-        <>
-          <Header />
+        <PageWrapper>
           <About />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
       
       <Route path="/contact" element={
-        <>
-          <Header />
+        <PageWrapper>
           <Contact />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
 
       {/* Solutions pages */}
       <Route path="/solutions/customer-support" element={
-        <>
-          <Header />
+        <PageWrapper>
           <CustomerSupport />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
 
       <Route path="/solutions/data-professional" element={
-        <>
-          <Header />
+        <PageWrapper>
           <DataProfessional />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
 
       <Route path="/solutions/employee-assistant" element={
-        <>
-          <Header />
+        <PageWrapper>
           <EmployeeAssistant />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
 
       <Route path="/solutions/pharmacist-assistant" element={

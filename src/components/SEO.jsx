@@ -2,12 +2,13 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 
 const SEO = ({
-  title = "AgentForge | Vertical AI Agents for Industry Transformation",
-  description = "AgentForge provides specialized vertical AI agents with deep domain expertise to transform your industry. Outperform general-purpose AI with our industry-specific solutions.",
-  keywords = "vertical AI agents, domain-specific AI, industry AI, SaaS replacement, vertical automation, specialized AI",
-  canonicalUrl = "https://www.agentforge.ai/",
-  ogImage = "https://www.agentforge.ai/og-image.jpg",
-  twitterImage = "https://www.agentforge.ai/twitter-image.jpg"
+  title = "Quanta | Vertical AI Automation Platform",
+  description = "Quanta provides specialized vertical AI agents with deep domain expertise to transform your industry. Outperform general-purpose AI with our industry-specific solutions.",
+  keywords = "vertical AI agents, domain-specific AI, industry AI, SaaS replacement, vertical automation, specialized AI, Quanta",
+  canonicalUrl = "https://www.quanta.ai/",
+  ogImage = "https://www.quanta.ai/og-image.jpg",
+  twitterImage = "https://www.quanta.ai/twitter-image.jpg",
+  page = "home"
 }) => {
   return (
     <Helmet>
@@ -19,10 +20,18 @@ const SEO = ({
       <link rel="canonical" href={canonicalUrl} />
       
       {/* Additional SEO Meta Tags */}
-      <meta name="author" content="AgentForge" />
+      <meta name="author" content="Quanta" />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
       <meta name="rating" content="general" />
+      <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow" />
+      
+      {/* PWA Meta Tags */}
+      <meta name="application-name" content="Quanta" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="apple-mobile-web-app-title" content="Quanta" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
@@ -30,7 +39,9 @@ const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       {ogImage && <meta property="og:image" content={ogImage} />}
-      <meta property="og:site_name" content="AgentForge" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Quanta" />
       <meta property="og:locale" content="en_US" />
       
       {/* Twitter */}

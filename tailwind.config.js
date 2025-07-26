@@ -72,6 +72,52 @@ export default {
         "radial-gradient": "radial-gradient(var(--tw-gradient-stops))",
         "conic-gradient":
           "conic-gradient(from 225deg, #FFC876, #79FFF7, #9F53FF, #FF98E2, #FFC876)",
+        "gradient-radial": "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "mesh-gradient": "linear-gradient(45deg, #667eea 0%, #764ba2 100%)",
+        "hero-gradient": "linear-gradient(135deg, rgba(88, 28, 135, 0.1) 0%, rgba(29, 78, 216, 0.1) 100%)",
+      },
+      animation: {
+        "fade-in": "fadeIn 0.6s ease-out",
+        "slide-up": "slideUp 0.6s ease-out",
+        "slide-down": "slideDown 0.6s ease-out",
+        "scale-in": "scaleIn 0.3s ease-out",
+        "bounce-slow": "bounce 3s infinite",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "float": "float 6s ease-in-out infinite",
+        "glow": "glow 2s ease-in-out infinite alternate",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideDown: {
+          "0%": { opacity: "0", transform: "translateY(-30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        scaleIn: {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        glow: {
+          "0%": { boxShadow: "0 0 20px rgba(168, 85, 247, 0.4)" },
+          "100%": { boxShadow: "0 0 40px rgba(168, 85, 247, 0.8)" },
+        },
+      },
+      boxShadow: {
+        "glow": "0 0 20px rgba(168, 85, 247, 0.3)",
+        "glow-lg": "0 0 40px rgba(168, 85, 247, 0.4)",
+        "card": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        "card-hover": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
       },
     },
   },

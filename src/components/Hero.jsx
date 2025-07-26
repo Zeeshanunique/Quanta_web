@@ -3,16 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from './ui/Button';
 import Section from './ui/Section';
+import FloatingParticles from './ui/FloatingParticles';
+import AnimatedGradient from './ui/AnimatedGradient';
+import AnimatedCounter from './ui/AnimatedCounter';
 
 const Hero = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <Section id="hero" className="pt-[8rem] -mt-[2rem]" crosses>
-        <div className="container">
+      <Section id="hero" className="pt-[8rem] -mt-[2rem] relative overflow-hidden" crosses>
+        <AnimatedGradient variant="hero" />
+        <FloatingParticles count={30} />
+        
+        <div className="container relative z-10">
           {/* Main Hero Section - Left Right Layout */}
-          <div className="relative z-10 mb-[4rem]">
+          <div className="relative mb-[4rem]">
             <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[500px]">
               {/* Left Side - Text Content */}
               <motion.div
@@ -21,12 +27,29 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h1 className="text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-                  <span className="block text-white">Meet Your Next</span>
-                  <span className="block bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
+                <motion.h1 
+                  className="text-5xl lg:text-6xl font-bold mb-8 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <motion.span 
+                    className="block text-white"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    Meet Your Next
+                  </motion.span>
+                  <motion.span 
+                    className="block bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent"
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  >
                     Digital Employee. Instantly.
-                  </span>
-            </h1>
+                  </motion.span>
+                </motion.h1>
                 
                 <p className="text-xl text-n-3 mb-10 leading-relaxed max-w-xl">
                   Quanta replaces repetitive roles with AI-powered digital workers—seamlessly integrated, 
@@ -36,21 +59,56 @@ const Hero = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     onClick={() => navigate('/contact')} 
-                    className="px-10 py-4 text-lg font-semibold bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 transition-all"
+                    size="large"
+                    className="shadow-glow"
                   >
                     Try Quanta Free
-              </Button>
+                  </Button>
                   <Button 
                     onClick={() => navigate('/contact')} 
                     white 
-                    className="px-10 py-4 text-lg font-semibold flex items-center gap-3 border-2 hover:bg-white/10 transition-all"
+                    size="large"
+                    className="flex items-center gap-3"
                   >
                     Book a Demo
                     <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
                       <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="currentColor"/>
                     </svg>
-              </Button>
+                  </Button>
                 </div>
+                
+                {/* Trust indicators with animated counters */}
+                <motion.div 
+                  className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 opacity-70"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 0.7, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.0 }}
+                >
+                  <div className="text-center sm:text-left">
+                    <div className="text-2xl font-bold text-white mb-1">
+                      <AnimatedCounter end={150} suffix="+" />
+                    </div>
+                    <div className="text-sm text-n-4">Companies trust us</div>
+                  </div>
+                  
+                  <div className="text-center sm:text-left flex items-center justify-center sm:justify-start gap-2">
+                    <motion.div 
+                      className="w-2 h-2 bg-green-500 rounded-full"
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                    <div className="text-sm text-n-4">
+                      <AnimatedCounter end={99.9} decimals={1} suffix="% uptime" />
+                    </div>
+                  </div>
+                  
+                  <div className="text-center sm:text-left">
+                    <div className="text-2xl font-bold text-white mb-1">
+                      <AnimatedCounter end={70} suffix="%" />
+                    </div>
+                    <div className="text-sm text-n-4">Cost savings</div>
+                  </div>
+                </motion.div>
               </motion.div>
 
               {/* Right Side - Visual Dashboard */}

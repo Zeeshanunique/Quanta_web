@@ -5,9 +5,11 @@ import Heading from "./ui/Heading";
 import Button from "./ui/Button";
 import { check } from "../assets";
 import { motion } from "framer-motion";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const Solutions = () => {
   const navigate = useNavigate();
+  const { ref, staggerChildren, childVariant } = useScrollAnimation();
   
   return (
     <Section id="solutions">
@@ -17,13 +19,22 @@ const Solutions = () => {
           text="Multiply your workforce in minutes"
         />
 
-        <div className="relative z-1 grid gap-8 md:grid-cols-3">
+        <motion.div 
+          ref={ref}
+          className="relative z-1 grid gap-8 md:grid-cols-3"
+          variants={staggerChildren}
+          initial="initial"
+          animate="animate"
+        >
           <motion.div 
-            className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden lg:p-12 glass-card"
-            whileHover={{ y: -10, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            className="relative p-8 border border-n-1/10 rounded-3xl overflow-hidden lg:p-12 glass-card group"
+            variants={childVariant}
+            whileHover={{ 
+              y: -10, 
+              boxShadow: '0 20px 40px rgba(147, 51, 234, 0.2)',
+              scale: 1.02
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <div className="absolute top-0 left-0 w-full h-full bg-n-8/90" />
             <div className="relative z-1">
@@ -146,7 +157,7 @@ const Solutions = () => {
               </Button>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </Section>
   );

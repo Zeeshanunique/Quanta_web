@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from 'framer-motion';
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
 import QuantaLogo from '../assets/QuantaLogo';
 import Button from "./ui/Button";
