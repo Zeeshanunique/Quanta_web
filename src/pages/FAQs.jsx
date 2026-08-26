@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Section from '../components/ui/Section';
 import Heading from '../components/ui/Heading';
 import { motion } from 'framer-motion';
+import { faqCopy } from '../config/seoContent';
 
 const FAQs = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -11,46 +12,22 @@ const FAQs = () => {
   };
 
   const faqs = [
+    ...faqCopy.map(({ q, a }) => ({ question: q, answer: a })),
     {
-          question: "What is Quanta and how does it work?",
-    answer: "Quanta is your Universal AI Employee powered by our advanced proprietary AI technology. Quanta uses a Generative Workflow Engine™ to conversationally activate AI agents that can execute complex workflows across your enterprise. With enterprise-grade models and integration with 500+ apps, Quanta adapts to your business context and automates processes while maintaining the highest levels of accuracy and security."
+      question: 'What makes Quanta different from other AI tools?',
+      answer:
+        'Quanta is a full EX suite — not IT-only or HR-only. It is channel-native, governed, and built for mid-market speed with enterprise rigor.',
     },
     {
-      question: "How long does it take to deploy an AI agent?",
-      answer: "Most AI agents can be deployed in minutes. Our Generative Workflow Engine™ allows for conversational setup where you simply describe what you want the agent to do, and Quanta configures itself to meet your requirements. Pre-built agents like Customer Support, Data Professional, and Employee Assistant are ready to use immediately with minimal configuration."
+      question: 'Which systems does Quanta integrate with?',
+      answer:
+        'Workday, SAP, BambooHR, ServiceNow, Okta, Jira, Confluence, Slack, Microsoft Teams, and more — Quanta sits above your system of record.',
     },
     {
-      question: "Is my data secure with Quanta?",
-      answer: "Yes, data security is our top priority. Quanta features comprehensive data governance that redacts sensitive information before processing. We offer compliance with all leading standards, top-tier encryption, and customizable private models that keep your data completely isolated. Your sensitive information never leaves your secure environment."
+      question: 'Is employee data secure?',
+      answer:
+        'Yes. Role-based access, approval chains, immutable audit trails, and policy-bound actions are built in from day one.',
     },
-    {
-      question: "What makes Quanta different from other AI solutions?",
-      answer: "Quanta combines three key advantages: Simple deployment with our Generative Workflow Engine™, Trusted security with private models and data governance, and Accurate results through our enterprise-grade AI models that intelligently optimize performance for your specific needs. This makes Quanta both more powerful and more secure than traditional AI solutions."
-    },
-    {
-      question: "Which applications and systems does Quanta integrate with?",
-      answer: "Quanta integrates with 500+ applications out of the box, including popular CRM systems, databases, communication platforms, and enterprise software. Our integration engine supports REST APIs, databases, cloud services, and custom applications through our flexible connector framework."
-    },
-    {
-      question: "How accurate is Quanta compared to human performance?",
-      answer: "Quanta achieves up to 99.7% accuracy across various tasks, often exceeding human performance while working 24/7 without fatigue. Our advanced AI models continuously learn and adapt, improving accuracy over time while maintaining consistent performance standards."
-    },
-    {
-      question: "Can Quanta handle multiple languages?",
-      answer: "Yes, Quanta supports multiple languages and can communicate with customers and employees in their preferred language. This makes it ideal for global enterprises with diverse workforces and customer bases."
-    },
-    {
-      question: "What kind of ROI can I expect from implementing Quanta?",
-      answer: "Organizations typically see 80% cost efficiency improvements and 10x faster deployment compared to traditional solutions. The exact ROI depends on your use case, but customers commonly report significant time savings, reduced errors, and improved customer satisfaction within the first few months."
-    },
-    {
-      question: "Do I need technical expertise to use Quanta?",
-      answer: "No, Quanta is designed for business users. The Generative Workflow Engine™ uses conversational deployment, meaning you can set up and configure agents by simply describing what you want them to do in natural language. No coding or technical expertise required."
-    },
-    {
-      question: "How does pricing work for Quanta?",
-      answer: "Pricing is based on your specific needs and usage. We offer flexible plans that scale with your business, from individual agents to enterprise-wide deployments. Contact our team for a personalized quote based on your requirements."
-    }
   ];
 
   return (
@@ -67,7 +44,7 @@ const FAQs = () => {
               <div className="text-6xl mb-6">❓</div>
               <h1 className="h1 mb-6">Frequently Asked Questions</h1>
               <p className="text-xl text-n-3">
-                Everything you need to know about Quanta, your Universal AI Employee
+                Everything you need to know about Quanta — the employee experience platform
               </p>
             </motion.div>
 

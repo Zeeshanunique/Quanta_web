@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
-import QuantaLogo from '../assets/QuantaLogo';
 import Button from './ui/Button';
 import ThemeToggle from './ui/ThemeToggle';
 import MenuSvg from '../assets/svg/MenuSvg';
 import { useTheme } from '../hooks/useTheme';
 import { goToSection } from '../lib/goToSection';
+import { navCopy } from '../config/seoContent';
 
 const navigationDropdowns = {
   solutions: [
-    { title: 'Customer Support', url: '/solutions/customer-support' },
-    { title: 'Data Professional', url: '/solutions/data-professional' },
     { title: 'Employee Assistant', url: '/solutions/employee-assistant' },
-    { title: 'Pharmacist Assistant', url: '/solutions/pharmacist-assistant' },
-    { title: 'Proposal Manager', url: '/solutions/proposal-manager' },
-    { title: 'Compliance Analyst', url: '/solutions/compliance-analyst' },
+    { title: 'IT Support', url: '/solutions/customer-support' },
+    { title: 'Recruiter', url: '/solutions/proposal-manager' },
+    { title: 'Onboarding', url: '/solutions/employee-assistant' },
+    { title: 'Talent', url: '/solutions/data-professional' },
+    { title: 'Offboarding', url: '/solutions/compliance-analyst' },
+    { title: 'People Intelligence', url: '/solutions/data-professional' },
     { title: 'FAQs', url: '/faqs' },
-    { title: 'Partners', url: '/partners' },
     { title: 'Integrations', url: '/integrations' },
   ],
   resources: [
@@ -36,7 +36,7 @@ const navigationDropdowns = {
 const navigation = [
   {
     id: '0',
-    title: 'Solutions',
+    title: 'AI Employees',
     hasDropdown: true,
     dropdownItems: navigationDropdowns.solutions,
   },
@@ -54,12 +54,7 @@ const navigation = [
   },
 ];
 
-const CINEMATIC_LINKS = [
-  { label: 'Overview', href: '#hero' },
-  { label: 'Technology', href: '#problem' },
-  { label: 'Solutions', href: '#solutions' },
-  { label: 'Contact', href: '#contact' },
-];
+const CINEMATIC_LINKS = navCopy.cinematic;
 
 const Header = () => {
   const location = useLocation();
@@ -151,16 +146,9 @@ const Header = () => {
             <button
               type="button"
               onClick={() => goToSection(navigate, 'contact')}
-              className="text-[13px] font-normal text-white/55 transition-colors hover:text-white"
-            >
-              Log In
-            </button>
-            <button
-              type="button"
-              onClick={() => goToSection(navigate, 'contact')}
               className="rounded-md bg-white px-3.5 py-2 text-[13px] font-medium text-black transition-opacity hover:opacity-90"
             >
-              Get Started
+              {navCopy.getStarted}
             </button>
           </div>
 
@@ -206,7 +194,7 @@ const Header = () => {
                 }}
                 className="mt-6 rounded-md bg-white py-3 text-center text-[14px] font-medium text-black"
               >
-                Get Started
+                {navCopy.getStarted}
               </button>
             </nav>
           </div>
@@ -226,7 +214,13 @@ const Header = () => {
       <div className="flex items-center px-5 max-lg:py-4 lg:px-7.5 xl:px-10">
         <div className="flex w-full items-center">
           <Link to="/" className="block xl:mr-8">
-            <QuantaLogo width={160} height={40} className="transition-opacity hover:opacity-80" />
+            <span
+              className={`font-grotesk text-[15px] font-semibold tracking-[0.22em] uppercase transition-opacity hover:opacity-80 ${
+                isLight ? 'text-n-8' : 'text-white'
+              }`}
+            >
+              Quanta
+            </span>
           </Link>
 
           <nav className="relative ml-auto hidden items-center lg:flex">
@@ -307,7 +301,7 @@ const Header = () => {
         <div className="ml-auto flex items-center">
           <div className="hidden items-center lg:flex">
             <ThemeToggle className="mr-6" />
-            <Button onClick={() => goToSection(navigate, 'contact')}>Try Quanta Free</Button>
+            <Button onClick={() => goToSection(navigate, 'contact')}>{navCopy.tryFree}</Button>
           </div>
 
           <button
@@ -409,7 +403,7 @@ const Header = () => {
                     }}
                     className="mb-3 w-full"
                   >
-                    Try Quanta Free
+                    {navCopy.tryFree}
                   </Button>
                 </div>
               </nav>

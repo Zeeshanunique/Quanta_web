@@ -5,21 +5,9 @@ import {
   useScroll,
   useTransform,
 } from 'framer-motion';
+import { homeCopy } from '../../config/seoContent';
 
-const STAGES = [
-  {
-    title: 'AI Training & Inference',
-    proof: 'Proof AI deployments are untampered.',
-  },
-  {
-    title: 'AI Privacy',
-    proof: 'Proof AI models and data are confidential.',
-  },
-  {
-    title: 'AI Safeguards',
-    proof: 'Proof AI guardrails are implemented.',
-  },
-];
+const STAGES = homeCopy.aiEmployees.stages;
 
 const StageRow = ({ stage, index, active, setActive }) => {
   const ref = useRef(null);
@@ -62,7 +50,7 @@ const VerifiablePanelSection = () => {
   return (
     <section
       ref={sectionRef}
-      id="verifiable"
+      id="ai-employees"
       className="relative overflow-hidden bg-emerald-deep py-28 sm:min-h-screen sm:py-32"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,_rgba(74,222,128,0.12),_transparent_55%)]" />
@@ -73,9 +61,9 @@ const VerifiablePanelSection = () => {
         className="container relative z-10 mx-auto px-5 lg:px-10"
       >
         <div className="grid items-start gap-10 sm:grid-cols-[minmax(0,11rem)_3rem_minmax(0,1fr)] sm:gap-8 lg:grid-cols-[13rem_3.5rem_minmax(0,1fr)] lg:gap-12">
-          <h3 className="text-left text-[2.75rem] font-semibold leading-[0.95] tracking-tight text-mint-glow sm:text-5xl lg:text-[3.25rem]">
-            Verifiable
-          </h3>
+            <h3 className="text-left text-[2.75rem] font-semibold leading-[0.95] tracking-tight text-mint-glow sm:text-5xl lg:text-[3.25rem]">
+              {homeCopy.aiEmployees.title}
+            </h3>
 
           <div className="relative mx-auto flex h-[220px] w-full max-w-[3rem] justify-center sm:mx-0">
             <div className="absolute top-3 bottom-3 w-px bg-emerald/20" />

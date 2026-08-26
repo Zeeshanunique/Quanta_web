@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { micro } from '../../lib/cinematicMotion';
 import { goToSection } from '../../lib/goToSection';
 import { CinematicArrow } from '../icons/CinematicIcons';
+import { homeCopy } from '../../config/seoContent';
 
 const CinematicCTA = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const CinematicCTA = () => {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          Deploy AI your team can verify
+          {homeCopy.cta.headline}
         </motion.h2>
         <motion.p
           className="mx-auto mt-4 max-w-md text-sm text-white/45 sm:text-base"
@@ -48,7 +49,7 @@ const CinematicCTA = () => {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.06 }}
         >
-          Quanta digital employees with verifiable workflows — from inference to safeguards.
+          {homeCopy.cta.body}
         </motion.p>
         <motion.button
           type="button"
@@ -63,7 +64,7 @@ const CinematicCTA = () => {
           <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald text-void">
             <CinematicArrow className="text-void" size={14} />
           </span>
-          Schedule Demo
+          {homeCopy.cta.button}
         </motion.button>
       </div>
     </section>

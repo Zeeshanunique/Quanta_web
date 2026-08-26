@@ -4,12 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { atmospheric, heroTimeline, micro } from '../../lib/cinematicMotion';
 import { goToSection } from '../../lib/goToSection';
 import { CinematicArrow, CinematicArrowUpRight } from '../icons/CinematicIcons';
+import TrustStrip from './TrustStrip';
+import { homeCopy } from '../../config/seoContent';
 
-const HUD_CARDS = [
-  { label: 'Dell Appliance', href: '#contact' },
-  { label: 'Cloud Provider', href: '#contact' },
-  { label: 'Accenture AIP Platform', href: '#contact' },
-];
+const HUD_CARDS = homeCopy.hero.suiteCards;
 
 const NETWORK_NODES = [
   { x: 14, y: 36, blur: false },
@@ -55,9 +53,6 @@ const Chip = ({ litCells, pulsing }) => (
         ))}
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent" />
-      <span className="relative z-10 font-grotesk text-[10px] font-medium tracking-[0.4em] text-white sm:text-[11px]">
-        QUANTA
-      </span>
     </div>
   </motion.div>
 );
@@ -280,7 +275,7 @@ const CinematicHero = () => {
             </motion.div>
 
             <motion.h1
-              className="mx-auto max-w-3xl text-[2.5rem] font-light tracking-[-0.02em] text-white sm:text-5xl lg:text-[3.75rem]"
+              className="mx-auto max-w-4xl text-[2rem] font-light tracking-[-0.02em] text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
               initial={{ opacity: 0, y: 16 }}
               animate={
                 phase.text
@@ -289,35 +284,47 @@ const CinematicHero = () => {
               }
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              Verify to Trust AI
+              {homeCopy.hero.headline}
             </motion.h1>
 
             <motion.p
-              className="mx-auto mt-5 max-w-lg text-sm font-light leading-relaxed text-white/45 sm:text-[15px]"
+              className="mx-auto mt-5 max-w-2xl text-sm font-light leading-relaxed text-white/45 sm:text-[15px]"
               initial={{ opacity: 0, y: 12 }}
               animate={phase.text ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              Introducing Verifiable Compute. Ready for the Agentic AI Era.
+              {homeCopy.hero.subhead}
             </motion.p>
 
-            <motion.button
-              type="button"
-              onClick={() => goToSection(navigate, 'contact')}
-              className="group mt-9 inline-flex items-center gap-3 rounded-full border border-white/10 bg-[#121212]/70 py-1.5 pr-5 pl-1.5 text-[13px] font-medium text-white backdrop-blur-md"
-              style={{ boxShadow: '0 0 32px rgba(0,232,160,0.15)' }}
+            <motion.div
+              className="mt-9 flex flex-wrap items-center justify-center gap-3"
               initial={{ opacity: 0, y: 10 }}
               animate={phase.cta ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ duration: 0.55 }}
-              whileHover={micro.ctaHover}
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald text-void shadow-[0_0_16px_rgba(0,232,160,0.55)]">
-                <motion.span whileHover={micro.arrowNudge}>
-                  <CinematicArrow className="text-void" size={15} />
-                </motion.span>
-              </span>
-              Schedule Demo
-            </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => goToSection(navigate, 'contact')}
+                className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-[#121212]/70 py-1.5 pr-5 pl-1.5 text-[13px] font-medium text-white backdrop-blur-md"
+                style={{ boxShadow: '0 0 32px rgba(0,232,160,0.15)' }}
+                whileHover={micro.ctaHover}
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald text-void shadow-[0_0_16px_rgba(0,232,160,0.55)]">
+                  <motion.span whileHover={micro.arrowNudge}>
+                    <CinematicArrow className="text-void" size={15} />
+                  </motion.span>
+                </span>
+                {homeCopy.hero.ctaPrimary}
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => goToSection(navigate, 'ai-employees')}
+                className="rounded-full border border-white/15 px-5 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:border-emerald/40 hover:text-white"
+                whileHover={micro.ctaHover}
+              >
+                {homeCopy.hero.ctaSecondary}
+              </motion.button>
+            </motion.div>
 
             <motion.div
               className="mx-auto mt-14 max-w-2xl"
@@ -326,7 +333,7 @@ const CinematicHero = () => {
               transition={{ duration: 0.55 }}
             >
               <p className="mb-5 text-[11px] tracking-[0.22em] text-white/30 uppercase">
-                Preorders Q4 Ship 2025
+                AI employees
               </p>
               <div className="grid grid-cols-3 gap-3 sm:gap-4">
                 {HUD_CARDS.map((card) => (
@@ -352,6 +359,7 @@ const CinematicHero = () => {
                   </motion.button>
                 ))}
               </div>
+              {phase.cards && <TrustStrip />}
             </motion.div>
         </div>
       </div>

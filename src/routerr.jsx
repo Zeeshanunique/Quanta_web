@@ -46,18 +46,14 @@ const Routerr = () => {
   const location = useLocation();
   
   const PageWrapper = ({ children }) => (
-    <Suspense 
-      fallback={
-        <div className="min-h-screen flex items-center justify-center">
-          <Loading size="large" text="Loading page..." />
-        </div>
-      }
-    >
+    <>
       <Header />
-      <HashScroll />
-      {children}
-      <Footer />
-    </Suspense>
+      <Suspense fallback={<Loading fullScreen />}>
+        <HashScroll />
+        {children}
+        <Footer />
+      </Suspense>
+    </>
   );
   
   return (

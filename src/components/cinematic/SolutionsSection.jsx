@@ -7,6 +7,7 @@ import {
   useMotionTemplate,
 } from 'framer-motion';
 import { reveal } from '../../lib/cinematicMotion';
+import { homeCopy } from '../../config/seoContent';
 
 function buildParticleField() {
   const particles = [];
@@ -175,7 +176,7 @@ const SolutionsSection = () => {
           whileInView={reveal.visible(0)}
           viewport={{ once: true, amount: 0.6 }}
         >
-          Solutions
+          {homeCopy.solutions.badge}
         </motion.span>
 
         <motion.h2
@@ -184,10 +185,19 @@ const SolutionsSection = () => {
           whileInView={reveal.visible(0.08)}
           viewport={{ once: true, amount: 0.5 }}
         >
-          Evolving trust for
+          {homeCopy.solutions.headline}
           <br />
-          <span className="text-mint-glow">AI with</span>
+          <span className="text-mint-glow">{homeCopy.solutions.headlineAccent}</span>
         </motion.h2>
+
+        <motion.p
+          className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-emerald-deep/55 sm:text-base"
+          initial={reveal.hidden}
+          whileInView={reveal.visible(0.14)}
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          {homeCopy.solutions.subhead}
+        </motion.p>
       </div>
     </section>
   );

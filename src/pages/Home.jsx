@@ -10,6 +10,10 @@ import ContactForm from '../components/ContactForm';
  * Cinematic landing spine — discrete page sections
  * Hero → Problem → Solutions → Verifiable → CTA → Contact
  */
+/**
+ * Quanta EX landing spine
+ * Hero → Challenge → Platform → AI Employees → CTA → Contact
+ */
 const Home = () => {
   return (
     <>

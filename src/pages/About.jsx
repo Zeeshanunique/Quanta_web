@@ -80,9 +80,9 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Quanta | Our Mission and Team</title>
-        <meta name="description" content="Learn about Quanta's mission to democratize AI automation technology and our team of industry experts." />
-        <meta name="keywords" content="Quanta team, AI automation mission, no-code AI company, AI experts" />
+        <title>About Quanta | Employee Experience Platform</title>
+        <meta name="description" content="Quanta reimagines employee experience with AI employees — from hire to retire, one intelligent front door for every employee moment." />
+        <meta name="keywords" content="about Quanta, employee experience company, AI employees, EX platform, workforce orchestration" />
       </Helmet>
 
       <div className="pt-[12rem] -mt-[5.25rem]">

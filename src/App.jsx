@@ -13,11 +13,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <SEO
-          title="Quanta | Vertical AI Automation Platform"
-          description="Empower your business with the leading specialized vertical AI agents. Deep domain expertise for your industry without technical expertise."
-          keywords="vertical AI agents, domain-specific AI, industry AI, SaaS replacement, vertical automation, specialized AI, Quanta"
-        />
+        <SEO />
         <SkipLink />
         <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
           <ScrollToTop />

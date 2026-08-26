@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { micro, reveal } from '../lib/cinematicMotion';
 import { CinematicArrow } from './icons/CinematicIcons';
+import { homeCopy } from '../config/seoContent';
 
 const fieldClass =
   'w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-sm text-white placeholder:text-white/25 outline-none transition-colors focus:border-emerald/50 focus:bg-white/[0.06]';
@@ -27,7 +28,7 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will contact you shortly.');
+    alert(homeCopy.contact.success);
     setFormData({
       name: '',
       email: '',
@@ -52,7 +53,7 @@ const ContactForm = () => {
             whileInView={reveal.visible(0)}
             viewport={{ once: true }}
           >
-            Hire Quanta Today
+            {homeCopy.contact.headline}
           </motion.h2>
           <motion.p
             className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/45 sm:text-base"
@@ -60,7 +61,7 @@ const ContactForm = () => {
             whileInView={reveal.visible(0.1)}
             viewport={{ once: true }}
           >
-            Meet your Universal AI Employee. One employee, infinite roles.
+            {homeCopy.contact.subhead}
           </motion.p>
         </div>
 
@@ -180,19 +181,22 @@ const ContactForm = () => {
                   required
                 >
                   <option value="platform" className="bg-void">
-                    AgentForge Platform
+                    Full EX platform
                   </option>
-                  <option value="consulting" className="bg-void">
-                    Consulting Services
+                  <option value="employee-assistant" className="bg-void">
+                    Employee Assistant
                   </option>
-                  <option value="training" className="bg-void">
-                    Training & Support
+                  <option value="it-support" className="bg-void">
+                    IT Support
                   </option>
-                  <option value="custom" className="bg-void">
-                    Custom Development
+                  <option value="onboarding" className="bg-void">
+                    Onboarding
+                  </option>
+                  <option value="recruiter" className="bg-void">
+                    Recruiter
                   </option>
                   <option value="partnership" className="bg-void">
-                    Partnership Opportunities
+                    Partnership
                   </option>
                 </select>
               </div>
@@ -221,7 +225,7 @@ const ContactForm = () => {
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald text-void shadow-[0_0_14px_rgba(0,232,160,0.5)]">
                 <CinematicArrow className="text-void" size={15} />
               </span>
-              Submit Request
+              {homeCopy.contact.submit}
             </motion.button>
           </form>
         </motion.div>

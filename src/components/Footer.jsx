@@ -8,16 +8,18 @@ import {
   useMotionTemplate,
 } from 'framer-motion';
 
+import { footerCopy } from '../config/seoContent';
+
 const footerLinks = [
   {
-    title: 'Solutions',
+    title: 'AI Employees',
     links: [
-      { title: 'Customer Experience', url: '/product' },
-      { title: 'Employee Experience', url: '/services' },
-      { title: 'Sales & Marketing', url: '/about' },
-        { title: 'Pre-built Agents', url: '/#contact' },
-      ],
-    },
+      { title: 'Employee Assistant', url: '/solutions/employee-assistant' },
+      { title: 'IT Support', url: '/solutions/customer-support' },
+      { title: 'Recruiter', url: '/solutions/proposal-manager' },
+      { title: 'Onboarding', url: '/solutions/employee-assistant' },
+    ],
+  },
     {
       title: 'Company',
       links: [
@@ -78,61 +80,14 @@ const socialLinks = [
 ];
 
 const FooterLogo = () => (
-  <motion.div
-    className="group mb-6 inline-flex items-center gap-3"
-    whileHover="hover"
-    initial="rest"
-  >
-    <svg width="40" height="40" viewBox="0 0 50 50" fill="none" aria-hidden>
-      <motion.rect
-        x="6"
-        y="20"
-        width="8"
-        height="18"
-        rx="4"
-        fill="#6B7280"
-        variants={{
-          rest: { y: 0, fill: '#6B7280' },
-          hover: { y: -2, fill: '#9CA3AF', transition: { duration: 0.25 } },
-        }}
-      />
-      <motion.rect
-        x="18"
-        y="12"
-        width="8"
-        height="26"
-        rx="4"
-        fill="#374151"
-        variants={{
-          rest: { y: 0, fill: '#374151' },
-          hover: { y: -4, fill: '#00E8A0', transition: { duration: 0.28, delay: 0.04 } },
-        }}
-      />
-      <motion.rect
-        x="30"
-        y="8"
-        width="8"
-        height="34"
-        rx="4"
-        fill="#84CC16"
-        variants={{
-          rest: { y: 0, filter: 'drop-shadow(0 0 0 rgba(0,232,160,0))' },
-          hover: {
-            y: -6,
-            fill: '#4ADE80',
-            filter: 'drop-shadow(0 0 10px rgba(74,222,128,0.7))',
-            transition: { duration: 0.3, delay: 0.08 },
-          },
-        }}
-      />
-    </svg>
-    <div>
-      <div className="text-lg font-semibold tracking-wide text-white">Quanta</div>
-      <div className="text-[10px] tracking-[0.18em] text-white/35 uppercase">
-        Automate. Integrate. Accelerate
-      </div>
+  <div className="mb-6">
+    <div className="font-grotesk text-lg font-semibold tracking-[0.12em] text-white uppercase">
+      Quanta
     </div>
-  </motion.div>
+    <div className="text-[10px] tracking-[0.18em] text-white/35 uppercase">
+      {footerCopy.tagline}
+    </div>
+  </div>
 );
 
 const SocialButton = ({ social }) => (
@@ -218,17 +173,12 @@ const Footer = () => {
                 <FooterLogo />
               </Link>
               <p className="mb-6 max-w-md text-sm leading-relaxed text-white/40">
-                Meet Quanta, your Universal AI Employee. One employee, infinite roles. Multiply
-                your workforce in minutes with conversational AI agents.
+                {footerCopy.blurb}
               </p>
-              <p className="mb-6 text-sm text-white/35">
+              <p className="mb-6 text-sm text-white/35 whitespace-pre-line">
                 <span className="font-medium text-white/55">Headquarters:</span>
                 <br />
-                321 Kormangala
-                <br />
-                Bangalore, 560064
-                <br />
-                India
+                {footerCopy.headquarters}
               </p>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
@@ -259,7 +209,7 @@ const Footer = () => {
         <div className="border-t border-white/[0.06] py-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="order-2 text-sm text-white/35 md:order-1">
-              © {currentYear} Quanta. All rights reserved.
+              © {currentYear} {footerCopy.copyright}
             </div>
             <div className="order-1 flex gap-6 md:order-2">
               <FooterLink to="/privacy">Privacy Policy</FooterLink>

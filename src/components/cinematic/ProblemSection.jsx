@@ -1,27 +1,15 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { reveal } from '../../lib/cinematicMotion';
+import { homeCopy } from '../../config/seoContent';
 import {
   CinematicArrowDown,
   CinematicChevron,
   CinematicWarning,
 } from '../icons/CinematicIcons';
 
-const THREATS_LEFT = [
-  'Inserting Backdoors in AI Models',
-  'Extraction of AI Models and Data',
-  'Jailbreaks',
-  'Model DoS Attacks',
-  'FinOps Attacks',
-];
-
-const THREATS_RIGHT = [
-  'Hallucination',
-  'Bias and Discrimination',
-  'Toxicity, Aggression and Disinformation',
-  'Social Engineering',
-  'Misalignment',
-];
+const THREATS_LEFT = homeCopy.problem.threatsLeft;
+const THREATS_RIGHT = homeCopy.problem.threatsRight;
 
 const DROP_CIRCLES = [
   { delay: 0, size: 34, color: 'rgba(210,255,230,0.95)', duration: 4.2 },
@@ -107,12 +95,12 @@ const ThreatVisual = () => (
     </div>
 
     <div className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center">
-      <p className="text-2xl font-medium tracking-tight text-white sm:text-3xl">
+      <p className="text-xl font-medium tracking-tight text-white sm:text-2xl">
         <span className="relative inline-block">
-          New
+          Fragmented
           <span className="absolute right-0 -bottom-1 left-0 h-px bg-white/75" />
         </span>{' '}
-        Threats
+        EX
       </p>
     </div>
   </div>
@@ -138,7 +126,7 @@ const ProblemSection = () => {
             whileInView={reveal.visible(0)}
             viewport={{ once: true, amount: 0.6 }}
           >
-            The Problem
+            {homeCopy.problem.badge}
           </motion.span>
 
           <motion.h2
@@ -147,9 +135,9 @@ const ProblemSection = () => {
             whileInView={reveal.visible(0.08)}
             viewport={{ once: true }}
           >
-            New AI workflows equal{' '}
+            The employee journey is broken into{' '}
             <motion.span className="text-mint-glow" style={{ opacity: accentOpacity }}>
-              New Threats
+              {homeCopy.problem.headlineAccent}
             </motion.span>
           </motion.h2>
 
@@ -159,8 +147,7 @@ const ProblemSection = () => {
             whileInView={reveal.visible(0.16)}
             viewport={{ once: true }}
           >
-            Compromising AI supply chains and agent workflows introduces risks traditional software
-            security was never designed to catch.
+            {homeCopy.problem.body}
           </motion.p>
         </div>
 
@@ -173,7 +160,7 @@ const ProblemSection = () => {
           <ThreatVisual />
 
           <div className="flex flex-col bg-mint-soft p-8 sm:p-10 lg:p-12">
-            <h3 className="mb-7 text-xl font-semibold text-emerald-deep">The Problem</h3>
+            <h3 className="mb-7 text-xl font-semibold text-emerald-deep">{homeCopy.problem.panelTitle}</h3>
             <div ref={listRef} className="grid flex-1 gap-x-8 gap-y-1 sm:grid-cols-2">
               <ul className="space-y-3.5">
                 {THREATS_LEFT.map((item, i) => (
@@ -221,7 +208,7 @@ const ProblemSection = () => {
               href="#solutions"
               className="mt-10 inline-flex w-fit items-center gap-2 rounded-xl bg-emerald-deep px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-muted"
             >
-              View Solutions
+              {homeCopy.problem.cta}
               <CinematicArrowDown className="opacity-80" size={14} />
             </a>
           </div>

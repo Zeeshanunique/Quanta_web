@@ -197,9 +197,9 @@ const Services = () => {
   return (
     <>
       <Helmet>
-        <title>Quanta AI | Industry-Grade AI Services</title>
-        <meta name="description" content="Specialized AI services for Marketing, Healthcare, Finance, Manufacturing, Customer Service, and Supply Chain industries with industry-grade automation and deep domain expertise." />
-        <meta name="keywords" content="AI services, industry AI, vertical AI, domain-specific AI, healthcare AI, finance AI, marketing AI, customer service AI" />
+        <title>Quanta | AI Employees &amp; Employee Experience Services</title>
+        <meta name="description" content="Deploy Quanta AI employees for HR, IT, onboarding, recruiting, and talent — channel-native EX orchestration with enterprise governance." />
+        <meta name="keywords" content="employee experience services, AI employees, HR automation, IT support automation, onboarding AI, Quanta EX" />
       </Helmet>
 
       <Section className={`pt-[12rem] -mt-[5.25rem] ${isLight ? 'light' : ''}`} crosses>

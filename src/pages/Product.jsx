@@ -167,9 +167,9 @@ const Product = () => {
   return (
     <>
       <Helmet>
-        <title>Quanta AI | Industry-Grade AI Agent Platform</title>
-        <meta name="description" content="Quanta AI is an industry-grade AI agent platform for Marketing, Healthcare, Finance, Manufacturing, Customer Service, and Supply Chain. Build powerful AI automation tailored to your industry." />
-        <meta name="keywords" content="AI platform, industry AI, AI agents, healthcare AI, finance AI, marketing AI, manufacturing AI, customer service AI, supply chain AI" />
+        <title>Quanta | Employee Experience Platform &amp; AI Employee Suite</title>
+        <meta name="description" content="Quanta EX platform — AI coworkers for the hire-to-retire journey. Recruiting, onboarding, HR &amp; IT support, talent, and offboarding in Slack and Teams." />
+        <meta name="keywords" content="employee experience platform, AI employee suite, EX platform, HRIS orchestration, ITSM automation, Quanta" />
       </Helmet>
 
       <Section className="pt-[12rem] -mt-[5.25rem]" crosses>
