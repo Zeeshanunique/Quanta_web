@@ -16,7 +16,8 @@ const SEO = ({
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
 
       <meta name="author" content="Quanta" />
       <meta name="language" content="English" />
@@ -55,7 +56,7 @@ const SEO = ({
           '@type': 'Organization',
           name: 'Quanta',
           url: canonicalUrl,
-          logo: `${canonicalUrl}iconLOGO.png`,
+          logo: `${canonicalUrl.replace(/\/$/, '')}/favicon.svg`,
           description: siteSeo.elevatorPitch,
           slogan: siteSeo.tagline,
           address: {
