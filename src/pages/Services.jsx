@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import check from '../assets/check.svg';
 import { useTheme } from '../hooks/useTheme';
+import { goToSection } from '../lib/goToSection';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -215,7 +216,7 @@ const Services = () => {
               Specialist AI services tailored to your industry's unique challenges, workflows, and compliance requirements
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button onClick={() => navigate('/contact')}>
+              <Button onClick={() => goToSection(navigate, 'contact')}>
                 Schedule Consultation
               </Button>
               <Button onClick={() => navigate('/product')} white>
@@ -376,7 +377,7 @@ const Services = () => {
                 </div>
                 
                 <div className="text-center mt-8">
-                  <Button onClick={() => navigate('/contact')}>Request a Consultation</Button>
+                  <Button onClick={() => goToSection(navigate, 'contact')}>Request a Consultation</Button>
                 </div>
               </div>
             ))}
@@ -414,10 +415,10 @@ const Services = () => {
                 Our AI solutions are tailored to your specific industry needs with specialized models, workflows, and compliance frameworks.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button onClick={() => navigate('/contact')} white className="min-w-[160px]">
+                <Button onClick={() => goToSection(navigate, 'contact')} white className="min-w-[160px]">
                   Schedule Demo
                 </Button>
-                <Button onClick={() => navigate('/contact')} className="min-w-[160px]">
+                <Button onClick={() => goToSection(navigate, 'contact')} className="min-w-[160px]">
                   Contact Sales
                 </Button>
               </div>

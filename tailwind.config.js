@@ -34,6 +34,21 @@ export default {
           12: "#2E2A41",
           13: "#6C7275",
         },
+        // Cinematic landing spine tokens (docs/CINEMATIC_LANDING_SPEC.md)
+        void: {
+          DEFAULT: "#070707",
+          elevated: "#0E1210",
+        },
+        emerald: {
+          DEFAULT: "#00E8A0",
+          soft: "#E8F8F0",
+          deep: "#0B3D34",
+          muted: "#0A2F28",
+        },
+        mint: {
+          glow: "#4ADE80",
+          soft: "#D8F5E8",
+        },
       },
       fontFamily: {
         sans: ["var(--font-sora)", ...fontFamily.sans],
@@ -118,6 +133,9 @@ export default {
         "glow-lg": "0 0 40px rgba(168, 85, 247, 0.4)",
         "card": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
         "card-hover": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        "emerald-glow": "0 0 24px rgba(0, 232, 160, 0.35)",
+        "emerald-glow-lg": "0 0 48px rgba(0, 232, 160, 0.45)",
+        "emerald-soft": "0 0 16px rgba(74, 222, 128, 0.25)",
       },
     },
   },

@@ -22,5 +22,8 @@ dist-ssr
 *.sln
 *.sw?
 
+# Local design reference videos (see docs/CINEMATIC_LANDING_SPEC.md for URL)
+docs/*.mp4
+docs/insp-frame-*.jpg
 
 

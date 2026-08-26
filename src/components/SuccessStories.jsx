@@ -109,7 +109,7 @@ const SuccessStories = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
         > */}
           {/* <h4 className="h4 mb-6">Ready to see results like these?</h4>
-          <a href="/contact" className="inline-block px-6 py-3 bg-color-1 text-n-8 rounded-lg hover:bg-color-1/90 transition-colors font-bold">
+          <a href="/#contact" className="inline-block px-6 py-3 bg-color-1 text-n-8 rounded-lg hover:bg-color-1/90 transition-colors font-bold">
             Get started →
           </a> */}
         {/* </motion.div> */}

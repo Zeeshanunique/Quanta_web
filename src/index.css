@@ -10,6 +10,14 @@
   --font-sora: "Sora", sans-serif;
   --font-code: "Source Code Pro", monospace;
   --font-grotesk: "Space Grotesk", sans-serif;
+  --void: #070707;
+  --void-elevated: #0e1210;
+  --emerald: #00e8a0;
+  --emerald-soft: #e8f8f0;
+  --emerald-deep: #0b3d34;
+  --mint-glow: #4ade80;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
   color-scheme: dark;
 }
 
@@ -72,6 +80,10 @@
 @layer base {
   body {
     @apply font-sans bg-n-8 text-n-1 text-base;
+  }
+
+  body.cinematic-home {
+    background-color: #050505 !important;
   }
   
   body.light {

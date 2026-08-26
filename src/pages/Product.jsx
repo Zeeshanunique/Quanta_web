@@ -6,6 +6,7 @@ import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import check from '../assets/check.svg';
+import { goToSection } from '../lib/goToSection';
 
 const Product = () => {
   const navigate = useNavigate();
@@ -197,10 +198,10 @@ const Product = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Button onClick={() => navigate('/contact')} white>
+              <Button onClick={() => goToSection(navigate, 'contact')} white>
                 Schedule Demo
               </Button>
-              <Button onClick={() => navigate('/contact')}>
+              <Button onClick={() => goToSection(navigate, 'contact')}>
                 Start Free Trial
               </Button>
             </motion.div>
@@ -246,7 +247,7 @@ const Product = () => {
                     <p className="text-n-3">{currentIndustry.tagline}</p>
                   </div>
                 </div>
-                <Button onClick={() => navigate('/contact')} className="whitespace-nowrap">
+                <Button onClick={() => goToSection(navigate, 'contact')} className="whitespace-nowrap">
                   Get Started
                 </Button>
               </div>
@@ -395,10 +396,10 @@ const Product = () => {
                 Deploy industry-specific AI agents in days, not months. Start with a personalized demo.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button onClick={() => navigate('/contact')} white className="min-w-[160px]">
+                <Button onClick={() => goToSection(navigate, 'contact')} white className="min-w-[160px]">
                   Schedule Demo
                 </Button>
-                <Button onClick={() => navigate('/contact')} className="min-w-[160px]">
+                <Button onClick={() => goToSection(navigate, 'contact')} className="min-w-[160px]">
                   Contact Sales
                 </Button>
               </div>

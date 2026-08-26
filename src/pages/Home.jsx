@@ -1,22 +1,26 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import Solutions from '../components/Solutions';
-import Advantages from '../components/Advantages';
-import IndustrySolutions from '../components/IndustrySolutions';
-import SuccessStories from '../components/SuccessStories';
+import CinematicHero from '../components/cinematic/CinematicHero';
+import ProblemSection from '../components/cinematic/ProblemSection';
+import SolutionsSection from '../components/cinematic/SolutionsSection';
+import VerifiablePanelSection from '../components/cinematic/VerifiablePanelSection';
+import CinematicCTA from '../components/cinematic/CinematicCTA';
 import ContactForm from '../components/ContactForm';
 
+/**
+ * Cinematic landing spine — discrete page sections
+ * Hero → Problem → Solutions → Verifiable → CTA → Contact
+ */
 const Home = () => {
   return (
     <>
-      <Hero />
-      <Solutions />
-      <Advantages />
-      <IndustrySolutions />
-      <SuccessStories />
+      <CinematicHero />
+      <ProblemSection />
+      <SolutionsSection />
+      <VerifiablePanelSection />
+      <CinematicCTA />
       <ContactForm />
     </>
   );
 };
 
-export default Home; 
+export default Home;

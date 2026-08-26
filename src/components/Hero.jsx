@@ -6,6 +6,7 @@ import Section from './ui/Section';
 import FloatingParticles from './ui/FloatingParticles';
 import AnimatedGradient from './ui/AnimatedGradient';
 import AnimatedCounter from './ui/AnimatedCounter';
+import { goToSection } from '../lib/goToSection';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -58,14 +59,14 @@ const Hero = () => {
             
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
-                    onClick={() => navigate('/contact')} 
+                    onClick={() => goToSection(navigate, 'contact')} 
                     size="large"
                     className="shadow-glow"
                   >
                     Try Quanta Free
                   </Button>
                   <Button 
-                    onClick={() => navigate('/contact')} 
+                    onClick={() => goToSection(navigate, 'contact')} 
                     white 
                     size="large"
                     className="flex items-center gap-3"
@@ -528,10 +529,10 @@ const Hero = () => {
                     <p className="text-xl mb-8 text-n-1 font-medium">Start saving 70% on operational costs from day one</p>
                     
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <Button onClick={() => navigate('/contact')} className="px-12 py-4 text-lg">
+                      <Button onClick={() => goToSection(navigate, 'contact')} className="px-12 py-4 text-lg">
                         Try Quanta Free
                       </Button>
-                      <Button onClick={() => navigate('/contact')} white className="px-12 py-4 text-lg">
+                      <Button onClick={() => goToSection(navigate, 'contact')} white className="px-12 py-4 text-lg">
                         Contact Sales
                       </Button>
                     </div>

@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Loading from './components/ui/Loading';
@@ -9,7 +9,6 @@ const Home = React.lazy(() => import('./pages/Home'));
 const Product = React.lazy(() => import('./pages/Product'));
 const Services = React.lazy(() => import('./pages/Services'));
 const About = React.lazy(() => import('./pages/About'));
-const Contact = React.lazy(() => import('./pages/Contact'));
 
 // Solution pages
 const CustomerSupport = React.lazy(() => import('./pages/solutions/CustomerSupport'));
@@ -23,6 +22,26 @@ const ComplianceAnalyst = React.lazy(() => import('./pages/solutions/ComplianceA
 const FAQs = React.lazy(() => import('./pages/FAQs'));
 const Blogs = React.lazy(() => import('./pages/Blogs'));
 
+/** Scroll to hash target or location.state.scrollTo after navigation */
+const HashScroll = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    const id =
+      (location.hash && location.hash.replace('#', '')) ||
+      location.state?.scrollTo;
+    if (!id) return;
+    const t = setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!location.hash) {
+        window.history.replaceState(null, '', `#${id}`);
+      }
+    }, 100);
+    return () => clearTimeout(t);
+  }, [location.pathname, location.hash, location.state]);
+  return null;
+};
+
 const Routerr = () => {
   const location = useLocation();
   
@@ -35,6 +54,7 @@ const Routerr = () => {
       }
     >
       <Header />
+      <HashScroll />
       {children}
       <Footer />
     </Suspense>
@@ -67,11 +87,11 @@ const Routerr = () => {
         </PageWrapper>
       } />
       
-      <Route path="/contact" element={
-        <PageWrapper>
-          <Contact />
-        </PageWrapper>
-      } />
+      {/* SPA: contact lives on home #contact — no separate page */}
+      <Route
+        path="/contact"
+        element={<Navigate to="/" replace state={{ scrollTo: 'contact' }} />}
+      />
 
       {/* Solutions pages */}
       <Route path="/solutions/customer-support" element={
