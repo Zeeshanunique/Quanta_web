@@ -12,12 +12,12 @@ import { footerCopy } from '../config/seoContent';
 
 const footerLinks = [
   {
-    title: 'AI Employees',
+    title: 'Solutions',
     links: [
-      { title: 'Employee Assistant', url: '/solutions/employee-assistant' },
-      { title: 'IT Support', url: '/solutions/customer-support' },
-      { title: 'Recruiter', url: '/solutions/proposal-manager' },
-      { title: 'Onboarding', url: '/solutions/employee-assistant' },
+      { title: 'Factum — Employee Experience', url: 'https://factum.quanta.co.in' },
+      { title: 'Quaero — Sales & Marketing', url: 'https://quaero.quanta.co.in' },
+      { title: 'Resolvo — Customer Experience', url: '/#solutions' },
+      { title: 'All solutions', url: '/#solutions' },
     ],
   },
     {
@@ -112,12 +112,14 @@ const SocialButton = ({ social }) => (
 );
 
 const FooterLink = ({ to, children }) => {
-  const isHash = to.includes('#');
+  const isPlainAnchor = to.includes('#') || to.startsWith('http');
+  const external = to.startsWith('http');
   return (
     <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-      {isHash ? (
+      {isPlainAnchor ? (
         <a
           href={to}
+          {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
           className="group inline-flex items-center gap-1.5 text-sm text-white/45 transition-colors hover:text-emerald"
         >
           <span className="h-px w-0 bg-emerald transition-all duration-200 group-hover:w-3" />

@@ -269,13 +269,13 @@ const CinematicHero = () => {
                   : { opacity: 0.35, scale: 0.96, filter: 'blur(6px)' }
               }
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="mb-12"
+              className="mb-20 sm:mb-28"
             >
               <Chip litCells={litCells} pulsing={pulsing} />
             </motion.div>
 
             <motion.h1
-              className="mx-auto max-w-4xl text-[2rem] font-light tracking-[-0.02em] text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
+              className="mx-auto mt-6 max-w-4xl whitespace-pre-line text-[2rem] font-light tracking-[-0.02em] text-white sm:mt-10 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
               initial={{ opacity: 0, y: 16 }}
               animate={
                 phase.text
@@ -333,7 +333,7 @@ const CinematicHero = () => {
               transition={{ duration: 0.55 }}
             >
               <p className="mb-5 text-[11px] tracking-[0.22em] text-white/30 uppercase">
-                AI employees
+                {homeCopy.hero.cardsLabel}
               </p>
               <div className="grid grid-cols-3 gap-3 sm:gap-4">
                 {HUD_CARDS.map((card) => (
@@ -356,6 +356,11 @@ const CinematicHero = () => {
                     <span className="block text-[11px] font-medium tracking-wide text-white/75 sm:text-xs">
                       {card.label}
                     </span>
+                    {card.sub && (
+                      <span className="mt-1 block text-[10px] tracking-wide text-emerald/70">
+                        {card.sub}
+                      </span>
+                    )}
                   </motion.button>
                 ))}
               </div>

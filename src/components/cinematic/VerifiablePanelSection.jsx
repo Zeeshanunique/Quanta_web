@@ -65,7 +65,10 @@ const VerifiablePanelSection = () => {
               {homeCopy.aiEmployees.title}
             </h3>
 
-          <div className="relative mx-auto flex h-[220px] w-full max-w-[3rem] justify-center sm:mx-0">
+          <div
+            className="relative mx-auto flex w-full max-w-[3rem] justify-center sm:mx-0"
+            style={{ height: 10 + STAGES.length * 76 }}
+          >
             <div className="absolute top-3 bottom-3 w-px bg-emerald/20" />
             <motion.div
               className="absolute left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-mint-glow shadow-emerald-glow"

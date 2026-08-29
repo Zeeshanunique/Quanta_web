@@ -2,26 +2,22 @@ import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { reveal } from '../../lib/cinematicMotion';
 import { homeCopy } from '../../config/seoContent';
-import {
-  CinematicArrowDown,
-  CinematicChevron,
-  CinematicWarning,
-} from '../icons/CinematicIcons';
+import { CalendarDays, KeyRound, Ticket, UserPlus } from 'lucide-react';
+import { CinematicArrowDown, CinematicChevron } from '../icons/CinematicIcons';
 
 const THREATS_LEFT = homeCopy.problem.threatsLeft;
 const THREATS_RIGHT = homeCopy.problem.threatsRight;
 
+// Real requests an ops agent gets — PTO, a Jira ticket, onboarding, an access grant.
 const DROP_CIRCLES = [
-  { delay: 0, size: 34, color: 'rgba(210,255,230,0.95)', duration: 4.2 },
-  { delay: 0.85, size: 30, color: 'rgba(0,232,160,0.92)', duration: 4.5 },
-  { delay: 1.7, size: 28, color: 'rgba(16,110,75,0.5)', duration: 4.8, ghost: true },
-  { delay: 2.55, size: 24, color: 'rgba(8,70,48,0.32)', duration: 5.1, ghost: true },
-  { delay: 1.25, size: 22, color: 'rgba(74,222,128,0.8)', duration: 4.35 },
+  { delay: 0, size: 34, color: 'rgba(210,255,230,0.95)', duration: 4.6, Icon: CalendarDays },
+  { delay: 1.4, size: 30, color: 'rgba(0,232,160,0.92)', duration: 4.8, Icon: Ticket },
+  { delay: 2.4, size: 24, color: 'rgba(8,70,48,0.32)', duration: 5.1, ghost: true },
+  { delay: 2.9, size: 28, color: 'rgba(74,222,128,0.85)', duration: 4.7, Icon: UserPlus },
+  { delay: 4.3, size: 22, color: 'rgba(74,222,128,0.8)', duration: 4.5, Icon: KeyRound },
 ];
 
-const WarningIcon = ({ muted }) => <CinematicWarning muted={muted} />;
-
-const DroppingCircle = ({ delay, size, color, duration, ghost }) => (
+const DroppingCircle = ({ delay, size, color, duration, ghost, Icon }) => (
   <motion.div
     className="absolute left-1/2 flex cursor-pointer items-center justify-center rounded-full border border-white/20"
     style={{
@@ -48,7 +44,9 @@ const DroppingCircle = ({ delay, size, color, duration, ghost }) => (
     }}
     whileHover={{ scale: 1.2, x: 14, transition: { duration: 0.2 } }}
   >
-    {!ghost && <WarningIcon />}
+    {!ghost && Icon && (
+      <Icon size={Math.round(size * 0.45)} strokeWidth={2} color="rgba(5,20,12,0.85)" aria-hidden />
+    )}
   </motion.div>
 );
 
@@ -97,10 +95,10 @@ const ThreatVisual = () => (
     <div className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center">
       <p className="text-xl font-medium tracking-tight text-white sm:text-2xl">
         <span className="relative inline-block">
-          Fragmented
+          {homeCopy.problem.markStrong}
           <span className="absolute right-0 -bottom-1 left-0 h-px bg-white/75" />
         </span>{' '}
-        EX
+        {homeCopy.problem.markRest}
       </p>
     </div>
   </div>
@@ -135,7 +133,7 @@ const ProblemSection = () => {
             whileInView={reveal.visible(0.08)}
             viewport={{ once: true }}
           >
-            The employee journey is broken into{' '}
+            {homeCopy.problem.headline.replace(homeCopy.problem.headlineAccent, '')}
             <motion.span className="text-mint-glow" style={{ opacity: accentOpacity }}>
               {homeCopy.problem.headlineAccent}
             </motion.span>

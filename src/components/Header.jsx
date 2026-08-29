@@ -10,15 +10,14 @@ import { navCopy } from '../config/seoContent';
 
 const navigationDropdowns = {
   solutions: [
-    { title: 'Employee Assistant', url: '/solutions/employee-assistant' },
-    { title: 'IT Support', url: '/solutions/customer-support' },
-    { title: 'Recruiter', url: '/solutions/proposal-manager' },
-    { title: 'Onboarding', url: '/solutions/employee-assistant' },
-    { title: 'Talent', url: '/solutions/data-professional' },
-    { title: 'Offboarding', url: '/solutions/compliance-analyst' },
-    { title: 'People Intelligence', url: '/solutions/data-professional' },
+    { title: 'Factum — Employee Experience', url: 'https://factum.quanta.co.in', external: true },
+    { title: 'Quaero — Sales & Marketing', url: 'https://quaero.quanta.co.in', external: true },
+    { title: 'Resolvo — Customer Experience', url: '/#solutions' },
+    { title: 'Solvo — Finance Operations', url: '/#solutions' },
+    { title: 'Munera — Professional Services', url: '/#solutions' },
+    { title: 'Medeor — Healthcare', url: '/#solutions' },
+    { title: 'Fides — Insurance', url: '/#solutions' },
     { title: 'FAQs', url: '/faqs' },
-    { title: 'Integrations', url: '/integrations' },
   ],
   resources: [
     { title: 'Blogs', url: '/blogs' },
@@ -61,6 +60,14 @@ const Header = () => {
   const navigate = useNavigate();
   const [openNavigation, setOpenNavigation] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const isHome = location.pathname === '/';
@@ -111,7 +118,13 @@ const Header = () => {
   if (cinematicNav) {
     return (
       <header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent mix-blend-normal">
-        <div className="pointer-events-auto relative flex h-16 items-center justify-between bg-transparent px-5 lg:px-10">
+        <div
+          className={`pointer-events-auto relative flex h-16 items-center justify-between px-5 transition-colors duration-300 lg:px-10 ${
+            scrolled
+              ? 'border-b border-white/10 bg-[#050505]/85 backdrop-blur-md'
+              : 'bg-transparent'
+          }`}
+        >
           <Link to="/" className="relative z-10 shrink-0">
             <span className="font-grotesk text-[15px] font-semibold tracking-[0.22em] text-white uppercase">
               Quanta
@@ -262,20 +275,22 @@ const Header = () => {
                           isLight ? 'border border-n-3 bg-n-1' : 'border border-n-6 bg-n-8'
                         }`}
                       >
-                        {item.dropdownItems.map((dropdownItem, index) => (
-                          <Link
-                            key={index}
-                            to={dropdownItem.url}
-                            className={`block px-4 py-3 transition-colors ${
-                              isLight
-                                ? 'text-n-8 hover:bg-n-2 hover:text-color-1'
-                                : 'text-n-1 hover:bg-n-7 hover:text-color-1'
-                            }`}
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            {dropdownItem.title}
-                          </Link>
-                        ))}
+                        {item.dropdownItems.map((dropdownItem, index) => {
+                          const cls = `block px-4 py-3 transition-colors ${
+                            isLight
+                              ? 'text-n-8 hover:bg-n-2 hover:text-color-1'
+                              : 'text-n-1 hover:bg-n-7 hover:text-color-1'
+                          }`;
+                          return dropdownItem.external ? (
+                            <a key={index} href={dropdownItem.url} target="_blank" rel="noreferrer" className={cls} onClick={() => setActiveDropdown(null)}>
+                              {dropdownItem.title}
+                            </a>
+                          ) : (
+                            <Link key={index} to={dropdownItem.url} className={cls} onClick={() => setActiveDropdown(null)}>
+                              {dropdownItem.title}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -360,7 +375,11 @@ const Header = () => {
                               <button
                                 key={index}
                                 type="button"
-                                onClick={() => handleNavItemClick(dropdownItem.url)}
+                                onClick={() =>
+                                  dropdownItem.external
+                                    ? window.open(dropdownItem.url, '_blank', 'noreferrer')
+                                    : handleNavItemClick(dropdownItem.url)
+                                }
                                 className={`block w-full py-2 text-left transition-colors ${
                                   isLight
                                     ? 'text-n-6 hover:text-color-1'
