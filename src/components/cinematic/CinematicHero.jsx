@@ -144,7 +144,7 @@ const SparseParticles = ({ show }) => {
 
 const NetworkLayer = ({ showLines, showNodes, pulseTick }) => (
   <div
-    className="pointer-events-none absolute left-1/2 top-[6%] h-[48%] w-full max-w-4xl -translate-x-1/2"
+    className="pointer-events-none absolute left-1/2 top-[3%] h-[24%] w-full max-w-4xl -translate-x-1/2 sm:top-[6%] sm:h-[40%]"
     aria-hidden
   >
     <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" fill="none">
@@ -275,7 +275,7 @@ const CinematicHero = () => {
             </motion.div>
 
             <motion.h1
-              className="mx-auto mt-6 max-w-4xl whitespace-pre-line text-[2rem] font-light tracking-[-0.02em] text-white sm:mt-10 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]"
+              className="mx-auto mt-8 max-w-4xl whitespace-pre-line text-[1.9rem] leading-[1.25] font-light tracking-[-0.02em] text-white sm:mt-12 sm:text-5xl sm:leading-[1.15] lg:text-[3.5rem] lg:leading-[1.12]"
               initial={{ opacity: 0, y: 16 }}
               animate={
                 phase.text
@@ -288,7 +288,7 @@ const CinematicHero = () => {
             </motion.h1>
 
             <motion.p
-              className="mx-auto mt-5 max-w-2xl text-sm font-light leading-relaxed text-white/45 sm:text-[15px]"
+              className="mx-auto mt-6 max-w-xl text-sm font-light leading-relaxed text-white/45 sm:mt-7 sm:max-w-2xl sm:text-[15px]"
               initial={{ opacity: 0, y: 12 }}
               animate={phase.text ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
