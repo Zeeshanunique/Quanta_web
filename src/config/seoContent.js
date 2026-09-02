@@ -99,6 +99,17 @@ export const homeCopy = {
       { label: 'Support', sub: 'Coming soon', href: '#solutions' },
     ],
   },
+  // Real, verifiable numbers only. 42 = eval cases in factum-api/app/evals.py,
+  // 40% = BAR_AUTO in pilot.py, zero silent writes = architectural guarantee.
+  proofStrip: {
+    label: 'How we build it',
+    stats: [
+      { v: '42', k: 'checks run before every release' },
+      { v: '0', k: 'actions taken without a person approving' },
+      { v: '40%+', k: 'of requests resolved without your team' },
+      { v: 'Same day', k: 'from connected to handling requests' },
+    ],
+  },
   problem: {
     badge: 'Sound familiar?',
     headline: 'Your team is the help desk',
@@ -127,36 +138,36 @@ export const homeCopy = {
   // model is ACE (itemized lessons + helpful/harmful counters + decision-time
   // provenance); none of that vocabulary belongs on a buyer-facing page.
   learning: {
-    badge: 'Gets better over time',
-    headline: 'It learns your company,\nnot just your industry.',
-    headlineAccent: 'not just your industry.',
+    badge: 'What makes it different',
+    headline: 'Month three is better\nthan month one.',
+    headlineAccent: 'than month one.',
     subhead:
-      'Most AI tools are the same on day 300 as on day one. This one keeps notes on how your company actually works — which manager signs off on what, how your team words things, where the exceptions are — and gets more useful every week.',
+      'Most tools are identical the day you cancel them and the day you bought them. This one learns how your company actually runs — who approves what, which exceptions are real, how your team words things — and handles more on its own each month.',
     steps: [
       {
         step: '01',
-        title: 'It notices what worked',
-        body: 'After each request it checks what it got right and what it got wrong — the same way a new starter figures out how things are really done around here.',
+        title: 'Week one — it follows your policy',
+        body: 'It reads your handbook and answers from it, quoting the source. Anything it is unsure about goes to your team, as it should.',
       },
       {
         step: '02',
-        title: 'Your yes or no teaches it',
-        body: 'Before it does anything that matters, it shows you the request and waits. Every time you approve or correct it, it learns your standard — so you are training it just by doing your normal job.',
+        title: 'Week four — it knows your exceptions',
+        body: 'It has seen what your team approves and what they send back. The contractor rule, the Friday deploy freeze, the manager who wants advance notice.',
       },
       {
         step: '03',
-        title: 'The lesson sticks',
-        body: 'What it learns is written down as a plain-English note you can read, edit or delete. Nothing is buried in a model you cannot see into.',
+        title: 'Month three — it handles the routine',
+        body: 'The requests that used to interrupt someone now finish on their own. Your team only sees what genuinely needs a decision.',
       },
       {
         step: '04',
-        title: 'Bad habits get dropped',
-        body: 'Notes that keep leading it wrong are removed automatically. It gets sharper over time rather than slowly picking up bad habits.',
+        title: 'Wrong turns get corrected',
+        body: 'When it gets something wrong you tell it once. That correction is written down in plain English, and you can read or change what it has learned at any time.',
       },
     ],
-    proofTitle: 'You can always see why it did something',
+    proofTitle: 'You can see everything it has learned',
     proofBody:
-      'Every action it takes comes with the reason behind it and the notes it relied on. When someone asks why an approval went through, you have a straight answer instead of a shrug — and nothing gets added to what it knows unless a person signed off on it first.',
+      'Not a black box you have to trust. Everything it has picked up about your company is written in plain English on one page — readable, editable, and removable. Nothing gets added unless a person approved it first.',
     proofPoints: [
       { k: 'Every action', v: 'shows who approved it and why' },
       { k: 'Every lesson', v: 'in plain English you can edit' },
@@ -168,28 +179,24 @@ export const homeCopy = {
   // invented metrics. Swap in real pilot numbers from /api/proof when they exist.
   economics: {
     badge: 'What it costs',
-    headline: 'Most software costs more as you grow.\nThis costs less.',
-    headlineAccent: 'This costs less.',
+    headline: 'Budgeted like a hire,\nnot another subscription.',
+    headlineAccent: 'not another subscription.',
     subhead:
-      'Everything else in your budget goes up with headcount and volume — more seats, more tickets, more usage. This works the other way round. The more it handles, the better it gets at it, and the less each request ends up costing you.',
+      'You are not buying seats for your team to log into. You are covering a role — so it is priced the way you would price the person you would otherwise have to hire.',
     columns: [
       {
-        title: 'Priced like a hire, not per seat',
-        body: 'One flat monthly cost for the role, budgeted the way you would budget a person. It does not go up because more of your team started using it.',
+        title: 'One rate for the role',
+        body: 'A flat monthly cost per AI employee. It does not go up because more of your team started asking it things, and there are no per-question charges to forecast.',
       },
       {
-        title: 'Busier means cheaper',
-        body: 'The more requests it handles, the more it learns, and the more it can finish without pulling in someone from your team. Your cost per request falls while your volume grows.',
+        title: 'A trial before you commit',
+        body: 'Start against targets you set — how much it should handle, how accurate it has to be. If it misses them, you walk. The same deal you would give any new hire.',
       },
       {
-        title: 'Only pay if it works',
-        body: 'Start with a trial against targets you set. If it does not hit them, you do not keep it — the same deal you would give any new hire.',
+        title: 'It costs less per request over time',
+        body: 'As it learns your company it handles more without involving anyone. Same monthly cost, more work covered — so the cost of each request keeps coming down.',
       },
     ],
-    curveLabel: 'What each request costs you',
-    curveStart: 'Month 1',
-    curveEnd: 'Month 12',
-    curveNote: 'The shape is how the product is designed to behave. Where your own line lands depends on how many requests you get and how much of your policy it starts with.',
     kicker: 'The work keeps growing. The bill does not.',
   },
   solutions: {
@@ -207,6 +214,34 @@ export const homeCopy = {
       proof: `${s.vertical} — ${s.tagline}`,
     })),
   },
+  // Architecture-only. No certification claims — none are held today.
+  security: {
+    badge: 'Security',
+    headline: 'Built for the teams\nthat have to say no.',
+    headlineAccent: 'that have to say no.',
+    subhead:
+      'HR and IT hold the most sensitive data in the company. Everything here is designed for the person whose job is to be careful with it.',
+    points: [
+      {
+        title: 'It asks before it acts',
+        body: 'Anything that changes a record — booking leave, granting access, closing a ticket — is shown to a person first and waits for a yes. There is no mode where it acts on its own.',
+      },
+      {
+        title: 'Every action is on the record',
+        body: 'Who asked, what it proposed, who approved it, what changed. A complete history you can hand to an auditor or search when something looks wrong.',
+      },
+      {
+        title: 'Your data stays yours',
+        body: 'It works inside your own systems and updates them directly. Nothing is used to train a shared model, and nothing leaves your environment to improve anyone else’s product.',
+      },
+      {
+        title: 'It only sees what the person can',
+        body: 'Access follows your existing permissions. An employee asking about their own leave gets their own record — never anyone else’s.',
+      },
+    ],
+    footnote:
+      'Running a formal review? We will walk your security team through the architecture, the data flows and the approval model.',
+  },
   cta: {
     headline: 'The only hire that gets cheaper every quarter',
     body: 'Bring us a request your team handles every week. We will show you it done end to end in fifteen minutes — and what it learns from doing it once.',
@@ -222,11 +257,10 @@ export const homeCopy = {
 
 export const navCopy = {
   cinematic: [
-    { label: 'Overview', href: '#hero' },
-    { label: 'Why Quanta', href: '#problem' },
     { label: 'Solutions', href: '#solutions' },
     { label: 'How it works', href: '#learning' },
     { label: 'Pricing', href: '#economics' },
+    { label: 'Security', href: '#security' },
     { label: 'Contact', href: '#contact' },
   ],
   getStarted: 'Book a demo',
