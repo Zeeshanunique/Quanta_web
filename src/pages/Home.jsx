@@ -1,6 +1,5 @@
 import React from 'react';
 import CinematicHero from '../components/cinematic/CinematicHero';
-import ProofStrip from '../components/cinematic/ProofStrip';
 import ProblemSection from '../components/cinematic/ProblemSection';
 import SolutionsSection from '../components/cinematic/SolutionsSection';
 import VerifiablePanelSection from '../components/cinematic/VerifiablePanelSection';
@@ -11,16 +10,15 @@ import CinematicCTA from '../components/cinematic/CinematicCTA';
 import ContactForm from '../components/ContactForm';
 
 /**
- * Enterprise spine: claim → proof → problem → product → differentiator
+ * Enterprise spine: claim → problem → product → differentiator
  * → price → trust → close.
- * Hero · Proof · Problem · Solutions · Roster · Learning · Economics
+ * Hero · Problem · Solutions · Roster · Learning · Economics
  * · Security · CTA · Contact
  */
 const Home = () => {
   return (
     <>
       <CinematicHero />
-      <ProofStrip />
       <ProblemSection />
       <SolutionsSection />
       <VerifiablePanelSection />

@@ -99,17 +99,6 @@ export const homeCopy = {
       { label: 'Support', sub: 'Coming soon', href: '#solutions' },
     ],
   },
-  // Real, verifiable numbers only. 42 = eval cases in factum-api/app/evals.py,
-  // 40% = BAR_AUTO in pilot.py, zero silent writes = architectural guarantee.
-  proofStrip: {
-    label: 'How we build it',
-    stats: [
-      { v: '42', k: 'checks run before every release' },
-      { v: '0', k: 'actions taken without a person approving' },
-      { v: '40%+', k: 'of requests resolved without your team' },
-      { v: 'Same day', k: 'from connected to handling requests' },
-    ],
-  },
   problem: {
     badge: 'Sound familiar?',
     headline: 'Your team is the help desk',
