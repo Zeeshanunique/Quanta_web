@@ -304,7 +304,7 @@ const CinematicHero = () => {
             >
               <motion.button
                 type="button"
-                onClick={() => goToSection(navigate, 'contact')}
+                onClick={() => goToSection(navigate, 'ai-employees')}
                 className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-[#121212]/70 py-1.5 pr-5 pl-1.5 text-[13px] font-medium text-white backdrop-blur-md"
                 style={{ boxShadow: '0 0 32px rgba(0,232,160,0.15)' }}
                 whileHover={micro.ctaHover}
@@ -318,7 +318,7 @@ const CinematicHero = () => {
               </motion.button>
               <motion.button
                 type="button"
-                onClick={() => goToSection(navigate, 'ai-employees')}
+                onClick={() => goToSection(navigate, 'contact')}
                 className="rounded-full border border-white/15 px-5 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:border-emerald/40 hover:text-white"
                 whileHover={micro.ctaHover}
               >
