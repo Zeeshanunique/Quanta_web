@@ -10,12 +10,12 @@ import { homeCopy } from '../../config/seoContent';
 const HUD_CARDS = homeCopy.hero.suiteCards;
 
 const NETWORK_NODES = [
-  { x: 14, y: 36, blur: false },
-  { x: 24, y: 22, blur: true },
-  { x: 76, y: 22, blur: true },
-  { x: 86, y: 36, blur: false },
-  { x: 20, y: 58, blur: true },
-  { x: 80, y: 58, blur: false },
+  { x: 12, y: 40, blur: false },
+  { x: 24, y: 20, blur: true },
+  { x: 76, y: 20, blur: true },
+  { x: 88, y: 40, blur: false },
+  { x: 30, y: 62, blur: true },
+  { x: 70, y: 62, blur: false },
 ];
 
 const LED_CELLS = Array.from({ length: 16 }, (_, i) => i);
@@ -144,7 +144,7 @@ const SparseParticles = ({ show }) => {
 
 const NetworkLayer = ({ showLines, showNodes, pulseTick }) => (
   <div
-    className="pointer-events-none absolute left-1/2 top-[3%] h-[24%] w-full max-w-4xl -translate-x-1/2 sm:top-[6%] sm:h-[40%]"
+    className="pointer-events-none absolute left-1/2 top-[2%] h-[26%] w-[118%] max-w-none -translate-x-1/2 sm:top-[6%] sm:h-[44%] sm:w-full sm:max-w-4xl"
     aria-hidden
   >
     <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" fill="none">
