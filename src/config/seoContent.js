@@ -91,7 +91,6 @@ export const homeCopy = {
     ctaPrimary: 'Meet the candidates',
     ctaSecondary: 'Book a demo',
     trustLabel: 'Works in the tools your team already uses',
-    trustLogos: ['Slack', 'Microsoft Teams', 'Jira', 'BambooHR', 'Okta', 'Confluence'],
     cardsLabel: 'Available to hire',
     suiteCards: [
       { label: 'HR + IT', sub: 'Factum', href: '#solutions' },
