@@ -94,6 +94,15 @@ const Header = () => {
     setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };
 
+  // On the home route <Link to="/"> is a no-op, so scroll up explicitly.
+  const handleLogoClick = (e) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.replaceState(null, '', '/');
+    }
+  };
+
   useEffect(() => {
     setOpenNavigation(false);
     setActiveDropdown(null);
@@ -125,7 +134,7 @@ const Header = () => {
               : 'bg-transparent'
           }`}
         >
-          <Link to="/" className="relative z-10 shrink-0">
+          <Link to="/" onClick={handleLogoClick} className="relative z-10 shrink-0">
             <span className="font-grotesk text-[15px] font-semibold tracking-[0.22em] text-white uppercase">
               Quanta
             </span>
@@ -226,7 +235,7 @@ const Header = () => {
     >
       <div className="flex items-center px-5 max-lg:py-4 lg:px-7.5 xl:px-10">
         <div className="flex w-full items-center">
-          <Link to="/" className="block xl:mr-8">
+          <Link to="/" onClick={handleLogoClick} className="block xl:mr-8">
             <span
               className={`font-grotesk text-[15px] font-semibold tracking-[0.22em] uppercase transition-opacity hover:opacity-80 ${
                 isLight ? 'text-n-8' : 'text-white'
