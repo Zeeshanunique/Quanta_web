@@ -20,15 +20,22 @@ const StageRow = ({ stage, index, active, setActive }) => {
   const isActive = active === index;
 
   return (
-    <li ref={ref} className="min-h-[72px] py-2">
+    <li
+      ref={ref}
+      className="min-h-[72px] border-b border-white/[0.07] py-4 last:border-0 sm:border-0 sm:py-2"
+    >
       <p
-        className={`text-lg font-medium sm:text-xl ${
-          isActive ? 'text-white' : 'text-white/30'
+        className={`text-lg font-medium text-white sm:text-xl ${
+          isActive ? 'sm:text-white' : 'sm:text-white/30'
         }`}
       >
         {stage.title}
       </p>
-      <p className={`mt-1.5 text-sm ${isActive ? 'text-white/60' : 'text-white/20'}`}>
+      <p
+        className={`mt-1.5 text-sm text-white/60 ${
+          isActive ? 'sm:text-white/60' : 'sm:text-white/20'
+        }`}
+      >
         {stage.proof}
       </p>
     </li>
@@ -60,14 +67,15 @@ const VerifiablePanelSection = () => {
         style={{ x: panelX, opacity: panelOpacity }}
         className="container relative z-10 mx-auto px-5 lg:px-10"
       >
-        <div className="grid items-start gap-10 sm:grid-cols-[minmax(0,11rem)_3rem_minmax(0,1fr)] sm:gap-8 lg:grid-cols-[13rem_3.5rem_minmax(0,1fr)] lg:gap-12">
+        <div className="grid items-start gap-8 sm:grid-cols-[minmax(0,11rem)_3rem_minmax(0,1fr)] sm:gap-8 lg:grid-cols-[13rem_3.5rem_minmax(0,1fr)] lg:gap-12">
             <h3 className="text-left text-[2.75rem] font-semibold leading-[0.95] tracking-tight text-mint-glow sm:text-5xl lg:text-[3.25rem]">
               {homeCopy.aiEmployees.title}
             </h3>
 
           <div
-            className="relative mx-auto flex w-full max-w-[3rem] justify-center sm:mx-0"
+            className="relative mx-auto hidden w-full max-w-[3rem] justify-center sm:mx-0 sm:flex"
             style={{ height: 10 + STAGES.length * 76 }}
+            aria-hidden
           >
             <div className="absolute top-3 bottom-3 w-px bg-emerald/20" />
             <motion.div
