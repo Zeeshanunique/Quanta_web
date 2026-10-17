@@ -24,8 +24,7 @@ const footerLinks = [
       title: 'Company',
       links: [
         { title: 'About Quanta', url: '/about' },
-        { title: 'Careers', url: '/careers' },
-        { title: 'News', url: '/news' },
+        { title: 'Blogs', url: '/blogs' },
         { title: 'Contact', url: '/#contact' },
       ],
     },

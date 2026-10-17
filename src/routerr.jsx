@@ -169,11 +169,9 @@ const Routerr = () => {
 
       {/* Resources pages */}
       <Route path="/blogs" element={
-        <>
-          <Header />
+        <PageWrapper>
           <Blogs />
-          <Footer />
-        </>
+        </PageWrapper>
       } />
 
       <Route path="/customers" element={
@@ -203,31 +201,10 @@ const Routerr = () => {
       } />
 
       {/* Company pages */}
-      <Route path="/careers" element={
-        <>
-          <Header />
-          <div className="pt-[12rem] -mt-[5.25rem] min-h-screen flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="h1 mb-6">Join the Team</h1>
-              <p className="text-xl text-n-3">Coming Soon - Exciting opportunities at Quanta</p>
-            </div>
-          </div>
-          <Footer />
-        </>
-      } />
+      {/* Careers removed — redirect to home */}
+      <Route path="/careers" element={<Navigate to="/" replace />} />
 
-      <Route path="/news" element={
-        <>
-          <Header />
-          <div className="pt-[12rem] -mt-[5.25rem] min-h-screen flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="h1 mb-6">News</h1>
-              <p className="text-xl text-n-3">Coming Soon - Latest announcements and press releases</p>
-            </div>
-          </div>
-          <Footer />
-        </>
-      } />
+      <Route path="/news" element={<Navigate to="/blogs" replace />} />
 
       <Route path="/advisors" element={
         <>

@@ -26,8 +26,7 @@ const navigationDropdowns = {
   ],
   company: [
     { title: 'About', url: '/about' },
-    { title: 'Join the team', url: '/careers' },
-    { title: 'News', url: '/news' },
+    { title: 'Blogs', url: '/blogs' },
     { title: 'Our Advisors', url: '/advisors' },
   ],
 };
@@ -71,8 +70,10 @@ const Header = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const isHome = location.pathname === '/';
-  // Always use cinematic chrome on home — never the old solid/blur bar
-  const cinematicNav = isHome;
+  const isAbout = location.pathname === '/about';
+  const isBlogs = location.pathname === '/blogs';
+  // Always use cinematic chrome on home, about and blogs — never the old solid/blur bar
+  const cinematicNav = isHome || isAbout || isBlogs;
 
   const toggleNavigation = () => {
     if (openNavigation) {
@@ -109,9 +110,9 @@ const Header = () => {
     enablePageScroll();
   }, [location]);
 
-  // Home: match page underlay to void so transparent nav never shows purple/charcoal bar
+  // Home + About + Blogs: match page underlay to void so transparent nav never shows purple/charcoal bar
   useEffect(() => {
-    if (!isHome) return undefined;
+    if (!isHome && !isAbout && !isBlogs) return undefined;
     const prevHtml = document.documentElement.style.backgroundColor;
     const prevBody = document.body.style.backgroundColor;
     document.documentElement.style.backgroundColor = '#050505';
