@@ -26,8 +26,7 @@ const navigationDropdowns = {
   ],
   company: [
     { title: 'About', url: '/about' },
-    { title: 'Join the team', url: '/careers' },
-    { title: 'News', url: '/news' },
+    { title: 'Blogs', url: '/blogs' },
     { title: 'Our Advisors', url: '/advisors' },
   ],
 };
@@ -53,7 +52,15 @@ const navigation = [
   },
 ];
 
-const CINEMATIC_LINKS = navCopy.cinematic;
+const CINEMATIC_LINKS_HOME = navCopy.cinematic;
+
+const CINEMATIC_LINKS_INNER = [
+  { label: 'Home', href: '/' },
+  { label: 'Solutions', href: '/#solutions' },
+  { label: 'How it works', href: '/#learning' },
+  { label: 'Pricing', href: '/#economics' },
+  { label: 'Contact', href: '/#contact' },
+];
 
 const Header = () => {
   const location = useLocation();
@@ -71,8 +78,10 @@ const Header = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const isHome = location.pathname === '/';
-  // Always use cinematic chrome on home — never the old solid/blur bar
-  const cinematicNav = isHome;
+  const isAbout = location.pathname === '/about';
+  const isBlogs = location.pathname === '/blogs';
+  // Always use cinematic chrome on home, about and blogs — never the old solid/blur bar
+  const cinematicNav = isHome || isAbout || isBlogs;
 
   const toggleNavigation = () => {
     if (openNavigation) {
@@ -109,9 +118,9 @@ const Header = () => {
     enablePageScroll();
   }, [location]);
 
-  // Home: match page underlay to void so transparent nav never shows purple/charcoal bar
+  // Home + About + Blogs: match page underlay to void so transparent nav never shows purple/charcoal bar
   useEffect(() => {
-    if (!isHome) return undefined;
+    if (!isHome && !isAbout && !isBlogs) return undefined;
     const prevHtml = document.documentElement.style.backgroundColor;
     const prevBody = document.body.style.backgroundColor;
     document.documentElement.style.backgroundColor = '#050505';
@@ -122,11 +131,43 @@ const Header = () => {
       document.body.style.backgroundColor = prevBody;
       document.body.classList.remove('cinematic-home');
     };
-  }, [isHome]);
+  }, [isHome, isAbout, isBlogs]);
 
   if (cinematicNav) {
+    const navLinks = isHome ? CINEMATIC_LINKS_HOME : CINEMATIC_LINKS_INNER;
+
+    const renderLink = (link, extraClass = '') => {
+      const cls = `rounded-full px-4 py-1.5 text-[13px] font-normal text-white/55 transition-colors hover:text-white ${extraClass}`;
+      // pure hash — only works on home; from other pages navigate to /#hash
+      if (link.href.startsWith('#')) {
+        return isHome ? (
+          <a key={link.label} href={link.href} className={cls}>{link.label}</a>
+        ) : (
+          <Link key={link.label} to={`/${link.href}`} className={cls}>{link.label}</Link>
+        );
+      }
+      // absolute path or /#hash
+      return (
+        <Link key={link.label} to={link.href} className={cls}>{link.label}</Link>
+      );
+    };
+
+    const renderMobileLink = (link) => {
+      const cls = 'py-3 text-lg text-white/80 block';
+      if (link.href.startsWith('#')) {
+        return isHome ? (
+          <a key={link.label} href={link.href} onClick={toggleNavigation} className={cls}>{link.label}</a>
+        ) : (
+          <Link key={link.label} to={`/${link.href}`} onClick={toggleNavigation} className={cls}>{link.label}</Link>
+        );
+      }
+      return (
+        <Link key={link.label} to={link.href} onClick={toggleNavigation} className={cls}>{link.label}</Link>
+      );
+    };
+
     return (
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent mix-blend-normal">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent">
         <div
           className={`pointer-events-auto relative flex h-16 items-center justify-between px-5 transition-colors duration-300 lg:px-10 ${
             scrolled
@@ -134,36 +175,21 @@ const Header = () => {
               : 'bg-transparent'
           }`}
         >
+          {/* Logo */}
           <Link to="/" onClick={handleLogoClick} className="relative z-10 shrink-0">
             <span className="font-grotesk text-[15px] font-semibold tracking-[0.22em] text-white uppercase">
               Quanta
             </span>
           </Link>
 
+          {/* Desktop nav pill */}
           <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex">
             <div className="flex items-center gap-0.5 rounded-full border border-white/[0.1] bg-white/[0.03] px-1.5 py-1 backdrop-blur-sm">
-              {CINEMATIC_LINKS.map((link) =>
-                link.href.startsWith('#') ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="rounded-full px-4 py-1.5 text-[13px] font-normal text-white/55 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    className="rounded-full px-4 py-1.5 text-[13px] font-normal text-white/55 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                )
-              )}
+              {navLinks.map((link) => renderLink(link))}
             </div>
           </nav>
 
+          {/* Desktop CTA */}
           <div className="relative z-10 hidden items-center gap-4 lg:flex">
             <button
               type="button"
@@ -174,6 +200,7 @@ const Header = () => {
             </button>
           </div>
 
+          {/* Mobile hamburger */}
           <button
             type="button"
             className="relative z-10 ml-auto flex h-10 w-10 items-center justify-center text-white lg:hidden"
@@ -184,30 +211,11 @@ const Header = () => {
           </button>
         </div>
 
+        {/* Mobile menu */}
         {openNavigation && (
           <div className="pointer-events-auto fixed inset-x-0 top-16 z-40 h-[calc(100vh-4rem)] bg-[#050505] lg:hidden">
             <nav className="flex flex-col gap-1 p-6">
-              {CINEMATIC_LINKS.map((link) =>
-                link.href.startsWith('#') ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => toggleNavigation()}
-                    className="py-3 text-lg text-white/80"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    onClick={() => toggleNavigation()}
-                    className="py-3 text-lg text-white/80"
-                  >
-                    {link.label}
-                  </Link>
-                )
-              )}
+              {navLinks.map((link) => renderMobileLink(link))}
               <button
                 type="button"
                 onClick={() => {

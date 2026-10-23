@@ -24,8 +24,7 @@ const footerLinks = [
       title: 'Company',
       links: [
         { title: 'About Quanta', url: '/about' },
-        { title: 'Careers', url: '/careers' },
-        { title: 'News', url: '/news' },
+        { title: 'Blogs', url: '/blogs' },
         { title: 'Contact', url: '/#contact' },
       ],
     },
@@ -55,7 +54,7 @@ const socialLinks = [
   },
   {
     label: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/quanta-ai',
+    url: 'https://www.linkedin.com/company/quantadb',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
         <path
