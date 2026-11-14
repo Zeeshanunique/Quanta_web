@@ -1,34 +1,30 @@
 import React from 'react';
-import CinematicHero from '../components/cinematic/CinematicHero';
-import ProblemSection from '../components/cinematic/ProblemSection';
-import SolutionsSection from '../components/cinematic/SolutionsSection';
-import VerifiablePanelSection from '../components/cinematic/VerifiablePanelSection';
-import LearningSection from '../components/cinematic/LearningSection';
-import EconomicsSection from '../components/cinematic/EconomicsSection';
-import SecuritySection from '../components/cinematic/SecuritySection';
-import CinematicCTA from '../components/cinematic/CinematicCTA';
-import ContactForm from '../components/ContactForm';
+import {
+  MonoCTA,
+  MonoContact,
+  MonoEconomics,
+  MonoHero,
+  MonoPrinciples,
+  MonoProblem,
+  MonoRoster,
+  MonoSecurity,
+} from '../components/mono/HomeSections';
 
 /**
- * Enterprise spine: claim → problem → product → differentiator
- * → price → trust → close.
- * Hero · Problem · Solutions · Roster · Learning · Economics
- * · Security · CTA · Contact
+ * Mono redesign — light grey technical canvas, isometric line art.
+ * Hero · Problem · How it learns · Solutions · Pricing · Security · Contact · CTA
  */
-const Home = () => {
-  return (
-    <>
-      <CinematicHero />
-      <ProblemSection />
-      <SolutionsSection />
-      <VerifiablePanelSection />
-      <LearningSection />
-      <EconomicsSection />
-      <SecuritySection />
-      <CinematicCTA />
-      <ContactForm />
-    </>
-  );
-};
+const Home = () => (
+  <>
+    <MonoHero />
+    <MonoProblem />
+    <MonoPrinciples />
+    <MonoRoster />
+    <MonoEconomics />
+    <MonoSecurity />
+    <MonoContact />
+    <MonoCTA />
+  </>
+);
 
 export default Home;

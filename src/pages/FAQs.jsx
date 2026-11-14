@@ -1,121 +1,90 @@
 import React, { useState } from 'react';
-import Section from '../components/ui/Section';
-import Heading from '../components/ui/Heading';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 import { faqCopy } from '../config/seoContent';
+import { goToSection } from '../lib/goToSection';
+import { Btn, Section } from '../components/mono/ui';
+import { ease } from '../components/mono/motion';
+import { PageHero, PageMeta } from '../components/mono/PageShell';
+import { MonoCTA } from '../components/mono/HomeSections';
+
+const EXTRA = [
+  {
+    q: 'Which systems does Quanta integrate with?',
+    a: 'Workday, SAP, BambooHR, ServiceNow, Okta, Jira, Confluence, Slack, Microsoft Teams, and more — Quanta sits above your system of record.',
+  },
+  {
+    q: 'Is employee data secure?',
+    a: 'Yes. Role-based access, approval chains, a full audit trail, and policy-bound actions are built in from day one. Your data never trains a shared model.',
+  },
+];
+
+const FAQS = [...faqCopy, ...EXTRA];
 
 const FAQs = () => {
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  const faqs = [
-    ...faqCopy.map(({ q, a }) => ({ question: q, answer: a })),
-    {
-      question: 'What makes Quanta different from other AI tools?',
-      answer:
-        'Quanta is a full EX suite — not IT-only or HR-only. It is channel-native, governed, and built for mid-market speed with enterprise rigor.',
-    },
-    {
-      question: 'Which systems does Quanta integrate with?',
-      answer:
-        'Workday, SAP, BambooHR, ServiceNow, Okta, Jira, Confluence, Slack, Microsoft Teams, and more — Quanta sits above your system of record.',
-    },
-    {
-      question: 'Is employee data secure?',
-      answer:
-        'Yes. Role-based access, approval chains, immutable audit trails, and policy-bound actions are built in from day one.',
-    },
-  ];
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(0);
 
   return (
-    <div className="pt-[12rem] -mt-[5.25rem]">
-      <Section>
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="text-6xl mb-6">❓</div>
-              <h1 className="h1 mb-6">Frequently Asked Questions</h1>
-              <p className="text-xl text-n-3">
-                Everything you need to know about Quanta — the employee experience platform
-              </p>
-            </motion.div>
+    <>
+      <PageMeta
+        title="FAQs | Quanta"
+        description="Answers to common questions about Quanta's AI employees — integrations, security, and how they learn."
+      />
+      <PageHero
+        label="FAQs"
+        title="Frequently asked questions."
+        sub="Everything you need to know about hiring an AI employee from Quanta."
+      />
 
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="border border-n-1/10 rounded-xl overflow-hidden bg-n-7/30"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
+      <Section tone="light" className="py-20 sm:py-24">
+        <div className="mx-auto max-w-3xl">
+          <ul className="border-t border-ink">
+            {FAQS.map((f, i) => {
+              const isOpen = open === i;
+              return (
+                <li key={f.q} className="border-b border-paper-line">
                   <button
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-n-7/50 transition-colors"
-                    onClick={() => toggleFAQ(index)}
+                    type="button"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpen(isOpen ? -1 : i)}
+                    className="flex w-full items-start gap-5 py-5 text-left"
                   >
-                    <h3 className="text-lg font-semibold text-n-1 pr-8">{faq.question}</h3>
-                    <div className={`transform transition-transform duration-200 flex-shrink-0 ${
-                      openIndex === index ? 'rotate-180' : ''
-                    }`}>
-                      <svg 
-                        className="w-5 h-5 text-color-1" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round" 
-                          strokeWidth={2} 
-                          d="M19 9l-7 7-7-7" 
-                        />
-                      </svg>
-                    </div>
+                    <span className="mt-1 font-mono text-[10.5px] text-ink-4">[{String(i + 1).padStart(2, '0')}]</span>
+                    <span className="flex-1 font-inter text-[16px] font-medium tracking-[-0.01em] text-ink">{f.q}</span>
+                    <Plus
+                      size={16}
+                      className={`mt-1 shrink-0 text-ink transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
+                    />
                   </button>
-                  
-                  {openIndex === index && (
-                    <motion.div
-                      className="px-6 pb-6"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p className="text-n-3 leading-relaxed">{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease }}
+                        className="overflow-hidden"
+                      >
+                        <p className="max-w-2xl pb-6 pl-11 font-inter text-[14px] leading-relaxed text-ink-3">{f.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+              );
+            })}
+          </ul>
 
-            <motion.div
-              className="text-center mt-16 p-12 border border-n-1/10 rounded-3xl bg-n-7/30"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <h3 className="h3 mb-6 text-gradient-purple">Still have questions?</h3>
-              <p className="text-lg text-n-3 mb-8 max-w-2xl mx-auto">
-                Our team is here to help. Get in touch and we'll answer any questions about Quanta.
-              </p>
-              <div className="flex justify-center gap-4">
-                <button className="btn btn-primary">Contact Support</button>
-                <button className="btn btn-outline">Schedule Demo</button>
-              </div>
-            </motion.div>
+          <div className="mt-14 flex flex-col items-center gap-4 text-center">
+            <p className="font-inter text-[14px] text-ink-3">Still have questions? Our team is happy to help.</p>
+            <Btn onClick={() => goToSection(navigate, 'contact')}>Contact us</Btn>
           </div>
         </div>
       </Section>
-    </div>
+      <MonoCTA />
+    </>
   );
 };
 
-export default FAQs; 
+export default FAQs;

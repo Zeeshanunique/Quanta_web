@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { siteSeo } from "../config/seoContent";
 
-const SEO = ({
+const Seo = ({
   title = siteSeo.title,
   description = siteSeo.description,
   keywords = siteSeo.keywords,
@@ -48,7 +48,7 @@ const SEO = ({
       {twitterImage && <meta property="twitter:image" content={twitterImage} />}
 
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <meta name="theme-color" content="#070707" />
+      <meta name="theme-color" content="#F1F1F2" />
 
       <script type="application/ld+json">
         {JSON.stringify({
@@ -86,4 +86,4 @@ const SEO = ({
   );
 };
 
-export default SEO;
+export default Seo;

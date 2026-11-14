@@ -11,8 +11,6 @@ export default defineConfig({
       '@components': resolve(__dirname, 'src/components'),
       '@pages': resolve(__dirname, 'src/pages'),
       '@assets': resolve(__dirname, 'src/assets'),
-      '@hooks': resolve(__dirname, 'src/hooks'),
-      '@utils': resolve(__dirname, 'src/utils'),
     },
   },
   build: {
@@ -22,7 +20,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom'],
           'router': ['react-router-dom'],
           'motion': ['framer-motion'],
-          'ui-vendor': ['@radix-ui/react-icons', '@radix-ui/react-slot', 'lucide-react'],
+          'ui-vendor': ['lucide-react'],
         },
       },
     },
