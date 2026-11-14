@@ -6,6 +6,7 @@ import { footerCopy } from '../config/seoContent';
 import { Btn, CropMarks, MonoLabel, Section, SectionHeading } from '../components/mono/ui';
 import { fadeUp } from '../components/mono/motion';
 import { IsoCube, IsoGlobe, IsoLayers, IsoPyramid } from '../components/mono/iso';
+import QuantumReveal from '../components/mono/QuantumReveal';
 import { PageHero, PageMeta } from '../components/mono/PageShell';
 import { MonoCTA } from '../components/mono/HomeSections';
 
@@ -79,7 +80,9 @@ const About = () => {
               <span className="font-mono text-[10.5px] text-ink-4">[0{i + 1}]</span>
               <h3 className="mt-2 font-inter text-[15px] font-medium text-ink">{title}</h3>
               <div className="my-6 h-[130px]">
-                <Art className="h-full w-full" />
+                <QuantumReveal className="h-full">
+                  <Art className="h-[130px] w-full" />
+                </QuantumReveal>
               </div>
               <p className="font-inter text-[13px] leading-relaxed text-ink-3">{body}</p>
             </motion.div>

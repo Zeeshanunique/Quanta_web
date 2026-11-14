@@ -16,6 +16,8 @@ import {
   SectionHeading,
 } from './ui';
 import { ease, fadeUp } from './motion';
+import QuantumWrite from './QuantumWrite';
+import QuantumReveal from './QuantumReveal';
 import {
   HeroScene,
   IsoChip,
@@ -44,7 +46,9 @@ export const MonoHero = () => {
           className="font-inter text-[2.4rem] font-semibold leading-[1.06] tracking-[-0.045em] text-ink-3 sm:text-[3.2rem] lg:text-[3.45rem]"
         >
           Hire <Bracket className="whitespace-nowrap">an AI employee</Bracket>
-          <br className="hidden sm:block" /> that learns <Bracket className="whitespace-nowrap">your company</Bracket>
+          <br className="hidden sm:block" /> that learns <Bracket className="whitespace-nowrap">
+            <QuantumWrite text="your company" delay={700} stopOffset="0.26em" />
+          </Bracket>
         </motion.h1>
 
         <motion.div
@@ -60,21 +64,38 @@ export const MonoHero = () => {
               {hero.ctaSecondary}
             </Btn>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-2">
-            <MonoLabel bare className="mr-1 text-[10px]">
-              {hero.cardsLabel}:
-            </MonoLabel>
-            {hero.suiteCards.map((c) => (
-              <button
-                key={c.label}
-                type="button"
-                onClick={() => goToSection(navigate, 'solutions')}
-                className="group inline-flex items-center gap-1.5 rounded-[5px] bg-white px-2.5 py-1.5 font-inter text-[12px] text-ink shadow-[0_0_0_1px_rgba(10,10,11,0.06)] transition-colors hover:bg-paper-2"
-              >
-                {c.label}
-                <span className="font-mono text-[10px] uppercase text-ink-4">{c.sub}</span>
-              </button>
-            ))}
+          <div className="mt-9 max-w-md">
+            <MonoLabel className="text-[10px]">{hero.cardsLabel}</MonoLabel>
+            <div className="mt-3 grid grid-cols-3 overflow-hidden rounded-[6px] bg-white shadow-[0_0_0_1px_rgba(10,10,11,0.07)]">
+              {hero.suiteCards.map((c, i) => {
+                const live = !/soon/i.test(c.sub);
+                return (
+                  <button
+                    key={c.label}
+                    type="button"
+                    onClick={() => goToSection(navigate, 'solutions')}
+                    className={`group flex flex-col items-start gap-1 px-3.5 py-3 text-left transition-colors hover:bg-paper-2 ${
+                      i > 0 ? 'border-l border-paper-line' : ''
+                    }`}
+                  >
+                    <span className="flex items-center gap-2 font-inter text-[13px] font-medium text-ink">
+                      <span
+                        aria-hidden
+                        className={`h-[7px] w-[7px] shrink-0 ${live ? 'bg-ink' : 'border border-ink-4'}`}
+                      />
+                      {c.label}
+                    </span>
+                    <span
+                      className={`pl-[15px] font-mono text-[9.5px] uppercase tracking-[0.08em] ${
+                        live ? 'text-ink-3' : 'text-ink-4'
+                      }`}
+                    >
+                      {c.sub}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </motion.div>
       </div>
@@ -85,7 +106,9 @@ export const MonoHero = () => {
         transition={{ duration: 1, delay: 0.25, ease }}
         className="mx-auto mt-12 w-full max-w-[920px] px-5 lg:mt-14"
       >
-        <HeroScene className="h-auto w-full" />
+        <QuantumReveal duration={1.8} delay={0.9}>
+          <HeroScene className="h-auto w-full" />
+        </QuantumReveal>
       </motion.div>
       <HexEdge />
     </section>
@@ -218,6 +241,67 @@ export const MonoProblem = () => {
 const STEP_ART = [IsoDocs, IsoPyramid, IsoCube, IsoLayers];
 const STEP_CHIP = ['Day 1', 'Day 30', 'Day 90', 'Always'];
 
+/* What the AI employee has written down: grows each step, prunes a wrong note at the end */
+const NOTES = [
+  { id: '01', text: 'Quote the policy word for word, never paraphrase it', helped: 34, wrong: 0, at: 0 },
+  { id: '02', text: 'Friday time-off: check who else on the team is already out', helped: 21, wrong: 1, at: 1 },
+  { id: '03', text: 'Laptop requests go to IT Hardware, not the general queue', helped: 17, wrong: 0, at: 1 },
+  { id: '04', text: 'Half-days do not need a manager sign-off', helped: 2, wrong: 9, at: 2, pruneAt: 3 },
+];
+
+const NOTE_STATUS = ['Learning from your handbook', 'New notes highlighted', 'New note highlighted', 'Dropped 04: wrong 9 times'];
+
+const Notebook = ({ active }) => {
+  const visible = NOTES.filter((n) => n.at <= active);
+  const inUse = visible.filter((n) => !(n.pruneAt !== undefined && active >= n.pruneAt)).length;
+  return (
+    <div className="mt-7 hidden bg-white/70 p-4 shadow-[0_0_0_1px_rgba(10,10,11,0.06)] md:block">
+      <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.12em]">
+        <span className="text-ink-2">What it has learned</span>
+        <span className="text-ink-4">{inUse} notes in use</span>
+      </div>
+      <ul className="space-y-1.5">
+        <AnimatePresence initial={false}>
+          {visible.map((n) => {
+            const fresh = n.at === active;
+            const pruned = n.pruneAt !== undefined && active >= n.pruneAt;
+            return (
+              <motion.li
+                key={n.id}
+                layout
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: pruned ? 0.55 : 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease }}
+                className={`flex items-start gap-3 px-2.5 py-2 ${
+                  fresh && !pruned ? 'bg-[#2f6bff]/[0.06] shadow-[inset_2px_0_0_#2f6bff]' : ''
+                } ${pruned ? 'shadow-[inset_2px_0_0_#C4C4CA]' : ''}`}
+              >
+                <span className="mt-[2px] font-mono text-[10px] text-ink-4">{n.id}</span>
+                <span
+                  className={`flex-1 font-inter text-[12.5px] leading-snug text-ink-2 ${
+                    pruned ? 'line-through decoration-ink-4' : ''
+                  }`}
+                >
+                  {n.text}
+                </span>
+                <span className="shrink-0 font-mono text-[10px] tabular-nums text-ink-3">
+                  +{n.helped}
+                  {n.wrong > 0 && <span className="ml-1.5 text-ink-4">-{n.wrong}</span>}
+                </span>
+              </motion.li>
+            );
+          })}
+        </AnimatePresence>
+      </ul>
+      <p className="mt-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-4">
+        <span className="h-[6px] w-[6px] bg-ink" />
+        {NOTE_STATUS[active]}
+      </p>
+    </div>
+  );
+};
+
 export const MonoPrinciples = () => {
   const { learning } = homeCopy;
   const steps = learning.steps;
@@ -230,6 +314,13 @@ export const MonoPrinciples = () => {
   });
   const step = steps[active];
   const Art = STEP_ART[active];
+  const goToStep = (i) => {
+    const el = ref.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    const travel = el.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: top + travel * ((i + 0.5) / steps.length), behavior: 'smooth' });
+  };
 
   return (
     <section id="learning" className="grain relative scroll-mt-16 bg-paper">
@@ -240,11 +331,42 @@ export const MonoPrinciples = () => {
       </div>
 
       {/* sticky track */}
-      <div ref={ref} className="relative" style={{ height: `${steps.length * 75}vh` }}>
-        <div className="sticky top-16 flex h-[calc(100vh-4rem)] items-center">
-          <div className="mx-auto grid w-full max-w-[880px] items-center gap-10 px-5 md:grid-cols-[240px_1fr] md:gap-20 md:px-10">
-            <div className="relative mx-auto aspect-square w-[200px] md:w-[240px]">
+      <div ref={ref} className="relative" style={{ height: `${steps.length * 80}vh` }}>
+        <div className="sticky top-16 flex h-[calc(100vh-4rem)] items-center overflow-hidden">
+          <HexEdge position="top" />
+          <div className="mx-auto grid w-full max-w-[1200px] items-center gap-8 px-5 md:grid-cols-[220px_1fr] md:gap-12 md:px-10 lg:grid-cols-[190px_260px_1fr] lg:gap-14">
+            {/* step index */}
+            <ol className="hidden lg:block">
+              {steps.map((s, i) => (
+                <li key={s.step}>
+                  <button
+                    type="button"
+                    onClick={() => goToStep(i)}
+                    className={`group flex w-full items-baseline gap-3 border-l py-3 pl-4 text-left transition-colors ${
+                      i === active ? 'border-ink' : 'border-paper-line hover:border-ink-4'
+                    }`}
+                  >
+                    <span className={`font-mono text-[10.5px] ${i === active ? 'text-ink' : 'text-ink-4'}`}>
+                      [{s.step}]
+                    </span>
+                    <span
+                      className={`font-inter text-[14px] transition-colors ${
+                        i === active ? 'font-medium text-ink' : 'text-ink-4 group-hover:text-ink-3'
+                      }`}
+                    >
+                      {s.title}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+
+            {/* illustration */}
+            <QuantumReveal className="relative mx-auto aspect-square w-[160px] md:w-[220px] lg:w-[260px]">
               <CropMarks size={22} />
+              <span className="absolute -top-5 left-0 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-4">
+                fig. 0{active + 1}
+              </span>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
@@ -257,9 +379,10 @@ export const MonoPrinciples = () => {
                   <Art className="h-full w-full" />
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </QuantumReveal>
 
-            <div className="max-w-sm">
+            {/* copy + notebook */}
+            <div className="min-w-0">
               <div className="flex items-center justify-between border-b border-paper-line pb-2.5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-3">
                 <span>How it learns</span>
                 <span>
@@ -274,21 +397,31 @@ export const MonoPrinciples = () => {
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.4, ease }}
                 >
-                  <h3 className="mt-8 flex items-center gap-3 font-inter text-[1.6rem] font-medium tracking-[-0.03em] text-ink">
+                  <h3 className="mt-6 flex items-center gap-3 font-inter text-[1.6rem] font-medium tracking-[-0.03em] text-ink">
                     {step.title}
                     <Chip tone="soft">{STEP_CHIP[active]}</Chip>
                   </h3>
-                  <p className="mt-4 font-inter text-[14px] leading-relaxed text-ink-3">{step.body}</p>
+                  <p className="mt-3 max-w-md font-inter text-[14px] leading-relaxed text-ink-3">{step.body}</p>
                 </motion.div>
               </AnimatePresence>
-              <div className="mt-10 flex gap-1.5">
+
+              <Notebook active={active} />
+
+              <div className="mt-6 flex gap-1.5">
                 {steps.map((s, i) => (
-                  <span
+                  <button
                     key={s.step}
-                    className={`h-[3px] flex-1 rounded-full transition-colors duration-500 ${
-                      i <= active ? 'bg-ink' : 'bg-paper-line'
-                    }`}
-                  />
+                    type="button"
+                    aria-label={`Go to ${s.title}`}
+                    onClick={() => goToStep(i)}
+                    className="flex-1 py-1.5"
+                  >
+                    <span
+                      className={`block h-[3px] rounded-full transition-colors duration-500 ${
+                        i <= active ? 'bg-ink' : 'bg-paper-line'
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             </div>
@@ -349,7 +482,9 @@ const RosterCard = ({ s, i }) => {
         <span className="font-inter text-[12px] text-ink-3">{s.vertical}</span>
       </div>
       <div className="relative my-5 h-[120px] transition-transform duration-500 group-hover:-translate-y-1">
-        <Art className={`h-full w-full ${live ? '' : 'opacity-60 grayscale'}`} />
+        <QuantumReveal className="h-full">
+          <Art className={`h-[120px] w-full ${live ? '' : 'opacity-60 grayscale'}`} />
+        </QuantumReveal>
       </div>
       <p className="font-inter text-[12.5px] leading-snug text-ink-3">{s.tagline}</p>
       {live && (
@@ -398,7 +533,9 @@ export const MonoRoster = () => {
             <span className="font-mono text-[10.5px] text-ink-4">[08]</span>
             <h3 className="mt-2 font-inter text-[15px] font-medium text-ink">Your team next</h3>
             <div className="my-5 h-[120px] transition-transform duration-500 group-hover:-translate-y-1">
-              <IsoPlus className="h-full w-full" />
+              <QuantumReveal className="h-full">
+                <IsoPlus className="h-[120px] w-full" />
+              </QuantumReveal>
             </div>
             <p className="font-inter text-[12.5px] leading-snug text-ink-3">
               Don’t see your team? Tell us what it handles every week.
@@ -442,7 +579,7 @@ export const MonoEconomics = () => {
         <motion.div {...fadeUp(0)}>
           <MonoLabel>{economics.badge}</MonoLabel>
           <h2 className="mt-5 whitespace-pre-line font-inter text-[1.9rem] font-medium leading-[1.12] tracking-[-0.035em] text-ink sm:text-[2.2rem]">
-            {economics.headline}
+            <QuantumWrite text={economics.headline} />
           </h2>
           <Btn className="mt-8" onClick={() => goToSection(navigate, 'contact')}>
             Get a quote
@@ -451,7 +588,9 @@ export const MonoEconomics = () => {
 
         <motion.div {...fadeUp(0.08)} className="relative mx-auto w-[200px] p-4 sm:w-[230px]">
           <CropMarks size={26} />
-          <Tunnel className="h-auto w-full" />
+          <QuantumReveal>
+            <Tunnel className="h-auto w-full" />
+          </QuantumReveal>
         </motion.div>
 
         <motion.div {...fadeUp(0.16)} className="max-w-xs lg:justify-self-end">
@@ -559,7 +698,7 @@ export const MonoContact = () => {
         <motion.div {...fadeUp(0)}>
           <MonoLabel>Contact</MonoLabel>
           <h2 className="mt-5 font-inter text-[2.4rem] font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl">
-            {contact.headline}
+            <QuantumWrite text={contact.headline} />
           </h2>
           <p className="mt-5 max-w-sm font-inter text-[14px] leading-relaxed text-ink-3">{contact.subhead}</p>
           <ul className="mt-10 space-y-3 border-t border-paper-line pt-6">
@@ -655,7 +794,7 @@ export const MonoCTA = () => {
         {...fadeUp(0)}
         className="mx-auto max-w-xl font-inter text-[2.2rem] font-semibold leading-[1.08] tracking-[-0.04em] text-ink sm:text-5xl"
       >
-        {cta.headline}
+        <QuantumWrite text={cta.headline} />
       </motion.h2>
       <motion.p {...fadeUp(0.06)} className="mx-auto mt-5 max-w-md font-inter text-[14px] leading-relaxed text-ink-3">
         {cta.body}

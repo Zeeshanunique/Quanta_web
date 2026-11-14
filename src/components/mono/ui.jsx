@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp } from './motion';
+import QuantumWrite from './QuantumWrite';
 
 /** Shared primitives for the mono (light, technical) design language. */
 
@@ -101,7 +102,7 @@ export const SectionHeading = ({ label, title, sub, className = '' }) => (
       {...fadeUp(0.06)}
       className="mt-5 whitespace-pre-line font-inter text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.035em] text-ink sm:text-5xl lg:text-[3.5rem]"
     >
-      {title}
+      {typeof title === 'string' ? <QuantumWrite text={title} /> : title}
     </motion.h2>
     {sub && (
       <motion.p

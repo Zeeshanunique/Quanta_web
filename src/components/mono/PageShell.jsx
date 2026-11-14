@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { HexEdge, MonoLabel } from './ui';
 import { ease } from './motion';
+import QuantumWrite from './QuantumWrite';
+import QuantumReveal from './QuantumReveal';
 
 /** Inner-page hero: mono label, big headline, optional sub + actions + art */
 export const PageHero = ({ label, title, sub, children, art }) => (
@@ -19,7 +21,7 @@ export const PageHero = ({ label, title, sub, children, art }) => (
       >
         {label && <MonoLabel>{label}</MonoLabel>}
         <h1 className="mt-5 max-w-3xl whitespace-pre-line font-inter text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.045em] text-ink sm:text-[3.4rem]">
-          {title}
+          <QuantumWrite text={title} delay={400} />
         </h1>
         {sub && <p className="mt-6 max-w-lg font-inter text-[15px] leading-relaxed text-ink-3">{sub}</p>}
         {children && <div className="mt-8 flex flex-wrap gap-2.5">{children}</div>}
@@ -31,7 +33,7 @@ export const PageHero = ({ label, title, sub, children, art }) => (
           transition={{ duration: 0.8, delay: 0.1, ease }}
           className="relative mx-auto w-full max-w-[300px]"
         >
-          {art}
+          <QuantumReveal delay={0.5}>{art}</QuantumReveal>
         </motion.div>
       )}
     </div>

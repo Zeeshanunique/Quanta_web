@@ -65,3 +65,20 @@ body {
 .mono-ticker {
   animation: mono-ticker 18s linear infinite;
 }
+
+/* Quantum write — a word being "learned" by the logo's square */
+.qw-ghost {
+  color: transparent;
+  -webkit-text-stroke: 1px #c4c4ca;
+}
+.qw-scramble {
+  color: #2f6bff;
+  text-shadow: 0 0 10px rgba(47, 107, 255, 0.55), 0 0 2px rgba(47, 107, 255, 0.8);
+}
+@keyframes qw-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(47, 107, 255, 0); }
+  50% { box-shadow: 0 0 14px 2px rgba(47, 107, 255, 0.55); }
+}
+.qw-cursor {
+  animation: qw-pulse 1.6s ease-in-out infinite;
+}
