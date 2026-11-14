@@ -28,3 +28,8 @@ docs/*.mp4
 docs/insp-frame-*.jpg
 
 
+
+# local env (form keys etc.)
+.env
+.env.local
+.env.*.local

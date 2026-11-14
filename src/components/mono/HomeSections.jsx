@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, Eye, FileCheck2, Lock, ShieldCheck } from 'lucide-react';
 import { goToSection } from '../../lib/goToSection';
+import { submitDemoRequest } from '../../lib/submitDemoRequest';
 import { homeCopy, solutions } from '../../config/seoContent';
 import { brandLogos } from '../../assets/brands';
 import {
@@ -683,13 +684,23 @@ const EMPTY = {
 export const MonoContact = () => {
   const { contact } = homeCopy;
   const [form, setForm] = useState(EMPTY);
-  const [sent, setSent] = useState(false);
+  // idle | sending | sent | mailto | error
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState('');
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', form);
-    setSent(true);
-    setForm(EMPTY);
+    if (status === 'sending') return;
+    setStatus('sending');
+    setError('');
+    try {
+      const result = await submitDemoRequest(form);
+      setStatus(result);
+      if (result === 'sent') setForm(EMPTY);
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -762,17 +773,25 @@ export const MonoContact = () => {
             </div>
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            <Btn type="submit">{contact.submit}</Btn>
-            <AnimatePresence>
-              {sent && (
+            <Btn type="submit" disabled={status === 'sending'} className="disabled:cursor-wait disabled:opacity-70">
+              {status === 'sending' ? 'Sending…' : contact.submit}
+            </Btn>
+            <AnimatePresence mode="wait">
+              {(status === 'sent' || status === 'mailto' || status === 'error') && (
                 <motion.span
+                  key={status}
                   initial={{ opacity: 0, x: -6 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0 }}
-                  className="font-inter text-[13px] text-ink-2"
-                  role="status"
+                  className={`flex items-center gap-2 font-inter text-[13px] ${
+                    status === 'error' ? 'text-red-600' : 'text-ink-2'
+                  }`}
+                  role={status === 'error' ? 'alert' : 'status'}
                 >
-                  {contact.success}
+                  <span className={`h-[6px] w-[6px] ${status === 'error' ? 'bg-red-600' : 'bg-ink'}`} />
+                  {status === 'sent' && contact.success}
+                  {status === 'mailto' && 'Your email app should open with the request filled in.'}
+                  {status === 'error' && error}
                 </motion.span>
               )}
             </AnimatePresence>
