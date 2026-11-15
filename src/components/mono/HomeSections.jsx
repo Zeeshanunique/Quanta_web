@@ -640,7 +640,7 @@ export const MonoContact = () => {
             </div>
             <div>
               <label className={label} htmlFor="c-company">Company</label>
-              <input id="c-company" name="company" value={form.company} onChange={onChange} className={field} placeholder="Acme Inc." />
+              <input id="c-company" name="company" required value={form.company} onChange={onChange} className={field} placeholder="Acme Inc." />
             </div>
             <div>
               <label className={label} htmlFor="c-phone">Phone</label>
