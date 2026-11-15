@@ -21,11 +21,11 @@ export const solutions = [
   {
     key: 'factum',
     name: 'Factum',
-    vertical: 'Employee Experience',
-    tagline: 'Answers the HR and IT questions your team gets all day — time off, tickets, access, policies.',
+    vertical: 'AI agent infrastructure',
+    tagline: 'Runs AI agents inside your billing, accounting, ticketing and email, with approval on every change. Packs live for finance and support.',
     url: 'https://factum.quanta.co.in',
     status: 'live',
-    agents: ['EX Front Desk', 'Onboarding', 'Offboarding', 'Recruiter', 'Talent'],
+    agents: ['Billing Desk', 'Bug Loop', 'Collections', 'AP Intake'],
   },
   {
     key: 'quaero',
@@ -93,7 +93,7 @@ export const homeCopy = {
     trustLabel: 'Works in the tools your team already uses',
     cardsLabel: 'Available to hire',
     suiteCards: [
-      { label: 'HR + IT', sub: 'Factum', href: '#solutions' },
+      { label: 'Finance + Support', sub: 'Factum', href: '#solutions' },
       { label: 'Sales', sub: 'Quaero', href: '#solutions' },
       { label: 'Support', sub: 'Coming soon', href: '#solutions' },
     ],
@@ -225,7 +225,7 @@ export const footerCopy = {
 export const faqCopy = [
   {
     q: 'Is this one AI or several?',
-    a: 'Several. Rather than one assistant stretched across the whole company, there is a separate one for each team — Factum for HR and IT, Quaero for sales, with more coming. Each knows its own job properly.',
+    a: 'Several. Rather than one assistant stretched across the whole company, there is a separate one for each team — Factum for finance and support operations, Quaero for sales, with more coming. Each knows its own job properly.',
   },
   {
     q: 'Will it change things in our systems?',
@@ -237,7 +237,7 @@ export const faqCopy = [
   },
   {
     q: 'Which ones can we get today?',
-    a: 'Factum for HR and IT, and Quaero for sales, are both live now. Customer support, finance, professional services, healthcare and insurance are on the way.',
+    a: 'Factum for finance and support operations, and Quaero for sales, are both live now. Customer support, finance, professional services, healthcare and insurance are on the way.',
   },
   {
     q: 'How is this different from Copilot?',

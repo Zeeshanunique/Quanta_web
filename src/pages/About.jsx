@@ -13,7 +13,7 @@ import { MonoCTA } from '../components/mono/HomeSections';
 const STATS = [
   { label: 'Founded', value: '2023', sub: 'Bangalore, India' },
   { label: 'Products live', value: '2', sub: 'Factum · Quaero' },
-  { label: 'Focus', value: 'Enterprise', sub: 'HR · IT · Sales' },
+  { label: 'Focus', value: 'Enterprise', sub: 'Operations · Sales' },
 ];
 
 const VALUES = [
