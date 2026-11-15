@@ -12,25 +12,25 @@ import { MonoCTA } from '../components/mono/HomeSections';
 
 const STATS = [
   { label: 'Founded', value: '2023', sub: 'Bangalore, India' },
-  { label: 'Products live', value: '2', sub: 'Factum · Quaero' },
-  { label: 'Focus', value: 'Enterprise', sub: 'Operations · Sales' },
+  { label: 'Live', value: 'Factum', sub: 'Agents for operations' },
+  { label: 'In development', value: 'Software foundry', sub: 'Agents for engineering' },
 ];
 
 const VALUES = [
   {
     Art: IsoLayers,
     title: 'Simple',
-    body: 'Hiring an AI employee should be as easy as briefing a new colleague. No projects, no prompt engineering — connect it and give it work.',
+    body: 'Putting an agent to work should be as easy as briefing a new colleague: connect your systems, share your rules, approve its first changes.',
   },
   {
     Art: IsoCube,
     title: 'Trusted',
-    body: 'Security is built into the core: it asks before it acts, every action is logged, and your data never trains a shared model.',
+    body: 'Control is built into the core: it asks before it acts, every run is on record, and your data never trains a shared model.',
   },
   {
     Art: IsoPyramid,
-    title: 'Accurate',
-    body: 'Each AI employee is a specialist for one team. It quotes its sources, learns your exceptions, and hands off what it is unsure about.',
+    title: 'Proven',
+    body: 'Work is checked against real cases before it goes live. When an agent is unsure, it hands off to a person with the reason.',
   },
 ];
 
@@ -39,13 +39,13 @@ const About = () => {
   return (
     <>
       <PageMeta
-        title="About Quanta | AI Employees for Every Team"
-        description="Quanta builds AI employees — one for each team. They handle everyday requests from question to done, and get better at your company every week."
+        title="About Quanta | AI agents that do real work"
+        description="Quanta builds AI agents that take real work off your teams, inside the systems you already run, with a person approving every change."
       />
 
       <PageHero
         label="About Quanta"
-        title={'AI employees that\nget the job done.'}
+        title={'AI agents that\ndo real work.'}
         sub={footerCopy.blurb}
         art={
           <div className="relative aspect-square p-8">
@@ -56,7 +56,7 @@ const About = () => {
       >
         <Btn onClick={() => goToSection(navigate, 'contact')}>Book a demo</Btn>
         <Btn variant="light" onClick={() => goToSection(navigate, 'solutions')}>
-          See the AI employees
+          See our products
         </Btn>
       </PageHero>
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   MonoCTA,
+  MonoCompany,
   MonoContact,
-  MonoEconomics,
   MonoHero,
   MonoPrinciples,
   MonoProblem,
@@ -11,17 +11,17 @@ import {
 } from '../components/mono/HomeSections';
 
 /**
- * Mono redesign — light grey technical canvas, isometric line art.
- * Hero · Problem · How it learns · Solutions · Pricing · Security · Contact · CTA
+ * Quanta — the company. Two products held to one standard; neither leads.
+ * Hero · Why now · Products · One standard · Trust · Company · Contact · CTA
  */
 const Home = () => (
   <>
     <MonoHero />
     <MonoProblem />
-    <MonoPrinciples />
     <MonoRoster />
-    <MonoEconomics />
+    <MonoPrinciples />
     <MonoSecurity />
+    <MonoCompany />
     <MonoContact />
     <MonoCTA />
   </>

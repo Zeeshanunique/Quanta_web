@@ -135,7 +135,7 @@ export const HeroScene = ({ className = '' }) => {
   const activeLayer = tick % NET.length;
 
   return (
-    <svg viewBox="-185 -175 590 370" className={className} fill="none" role="img" aria-label="Requests flowing into a Quanta AI employee">
+    <svg viewBox="-185 -175 590 370" className={className} fill="none" role="img" aria-label="Work flowing through a Quanta AI agent">
       {/* floor grid */}
       <g stroke="#D4D4D8" strokeWidth={0.7} strokeDasharray="2 3">
         {[0, 40, 80, 120, 160, 200].map((gx) => (

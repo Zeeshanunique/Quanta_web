@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, Eye, FileCheck2, Lock, ShieldCheck } from 'lucide-react';
 import { goToSection } from '../../lib/goToSection';
 import { submitDemoRequest } from '../../lib/submitDemoRequest';
 import { homeCopy, solutions } from '../../config/seoContent';
-import { brandLogos } from '../../assets/brands';
 import {
   Bracket,
   Btn,
@@ -24,12 +23,8 @@ import {
   IsoChip,
   IsoCube,
   IsoDocs,
-  IsoGlobe,
   IsoLayers,
-  IsoPlus,
   IsoPyramid,
-  IsoServer,
-  Tunnel,
 } from './iso';
 
 /* ───────────────────────── Hero ───────────────────────── */
@@ -46,9 +41,9 @@ export const MonoHero = () => {
           transition={{ duration: 0.8, ease }}
           className="font-inter text-[2.4rem] font-semibold leading-[1.06] tracking-[-0.045em] text-ink-3 sm:text-[3.2rem] lg:text-[3.45rem]"
         >
-          Hire <Bracket className="whitespace-nowrap">an AI employee</Bracket>
-          <br className="hidden sm:block" /> that learns <Bracket className="whitespace-nowrap">
-            <QuantumWrite text="your company" delay={700} stopOffset="0.26em" />
+          <Bracket className="whitespace-nowrap">AI agents</Bracket>
+          <br className="hidden sm:block" /> that do <Bracket className="whitespace-nowrap">
+            <QuantumWrite text="real work" delay={700} stopOffset="0.26em" />
           </Bracket>
         </motion.h1>
 
@@ -67,12 +62,12 @@ export const MonoHero = () => {
           </div>
           <div className="mt-9 max-w-md">
             <MonoLabel className="text-[10px]">{hero.cardsLabel}</MonoLabel>
-            <div className="mt-3 grid grid-cols-3 overflow-hidden rounded-[6px] bg-white shadow-[0_0_0_1px_rgba(10,10,11,0.07)]">
-              {hero.suiteCards.map((c, i) => {
-                const live = !/soon/i.test(c.sub);
+            <div className="mt-3 grid grid-cols-2 overflow-hidden rounded-[6px] bg-white shadow-[0_0_0_1px_rgba(10,10,11,0.07)]">
+              {solutions.map((s, i) => {
+                const live = s.status === 'live';
                 return (
                   <button
-                    key={c.label}
+                    key={s.key}
                     type="button"
                     onClick={() => goToSection(navigate, 'solutions')}
                     className={`group flex flex-col items-start gap-1 px-3.5 py-3 text-left transition-colors hover:bg-paper-2 ${
@@ -84,14 +79,10 @@ export const MonoHero = () => {
                         aria-hidden
                         className={`h-[7px] w-[7px] shrink-0 ${live ? 'bg-ink' : 'border border-ink-4'}`}
                       />
-                      {c.label}
+                      {s.door}
                     </span>
-                    <span
-                      className={`pl-[15px] font-mono text-[9.5px] uppercase tracking-[0.08em] ${
-                        live ? 'text-ink-3' : 'text-ink-4'
-                      }`}
-                    >
-                      {c.sub}
+                    <span className="pl-[15px] font-mono text-[9.5px] uppercase tracking-[0.08em] text-ink-3">
+                      {s.name} · {homeCopy.solutions.statusLabel[s.status]}
                     </span>
                   </button>
                 );
@@ -118,24 +109,11 @@ export const MonoHero = () => {
 
 /* ───────────────────────── Problem: tabbed dark panel ───────────────────────── */
 
-const REQUESTS = [
-  'Where do I find the leave policy?',
-  'Can someone reset my password?',
-  'Is my expense approved yet?',
-  'When does my laptop arrive?',
-  'Who approves contractor access?',
-  'How many days off do I have left?',
-  'Can I get added to the Jira project?',
-  'What is the parental leave policy?',
-];
 
 export const MonoProblem = () => {
   const navigate = useNavigate();
   const { problem } = homeCopy;
-  const tabs = [
-    { key: 'people', label: 'What it costs your people', items: problem.threatsLeft },
-    { key: 'process', label: 'What it costs the process', items: problem.threatsRight },
-  ];
+  const tabs = problem.tabs;
   const [tab, setTab] = useState(0);
 
   return (
@@ -145,12 +123,12 @@ export const MonoProblem = () => {
       <motion.div {...fadeUp(0.1)} className="mt-14">
         <div
           role="tablist"
-          aria-label="Costs"
-          className="inline-flex rounded-[6px] border border-ink/80 bg-white p-[2px]"
+          aria-label="Where AI falls short"
+          className="inline-flex flex-wrap rounded-[6px] border border-ink/80 bg-white p-[2px]"
         >
           {tabs.map((t, i) => (
             <button
-              key={t.key}
+              key={t.label}
               role="tab"
               aria-selected={tab === i}
               type="button"
@@ -205,11 +183,11 @@ export const MonoProblem = () => {
               <div className="absolute inset-x-0 top-0 z-[1] h-24 bg-gradient-to-b from-[#0C0C0D] to-transparent" />
               <div className="absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-[#0C0C0D] to-transparent" />
               <div className="absolute left-5 top-5 z-[2] font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">
-                #help-desk · live
+                {problem.queueLabel}
               </div>
               <div className="relative h-[340px] md:absolute md:inset-0 md:h-auto">
                 <div className="mono-ticker space-y-3 px-5 pt-14 sm:px-8">
-                  {[...REQUESTS, ...REQUESTS].map((r, i) => (
+                  {[...problem.queue, ...problem.queue].map((r, i) => (
                     <div
                       key={i}
                       className="flex items-start gap-3 rounded-[6px] border border-white/10 bg-white/[0.04] px-3.5 py-3 backdrop-blur-sm"
@@ -240,68 +218,34 @@ export const MonoProblem = () => {
 /* ───────────────────────── Principles: sticky stepper ───────────────────────── */
 
 const STEP_ART = [IsoDocs, IsoPyramid, IsoCube, IsoLayers];
-const STEP_CHIP = ['Day 1', 'Day 30', 'Day 90', 'Always'];
 
-/* What the AI employee has written down: grows each step, prunes a wrong note at the end */
-const NOTES = [
-  { id: '01', text: 'Quote the policy word for word, never paraphrase it', helped: 34, wrong: 0, at: 0 },
-  { id: '02', text: 'Friday time-off: check who else on the team is already out', helped: 21, wrong: 1, at: 1 },
-  { id: '03', text: 'Laptop requests go to IT Hardware, not the general queue', helped: 17, wrong: 0, at: 1 },
-  { id: '04', text: 'Half-days do not need a manager sign-off', helped: 2, wrong: 9, at: 2, pruneAt: 3 },
-];
 
-const NOTE_STATUS = ['Learning from your handbook', 'New notes highlighted', 'New note highlighted', 'Dropped 04: wrong 9 times'];
 
-const Notebook = ({ active }) => {
-  const visible = NOTES.filter((n) => n.at <= active);
-  const inUse = visible.filter((n) => !(n.pruneAt !== undefined && active >= n.pruneAt)).length;
-  return (
-    <div className="mt-7 hidden bg-white/70 p-4 shadow-[0_0_0_1px_rgba(10,10,11,0.06)] md:block">
-      <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.12em]">
-        <span className="text-ink-2">What it has learned</span>
-        <span className="text-ink-4">{inUse} notes in use</span>
-      </div>
-      <ul className="space-y-1.5">
-        <AnimatePresence initial={false}>
-          {visible.map((n) => {
-            const fresh = n.at === active;
-            const pruned = n.pruneAt !== undefined && active >= n.pruneAt;
-            return (
-              <motion.li
-                key={n.id}
-                layout
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: pruned ? 0.55 : 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35, ease }}
-                className={`flex items-start gap-3 px-2.5 py-2 ${
-                  fresh && !pruned ? 'bg-[#2f6bff]/[0.06] shadow-[inset_2px_0_0_#2f6bff]' : ''
-                } ${pruned ? 'shadow-[inset_2px_0_0_#C4C4CA]' : ''}`}
-              >
-                <span className="mt-[2px] font-mono text-[10px] text-ink-4">{n.id}</span>
-                <span
-                  className={`flex-1 font-inter text-[12.5px] leading-snug text-ink-2 ${
-                    pruned ? 'line-through decoration-ink-4' : ''
-                  }`}
-                >
-                  {n.text}
-                </span>
-                <span className="shrink-0 font-mono text-[10px] tabular-nums text-ink-3">
-                  +{n.helped}
-                  {n.wrong > 0 && <span className="ml-1.5 text-ink-4">-{n.wrong}</span>}
-                </span>
-              </motion.li>
-            );
-          })}
-        </AnimatePresence>
-      </ul>
-      <p className="mt-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-4">
-        <span className="h-[6px] w-[6px] bg-ink" />
-        {NOTE_STATUS[active]}
-      </p>
+/** What the current rule looks like in each product, side by side: neither product leads. */
+const InBoth = ({ step }) => (
+  <div className="mt-7 hidden bg-white/70 p-4 shadow-[0_0_0_1px_rgba(10,10,11,0.06)] md:block">
+    <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+      {homeCopy.learning.panelTitle}
     </div>
-  );
-};
+    <AnimatePresence mode="wait">
+      <motion.ul
+        key={step.step}
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3, ease }}
+        className="grid grid-cols-2 gap-px overflow-hidden rounded-[4px] bg-paper-line"
+      >
+        {solutions.map((s) => (
+          <li key={s.key} className="bg-white px-3 py-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-ink-4">{s.name}</span>
+            <p className="mt-1.5 font-inter text-[13px] leading-snug text-ink">{step.in[s.key]}</p>
+          </li>
+        ))}
+      </motion.ul>
+    </AnimatePresence>
+  </div>
+);
 
 export const MonoPrinciples = () => {
   const { learning } = homeCopy;
@@ -385,7 +329,7 @@ export const MonoPrinciples = () => {
             {/* copy + notebook */}
             <div className="min-w-0">
               <div className="flex items-center justify-between border-b border-paper-line pb-2.5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-3">
-                <span>How it learns</span>
+                <span>Our standard</span>
                 <span>
                   <span className="text-ink">0{active + 1}</span> / 0{steps.length}
                 </span>
@@ -400,13 +344,13 @@ export const MonoPrinciples = () => {
                 >
                   <h3 className="mt-6 flex items-center gap-3 font-inter text-[1.6rem] font-medium tracking-[-0.03em] text-ink">
                     {step.title}
-                    <Chip tone="soft">{STEP_CHIP[active]}</Chip>
+                    <Chip tone="soft">{step.chip}</Chip>
                   </h3>
                   <p className="mt-3 max-w-md font-inter text-[14px] leading-relaxed text-ink-3">{step.body}</p>
                 </motion.div>
               </AnimatePresence>
 
-              <Notebook active={active} />
+              <InBoth step={step} />
 
               <div className="mt-6 flex gap-1.5">
                 {steps.map((s, i) => (
@@ -435,7 +379,7 @@ export const MonoPrinciples = () => {
         <motion.div {...fadeUp(0)} className="mx-auto max-w-[880px] border-t border-paper-line pt-10">
           <div className="grid gap-8 md:grid-cols-[1.2fr_2fr]">
             <div>
-              <MonoLabel>Transparency</MonoLabel>
+              <MonoLabel>Always</MonoLabel>
               <h3 className="mt-3 font-inter text-xl font-medium tracking-[-0.02em] text-ink">
                 {learning.proofTitle}
               </h3>
@@ -459,156 +403,81 @@ export const MonoPrinciples = () => {
 
 /* ───────────────────────── Solutions roster + logos ───────────────────────── */
 
-const SOLUTION_ART = {
-  factum: IsoLayers,
-  quaero: IsoGlobe,
-  resolvo: IsoChip,
-  solvo: IsoServer,
-  munera: IsoCube,
-  medeor: IsoDocs,
-  fides: IsoPyramid,
-};
+const SOLUTION_ART = { factum: IsoLayers, foundry: IsoChip };
 
-const RosterCard = ({ s, i }) => {
+/** One product. Both products render through this, with the same fields and the same weight. */
+const ProductCard = ({ s, i, onWaitlist }) => {
+  const { solutions: copy } = homeCopy;
   const Art = SOLUTION_ART[s.key] || IsoCube;
   const live = s.status === 'live';
-  const inner = (
+  const body = (
     <>
+      <CropMarks size={12} className="border-ink-4" />
       <div className="flex items-center justify-between">
-        <span className="font-mono text-[10.5px] text-ink-4">[{String(i + 1).padStart(2, '0')}]</span>
-        {live ? <Chip tone="dark">Live</Chip> : <Chip tone="soft">Soon</Chip>}
+        <span className="font-mono text-[10.5px] text-ink-4">[0{i + 1}]</span>
+        <Chip tone={live ? 'dark' : 'soft'}>{copy.statusLabel[s.status]}</Chip>
       </div>
-      <div className="mt-2 flex items-baseline gap-2">
-        <h3 className="font-inter text-[15px] font-medium text-ink">{s.name}</h3>
-        <span className="font-inter text-[12px] text-ink-3">{s.vertical}</span>
-      </div>
-      <div className="relative my-5 h-[120px] transition-transform duration-500 group-hover:-translate-y-1">
+      <p className="mt-5 font-mono text-[10.5px] uppercase tracking-[0.12em] text-ink-3">{s.door}</p>
+      <h3 className="mt-2 font-inter text-[2rem] font-semibold tracking-[-0.04em] text-ink">{s.name}</h3>
+      <div className="relative my-6 h-[150px] transition-transform duration-500 group-hover:-translate-y-1">
         <QuantumReveal className="h-full">
-          <Art className={`h-[120px] w-full ${live ? '' : 'opacity-60 grayscale'}`} />
+          <Art className={`h-[150px] w-full ${live ? '' : 'opacity-70'}`} />
         </QuantumReveal>
       </div>
-      <p className="font-inter text-[12.5px] leading-snug text-ink-3">{s.tagline}</p>
-      {live && (
-        <span className="mt-4 inline-flex items-center gap-1 font-inter text-[12px] font-medium text-ink">
-          Visit {s.name} <ArrowUpRight size={13} />
-        </span>
-      )}
+      <p className="font-inter text-[14px] leading-relaxed text-ink-3">{s.tagline}</p>
+      <ul className="mt-5 space-y-2 border-t border-paper-line pt-4">
+        {s.points.map((pt) => (
+          <li key={pt} className="flex items-center gap-2.5 font-inter text-[13px] text-ink-2">
+            <span aria-hidden className="h-[6px] w-[6px] shrink-0 bg-ink" />
+            {pt}
+          </li>
+        ))}
+      </ul>
+      <span className="mt-auto inline-flex items-center gap-1 pt-6 font-inter text-[13px] font-medium text-ink">
+        {s.cta} <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+      </span>
     </>
   );
   const cls =
-    'group relative flex h-full flex-col border-t border-paper-line pb-6 pt-3 transition-colors hover:border-ink';
+    'group relative flex h-full w-full flex-col bg-white p-6 text-left shadow-[0_0_0_1px_rgba(10,10,11,0.07)] transition-shadow hover:shadow-[0_0_0_1px_rgba(10,10,11,0.4)] sm:p-8';
   return live ? (
     <a href={s.url} target="_blank" rel="noreferrer" className={cls}>
-      {inner}
+      {body}
     </a>
   ) : (
-    <div className={cls}>{inner}</div>
+    <button type="button" onClick={() => onWaitlist(s.key)} className={cls}>
+      {body}
+    </button>
   );
 };
+
+/** Ask the contact form to preselect a product (it listens for this). */
+const preselectInterest = (value) =>
+  window.dispatchEvent(new CustomEvent('quanta:interest', { detail: value }));
 
 export const MonoRoster = () => {
   const navigate = useNavigate();
-  const { solutions: copy, hero } = homeCopy;
+  const { solutions: copy } = homeCopy;
+  const waitlist = (key) => {
+    preselectInterest(key);
+    goToSection(navigate, 'contact');
+  };
   return (
     <Section id="solutions" tone="light" className="py-24 sm:py-32">
-      <span id="ai-employees" className="absolute -top-16" aria-hidden />
+      <span id="products" className="absolute -top-16" aria-hidden />
       <SectionHeading label={copy.badge} title={`${copy.headline} ${copy.headlineAccent}`} sub={copy.subhead} />
-      <motion.div {...fadeUp(0.1)} className="mt-8 flex justify-center">
-        <Btn as={Link} to="/faqs">
+      <div className="mt-16 grid gap-6 md:grid-cols-2">
+        {solutions.map((s, i) => (
+          <motion.div key={s.key} {...fadeUp(0.06 * i)} className="h-full">
+            <ProductCard s={s} i={i} onWaitlist={waitlist} />
+          </motion.div>
+        ))}
+      </div>
+      <motion.div {...fadeUp(0.08)} className="mt-12 flex justify-center">
+        <Btn as={Link} to="/faqs" variant="light">
           Read the FAQs
         </Btn>
       </motion.div>
-
-      <div className="mt-16 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-        {solutions.map((s, i) => (
-          <motion.div key={s.key} {...fadeUp(0.04 * (i % 4))}>
-            <RosterCard s={s} i={i} />
-          </motion.div>
-        ))}
-        <motion.div {...fadeUp(0.12)}>
-          <button
-            type="button"
-            onClick={() => goToSection(navigate, 'contact')}
-            className="group flex h-full w-full flex-col border-t border-dashed border-ink-4 pb-6 pt-3 text-left"
-          >
-            <span className="font-mono text-[10.5px] text-ink-4">[08]</span>
-            <h3 className="mt-2 font-inter text-[15px] font-medium text-ink">Your team next</h3>
-            <div className="my-5 h-[120px] transition-transform duration-500 group-hover:-translate-y-1">
-              <QuantumReveal className="h-full">
-                <IsoPlus className="h-[120px] w-full" />
-              </QuantumReveal>
-            </div>
-            <p className="font-inter text-[12.5px] leading-snug text-ink-3">
-              Don’t see your team? Tell us what it handles every week.
-            </p>
-            <span className="mt-4 inline-flex items-center gap-1 font-inter text-[12px] font-medium text-ink">
-              Talk to us <ArrowUpRight size={13} />
-            </span>
-          </button>
-        </motion.div>
-      </div>
-
-      <motion.div {...fadeUp(0)} className="mt-24 text-center">
-        <MonoLabel>{hero.trustLabel}</MonoLabel>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-          {brandLogos.map((logo) => (
-            <img
-              key={logo.name}
-              src={logo.src}
-              alt={logo.name}
-              loading="lazy"
-              className={`w-auto object-contain opacity-80 brightness-0 transition-opacity hover:opacity-100 ${
-                logo.wide ? 'h-[18px]' : 'h-6'
-              }`}
-            />
-          ))}
-        </div>
-      </motion.div>
-      <HexEdge />
-    </Section>
-  );
-};
-
-/* ───────────────────────── Economics: announcement layout ───────────────────────── */
-
-export const MonoEconomics = () => {
-  const navigate = useNavigate();
-  const { economics } = homeCopy;
-  return (
-    <Section id="economics" className="py-24 sm:py-32">
-      <div className="grid items-center gap-12 lg:grid-cols-[1fr_auto_1fr] lg:gap-16">
-        <motion.div {...fadeUp(0)}>
-          <MonoLabel>{economics.badge}</MonoLabel>
-          <h2 className="mt-5 whitespace-pre-line font-inter text-[1.9rem] font-medium leading-[1.12] tracking-[-0.035em] text-ink sm:text-[2.2rem]">
-            <QuantumWrite text={economics.headline} />
-          </h2>
-          <Btn className="mt-8" onClick={() => goToSection(navigate, 'contact')}>
-            Get a quote
-          </Btn>
-        </motion.div>
-
-        <motion.div {...fadeUp(0.08)} className="relative mx-auto w-[200px] p-4 sm:w-[230px]">
-          <CropMarks size={26} />
-          <QuantumReveal>
-            <Tunnel className="h-auto w-full" />
-          </QuantumReveal>
-        </motion.div>
-
-        <motion.div {...fadeUp(0.16)} className="max-w-xs lg:justify-self-end">
-          <p className="font-inter text-[14px] leading-relaxed text-ink-3">{economics.subhead}</p>
-          <p className="mt-4 font-inter text-[14px] font-medium leading-relaxed text-ink">{economics.kicker}</p>
-        </motion.div>
-      </div>
-
-      <div className="mt-20 grid gap-8 sm:grid-cols-3">
-        {economics.columns.map((c, i) => (
-          <motion.div key={c.title} {...fadeUp(0.05 * i)} className="border-t border-paper-line pt-3">
-            <span className="font-mono text-[10.5px] text-ink-4">[0{i + 1}]</span>
-            <h3 className="mt-2 font-inter text-[15px] font-medium text-ink">{c.title}</h3>
-            <p className="mt-2 font-inter text-[13px] leading-relaxed text-ink-3">{c.body}</p>
-          </motion.div>
-        ))}
-      </div>
       <HexEdge />
     </Section>
   );
@@ -616,12 +485,7 @@ export const MonoEconomics = () => {
 
 /* ───────────────────────── Security: blog-card grid ───────────────────────── */
 
-const SEC_META = [
-  { Icon: ShieldCheck, tag: 'Approval' },
-  { Icon: FileCheck2, tag: 'Audit' },
-  { Icon: Lock, tag: 'Privacy' },
-  { Icon: Eye, tag: 'Access' },
-];
+const SEC_ICONS = [ShieldCheck, FileCheck2, Eye, Lock];
 
 export const MonoSecurity = () => {
   const navigate = useNavigate();
@@ -631,7 +495,7 @@ export const MonoSecurity = () => {
       <SectionHeading label={security.badge} title={security.headline} sub={security.subhead} />
       <div className="mt-16 grid gap-px overflow-hidden sm:grid-cols-2 lg:grid-cols-4">
         {security.points.map((p, i) => {
-          const { Icon, tag } = SEC_META[i % SEC_META.length];
+          const Icon = SEC_ICONS[i % SEC_ICONS.length];
           return (
             <motion.article
               key={p.title}
@@ -642,7 +506,7 @@ export const MonoSecurity = () => {
                 <span className="flex h-[22px] w-[22px] items-center justify-center rounded-[4px] border border-ink/70">
                   <Icon size={12} strokeWidth={1.6} />
                 </span>
-                <Chip>{tag}</Chip>
+                <Chip>{p.tag}</Chip>
               </div>
               <h3 className="mt-5 font-inter text-[15px] font-medium leading-snug text-ink">{p.title}</h3>
               <p className="mt-2 font-inter text-[13px] leading-relaxed text-ink-3">{p.body}</p>
@@ -665,6 +529,38 @@ export const MonoSecurity = () => {
   );
 };
 
+/* ───────────────────────── Company ───────────────────────── */
+
+export const MonoCompany = () => {
+  const { company } = homeCopy;
+  return (
+    <Section id="company" className="py-24 sm:py-28">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
+        <motion.div {...fadeUp(0)}>
+          <MonoLabel>{company.badge}</MonoLabel>
+          <h2 className="mt-5 font-inter text-[2.2rem] font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl">
+            <QuantumWrite text={company.headline} />
+          </h2>
+          <p className="mt-5 max-w-md font-inter text-[14px] leading-relaxed text-ink-3">{company.body}</p>
+          <Btn as={Link} to="/about" variant="light" className="mt-8">
+            About Quanta
+          </Btn>
+        </motion.div>
+        <div className="grid gap-8 self-end sm:grid-cols-3">
+          {company.facts.map((f, i) => (
+            <motion.div key={f.k} {...fadeUp(0.05 * i)} className="border-t border-ink pt-4">
+              <MonoLabel bare className="text-[10px]">{f.k}</MonoLabel>
+              <p className="mt-3 font-inter text-[1.35rem] font-semibold tracking-[-0.03em] text-ink">{f.v}</p>
+              <p className="mt-1 font-mono text-[10.5px] uppercase tracking-[0.08em] text-ink-4">{f.sub}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <HexEdge />
+    </Section>
+  );
+};
+
 /* ───────────────────────── Contact ───────────────────────── */
 
 const field =
@@ -677,8 +573,8 @@ const EMPTY = {
   company: '',
   phone: '',
   message: '',
-  industry: 'healthcare',
-  interest: 'platform',
+  industry: 'saas',
+  interest: 'factum',
 };
 
 export const MonoContact = () => {
@@ -688,6 +584,11 @@ export const MonoContact = () => {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  useEffect(() => {
+    const pick = (e) => setForm((f) => ({ ...f, interest: e.detail }));
+    window.addEventListener('quanta:interest', pick);
+    return () => window.removeEventListener('quanta:interest', pick);
+  }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
     if (status === 'sending') return;
@@ -713,7 +614,7 @@ export const MonoContact = () => {
           </h2>
           <p className="mt-5 max-w-sm font-inter text-[14px] leading-relaxed text-ink-3">{contact.subhead}</p>
           <ul className="mt-10 space-y-3 border-t border-paper-line pt-6">
-            {['15-minute walkthrough', 'Bring a real request', 'Trial with your own targets'].map((t, i) => (
+            {contact.steps.map((t, i) => (
               <li key={t} className="flex gap-3 font-inter text-[13px] text-ink-2">
                 <span className="font-mono text-[10.5px] text-ink-4">[0{i + 1}]</span>
                 {t}
@@ -748,28 +649,28 @@ export const MonoContact = () => {
             <div>
               <label className={label} htmlFor="c-industry">Industry</label>
               <select id="c-industry" name="industry" value={form.industry} onChange={onChange} className={`${field} appearance-none`}>
+                <option value="saas">Software / SaaS</option>
+                <option value="finance">Financial services</option>
+                <option value="retail">Retail / e-commerce</option>
+                <option value="services">Professional services</option>
                 <option value="healthcare">Healthcare</option>
-                <option value="finance">Finance</option>
-                <option value="retail">Retail</option>
-                <option value="logistics">Logistics</option>
-                <option value="education">Education</option>
+                <option value="insurance">Insurance</option>
                 <option value="other">Other</option>
               </select>
             </div>
             <div>
               <label className={label} htmlFor="c-interest">Interested in</label>
               <select id="c-interest" name="interest" value={form.interest} onChange={onChange} className={`${field} appearance-none`}>
-                <option value="platform">The full platform</option>
-                <option value="employee-assistant">Employee assistant</option>
-                <option value="it-support">IT support</option>
-                <option value="onboarding">Onboarding</option>
-                <option value="recruiter">Recruiter</option>
-                <option value="partnership">Partnership</option>
+                {contact.interests.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="sm:col-span-2">
-              <label className={label} htmlFor="c-message">Which team is drowning first?</label>
-              <textarea id="c-message" name="message" rows={4} value={form.message} onChange={onChange} className={`${field} resize-none`} placeholder="Tell us about the requests they handle every week…" />
+              <label className={label} htmlFor="c-message">{contact.messageLabel}</label>
+              <textarea id="c-message" name="message" rows={4} value={form.message} onChange={onChange} className={`${field} resize-none`} placeholder={contact.messagePlaceholder} />
             </div>
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-4">

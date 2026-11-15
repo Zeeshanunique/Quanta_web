@@ -1,255 +1,239 @@
-/** Quanta — portfolio of vertical AI-employee products. Marketing copy.
- *  Source of truth for the product roster: Factum console apps/console/src/lib/catalog.ts
- *  (mirrors apps/factum-api/app/console.py). Keep names/verticals/status in sync. */
+/** Quanta — the company. Builds AI agents that do real work, under one standard, in two products:
+ *  Factum (runs operations, live) and a software foundry (builds software, in development, not yet named).
+ *  Only claim what is true today. The parent page never favours one product: both get the same fields and weight. */
 
 export const siteSeo = {
-  title: 'Quanta | Hire an AI employee that learns your company',
+  title: 'Quanta | AI agents that do real work',
   description:
-    'Hire an AI employee for each team — HR, IT, sales. They take the everyday requests and see them through, and get better at how your company works every week.',
+    'Quanta builds AI agents that do real work, under one standard: they do the job end to end, ask before they act, are proven before release and keep a record of every step. Factum runs operations today; our software foundry is in development.',
   keywords:
-    'AI employees, digital workers, AI for HR teams, AI help desk, employee support automation, IT ticket automation, AI that learns your company, reduce support costs, HR automation, customer support AI, Quanta, Factum, Quaero',
+    'AI agents, AI agents for business, agentic AI, AI for operations, AI software development, agentic SDLC, AI software factory, human in the loop, audit trail, Quanta, Factum',
   canonicalUrl: 'https://www.quanta.co.in/',
   ogImage: 'https://www.quanta.co.in/og-image.jpg',
   twitterImage: 'https://www.quanta.co.in/twitter-image.jpg',
-  tagline: 'AI employees that get the job done.',
+  tagline: 'AI agents that do real work.',
   elevatorPitch:
-    'Quanta builds AI employees — one for each team, rather than a single assistant stretched across the company. Each handles everyday requests from question to done, checks with a person before anything that matters, and learns how your company works as it goes.',
+    'Quanta builds AI agents that do real work, held to one standard: they see the job through, ask before they act, are proven before release and keep a record of every step. Factum runs business operations and is live; our software foundry, which builds software from requirements to release, is in development.',
 };
 
-/** Level 1: the vertical products. `live` ones link out to their own site. */
+/**
+ * The products. Same fields for each, so the page treats them alike.
+ * `live`: the product's site answers and customers can use it. Otherwise `cta` says what a visitor can do.
+ */
 export const solutions = [
   {
     key: 'factum',
     name: 'Factum',
-    vertical: 'AI agent infrastructure',
-    tagline: 'Runs AI agents inside your billing, accounting, ticketing and email, with approval on every change. Packs live for finance and support.',
+    door: 'Run your operations',
+    vertical: 'Agents for operations',
+    tagline:
+      'Agents that work inside your billing, accounting, ticketing and email — issuing the credit, entering the bill, chasing the invoice — with a person approving every change.',
+    points: ['Ready-made agents for finance and support', 'Approval on every change', 'Tested before every release'],
     url: 'https://factum.quanta.co.in',
     status: 'live',
-    agents: ['Billing Desk', 'Bug Loop', 'Collections', 'AP Intake'],
+    cta: 'Visit Factum',
   },
   {
-    key: 'quaero',
-    name: 'Quaero',
-    vertical: 'Sales & Marketing',
-    tagline: 'Finds leads, qualifies them, and drafts the proposals so your reps can spend the day selling.',
-    url: 'https://quaero.quanta.co.in',
-    status: 'live',
-    agents: ['SDR', 'Lead Qualification', 'Proposal'],
-  },
-  {
-    key: 'resolvo',
-    name: 'Resolvo',
-    vertical: 'Customer Experience',
-    tagline: 'Handles customer questions across chat, email and phone, and escalates the ones that need a person.',
+    key: 'foundry',
+    name: 'Software foundry',
+    door: 'Build your software',
+    vertical: 'Agents for engineering',
+    tagline:
+      'Agents that take software from requirements to release — design, code, tests and pull requests — with your engineers reviewing every change before it merges.',
+    points: ['Requirements to release', 'Every change reviewed before merge', 'Tests must pass to ship'],
     url: null,
-    status: 'coming_soon',
-    agents: ['Support Resolution', 'Voice', 'Agent Assist', 'Agent QA', 'Knowledge Base'],
-  },
-  {
-    key: 'solvo',
-    name: 'Solvo',
-    vertical: 'Finance Operations',
-    tagline: 'Chases invoices, matches payments and closes the month faster.',
-    url: null,
-    status: 'coming_soon',
-    agents: ['AP', 'AR / Collections', 'Expense Audit'],
-  },
-  {
-    key: 'munera',
-    name: 'Munera',
-    vertical: 'Professional Services',
-    tagline: 'Scopes the work, finds who is free to do it, and gets it billed on time.',
-    url: null,
-    status: 'coming_soon',
-    agents: ['Engagement Scoping', 'Resource Staffing', 'Billing'],
-  },
-  {
-    key: 'medeor',
-    name: 'Medeor',
-    vertical: 'Healthcare',
-    tagline: 'Handles pre-approvals and patient intake without anyone waiting on hold.',
-    url: null,
-    status: 'coming_soon',
-    agents: ['Prior Auth', 'Clinical Intake', 'Care Coordination'],
-  },
-  {
-    key: 'fides',
-    name: 'Fides',
-    vertical: 'Insurance',
-    tagline: 'Takes claims, answers policy questions, and keeps a clear record of every decision.',
-    url: null,
-    status: 'coming_soon',
-    agents: ['Claims Intake', 'Policy Q&A', 'Underwriting Support'],
+    status: 'in_development',
+    cta: 'Join the waitlist',
   },
 ];
 
 export const homeCopy = {
   hero: {
-    headline: 'Hire an AI employee\nthat learns your company.',
     subhead:
-      'One for each team — HR, IT, sales. They take the everyday requests and see them through, and they get better at how your company does things every week they’re here.',
-    ctaPrimary: 'Meet the candidates',
+      'Quanta builds AI agents that take real work off your teams — held to one standard: they see the job through, ask before they act, and keep a record of every step.',
+    ctaPrimary: 'See our products',
     ctaSecondary: 'Book a demo',
-    trustLabel: 'Works in the tools your team already uses',
-    cardsLabel: 'Available to hire',
-    suiteCards: [
-      { label: 'Finance + Support', sub: 'Factum', href: '#solutions' },
-      { label: 'Sales', sub: 'Quaero', href: '#solutions' },
-      { label: 'Support', sub: 'Coming soon', href: '#solutions' },
-    ],
+    cardsLabel: 'Two products, one standard',
   },
   problem: {
-    badge: 'Sound familiar?',
-    headline: 'Your team is the help desk',
-    headlineAccent: 'the help desk',
-    markStrong: 'Same',
-    markRest: 'questions, daily',
-    body: 'Where do I find the leave policy? Can someone reset my password? Is my expense approved? Your best people spend their days answering the same questions instead of doing the job you hired them for.',
-    panelTitle: 'What it costs you',
-    threatsLeft: [
-      'Senior people answering beginner questions',
-      'A chatbot that points at a policy, then stops',
-      'Simple requests passed between three teams',
-      'Nobody owns it from question to done',
-      'Staff going around the process to get unstuck',
+    badge: 'Why now',
+    headline: 'AI has moved from answering to acting',
+    body: 'Agents can now issue the refund, enter the bill and open the pull request. What holds companies back is no longer the model. It is trust: knowing what the agent will do, and proving what it did.',
+    panelTitle: 'Where it falls short',
+    tabs: [
+      {
+        label: 'What teams get today',
+        items: [
+          'An assistant that answers, then leaves the work to a person',
+          'A demo agent nobody trusts with a real system',
+          'Changes made with no one approving them first',
+          'A fix for one case that quietly breaks three others',
+          'No record of what the agent did, or why',
+        ],
+      },
+      {
+        label: 'What real work needs',
+        items: [
+          'Reading the real records and your own rules',
+          'A person’s yes before anything changes',
+          'Proof it works before it goes live',
+          'Only the access each job needs',
+          'A full record of every step',
+        ],
+      },
     ],
-    threatsRight: [
-      'New joiners waiting days to get set up',
-      'No clear record of who approved what',
-      'Every team explaining itself from scratch',
-      'No view of the backlog until it is a problem',
-      'Tools that break the moment a form changes',
+    queueLabel: 'work queue · live',
+    queue: [
+      'Charged twice this month — please refund',
+      'Add SSO login to the admin app',
+      'Invoice INV-2041 is 31 days overdue',
+      'Export to CSV fails since Tuesday',
+      'New vendor invoice (PDF) from Northwind',
+      'Upgrade the payments service to Node 22',
+      'Vendor says their bank details changed',
+      'Write tests for the billing module',
     ],
-    cta: 'See how we fix it',
-  },
-  // Self-improving loop. Copy is deliberately non-technical — the underlying
-  // model is ACE (itemized lessons + helpful/harmful counters + decision-time
-  // provenance); none of that vocabulary belongs on a buyer-facing page.
-  learning: {
-    badge: 'What makes it different',
-    headline: 'It learns how your\ncompany actually runs.',
-    headlineAccent: 'company actually runs.',
-    subhead:
-      'Who approves what. Which exceptions are real. How your team words things. It picks all of that up as it goes.',
-    steps: [
-      { step: '01', title: 'Week one', body: 'Answers from your handbook, quotes the source, sends anything unclear to your team.' },
-      { step: '02', title: 'Week four', body: 'Knows your exceptions — the contractor rule, the deploy freeze, the manager who wants notice.' },
-      { step: '03', title: 'Month three', body: 'Handles the routine on its own. Your team only sees what needs a decision.' },
-      { step: '04', title: 'Ongoing', body: 'Tell it once when it is wrong. The correction sticks, in plain English you can edit.' },
-    ],
-    proofTitle: 'You can see everything it has learned',
-    proofBody: 'One page, plain English, editable. Nothing added without a person approving it.',
-    proofPoints: [
-      { k: 'Every action', v: 'shows who approved it and why' },
-      { k: 'Every lesson', v: 'in plain English you can edit' },
-      { k: 'Nothing learned', v: 'without a person approving it' },
-    ],
-    cta: 'See it handle a real request',
-  },
-  // The commercial consequence of `learning`. Structural claims only — no
-  // invented metrics. Swap in real pilot numbers from /api/proof when they exist.
-  economics: {
-    badge: 'What it costs',
-    headline: 'Budgeted like a hire,\nnot another subscription.',
-    headlineAccent: 'not another subscription.',
-    subhead: 'You are covering a role, not buying seats.',
-    columns: [
-      { title: 'Flat monthly rate', body: 'Per AI employee. No per-seat or per-message charges.' },
-      { title: 'Trial first', body: 'Set the targets. Miss them and you walk.' },
-      { title: 'Cheaper over time', body: 'Handles more each month for the same cost.' },
-    ],
-    kicker: 'The work keeps growing. The bill does not.',
+    markStrong: 'Real',
+    markRest: 'work, every day',
+    cta: 'See our standard',
   },
   solutions: {
-    badge: 'Solutions',
-    headline: 'A specialist for',
-    headlineAccent: 'every team.',
-    subhead: 'One AI employee per team, built for that job — not one assistant stretched across all of them.',
+    badge: 'Products',
+    headline: 'Two products.',
+    headlineAccent: 'One standard.',
+    subhead: 'One runs your operations, one builds your software. Both are built the same way, so you can trust them the same way.',
+    statusLabel: { live: 'Live', in_development: 'In development' },
   },
-  aiEmployees: {
-    title: 'Solutions',
-    // rendered as the scrolling roster — driven by `solutions` above
-    stages: solutions.map((s) => ({
-      title: s.status === 'live' ? s.name : `${s.name} · coming soon`,
-      proof: `${s.vertical} — ${s.tagline}`,
-    })),
-  },
-  // Architecture-only. No certification claims — none are held today.
-  security: {
-    badge: 'Security',
-    headline: 'Built for the teams\nthat have to say no.',
-    headlineAccent: 'that have to say no.',
-    subhead: 'HR and IT hold the company’s most sensitive data. This is built for the person who has to protect it.',
-    points: [
-      { title: 'It asks before it acts', body: 'Every change waits for a human yes. No autonomous mode.' },
-      { title: 'Every action is logged', body: 'Who asked, what it proposed, who approved, what changed.' },
-      { title: 'Your data stays yours', body: 'Never used to train a shared model. Nothing leaves your environment.' },
-      { title: 'Respects your permissions', body: 'It only sees what the person asking is already allowed to see.' },
+  // The shared standard. Each rule names what it looks like in each product; every line is true of the product today
+  // or (for the software foundry) of how it is being built.
+  learning: {
+    badge: 'One standard',
+    headline: 'Agents you can\nhand real work to.',
+    subhead:
+      'Every Quanta product follows the same four rules — whether the agent is issuing a refund or opening a pull request.',
+    steps: [
+      {
+        step: '01',
+        title: 'Does the work',
+        chip: 'End to end',
+        body: 'Reads the real records, follows your own rules and prepares the finished change — not a suggestion for someone else to complete.',
+        in: { factum: 'Prepares the exact refund, bill or reminder', foundry: 'Writes the code, the tests and the pull request' },
+      },
+      {
+        step: '02',
+        title: 'Asks first',
+        chip: 'Approval',
+        body: 'Nothing changes until a person says yes, and each agent gets only the access its job needs.',
+        in: { factum: 'A person approves each change', foundry: 'Engineers review each change before it merges' },
+      },
+      {
+        step: '03',
+        title: 'Proven first',
+        chip: 'Tested',
+        body: 'Work is checked against real cases before it goes live, so a fix for one thing can’t quietly break another.',
+        in: { factum: 'Each agent passes its test suite before release', foundry: 'Tests must pass before anything ships' },
+      },
+      {
+        step: '04',
+        title: 'On record',
+        chip: 'Audit',
+        body: 'Every step is recorded: what started it, what the agent did, who approved it and what it cost.',
+        in: { factum: 'Every run traced, with its cost', foundry: 'Every session, change and review logged' },
+      },
     ],
-    footnote:
-      'Running a security review? We will walk your team through the architecture and data flows.',
+    panelTitle: 'What it looks like',
+    proofTitle: 'Learns from your team',
+    proofBody: 'Correct an agent once and the correction is kept — checked against past work and approved by a person before it is used.',
+    proofPoints: [
+      { k: 'Nothing changes', v: 'without a person’s yes' },
+      { k: 'Nothing ships', v: 'without passing its tests' },
+      { k: 'Nothing happens', v: 'off the record' },
+    ],
+  },
+  // Architecture only. No certification claims — none are held today.
+  security: {
+    badge: 'Trust',
+    headline: 'Built for the teams\nthat have to say no.',
+    subhead: 'Our agents touch money, customer data and production code. They are built for the person who has to sign off on that.',
+    points: [
+      { tag: 'Approval', title: 'It asks before it acts', body: 'Every change waits for a person’s yes — a refund, a bill, a merge.' },
+      { tag: 'Audit', title: 'Every step is on record', body: 'What started it, what the agent did, who approved and what changed.' },
+      { tag: 'Access', title: 'Least access, per job', body: 'Each agent gets only the systems and permissions its job needs.' },
+      { tag: 'Privacy', title: 'Your data stays yours', body: 'Kept apart from every other customer’s, and never used to train a shared model.' },
+    ],
+    footnote: 'Running a security review? We will walk your team through the architecture and data flows.',
+  },
+  company: {
+    badge: 'Company',
+    headline: 'Who we are',
+    body: 'Quanta is an applied AI company based in Bangalore. We build agents for the work companies actually need done — and we hold every product to the same standard, because trust is what lets an agent do real work.',
+    facts: [
+      { k: 'Founded', v: '2023', sub: 'Bangalore, India' },
+      { k: 'Live', v: 'Factum', sub: 'Agents for operations' },
+      { k: 'In development', v: 'Software foundry', sub: 'Agents for engineering' },
+    ],
   },
   cta: {
-    headline: 'The only hire that gets cheaper every quarter',
-    body: 'Bring a request your team handles every week. We will show it done end to end in fifteen minutes.',
+    headline: 'Hand off your first piece of real work',
+    body: 'Tell us what your team does every week — in operations or engineering. We will show you what it looks like done.',
     button: 'Book a demo',
   },
   contact: {
-    headline: 'Book a demo',
-    subhead: 'Tell us which team is drowning first. We’ll show you what we would take off their plate.',
-    submit: 'Submit request',
+    headline: 'Talk to us',
+    subhead: 'Book a Factum demo, join the software foundry waitlist, or tell us what you need and we will point you to the right one.',
+    steps: ['15-minute walkthrough', 'Bring a real piece of work', 'Pilot on your own systems'],
+    interests: [
+      { value: 'factum', label: 'Factum — demo' },
+      { value: 'foundry', label: 'Software foundry — waitlist' },
+      { value: 'unsure', label: 'Not sure yet' },
+      { value: 'partnership', label: 'Partnership' },
+    ],
+    messageLabel: 'What would you hand off first?',
+    messagePlaceholder: 'Tell us about the work your team does every week…',
+    submit: 'Send',
     success: 'Thank you! Our team will reach out shortly.',
   },
 };
 
 export const navCopy = {
-  cinematic: [
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'How it works', href: '#learning' },
-    { label: 'Pricing', href: '#economics' },
-    { label: 'Security', href: '#security' },
-    { label: 'Contact', href: '#contact' },
-  ],
   getStarted: 'Book a demo',
-  tryFree: 'Book a demo',
 };
 
 export const footerCopy = {
-  tagline: 'AI employees that get the job done.',
+  tagline: 'AI agents that do real work.',
   blurb:
-    'Quanta builds AI employees — one for each team. They handle everyday requests from question to done, check with a person before anything that matters, and get better at your company every week.',
+    'Quanta builds AI agents that do real work — held to one standard: they see the job through, ask before they act, and keep a record of every step.',
   headquarters: '321 Koramangala\nBangalore, 560064\nIndia',
-  copyright: 'Quanta — AI employees for every team.',
+  copyright: 'Quanta — AI agents that do real work.',
 };
 
 export const faqCopy = [
   {
-    q: 'Is this one AI or several?',
-    a: 'Several. Rather than one assistant stretched across the whole company, there is a separate one for each team — Factum for finance and support operations, Quaero for sales, with more coming. Each knows its own job properly.',
+    q: 'What does Quanta make?',
+    a: 'AI agents that do real work, in two products. Factum runs business operations — billing, accounting, support — and is live. Our software foundry takes software from requirements to release and is in development.',
   },
   {
-    q: 'Will it change things in our systems?',
-    a: 'Yes, that is the point — it books the leave, raises the ticket, grants the access. But never quietly. Anything that matters gets shown to a person first, and only goes ahead once they say yes.',
+    q: 'Which one is for us?',
+    a: 'If the work is in your business systems — refunds, bills, invoices, tickets — that is Factum. If the work is building and changing software, that is the software foundry. Not sure? Tell us the work and we will say.',
   },
   {
-    q: 'What does it plug into?',
-    a: 'Your team talks to it in Slack or Teams. Behind the scenes it works with the tools you already run — BambooHR, Okta, Jira, Confluence — and each one connects to whatever its team needs.',
+    q: 'Will the agents change things in our systems?',
+    a: 'Yes — that is the point. But never quietly: every change is shown to a person first, and only goes ahead once they approve it, or once your engineers review and merge it.',
   },
   {
-    q: 'Which ones can we get today?',
-    a: 'Factum for finance and support operations, and Quaero for sales, are both live now. Customer support, finance, professional services, healthcare and insurance are on the way.',
+    q: 'How do you know an agent will behave?',
+    a: 'Work is checked against real cases before it goes live, and every step in production is on record. In Factum each agent must pass its test suite before release; in the software foundry, tests must pass before anything ships.',
   },
   {
-    q: 'How is this different from Copilot?',
-    a: 'A copilot helps your team do the work faster. This does the work — it takes the request, sorts it out, and comes back when it is done or when it needs a decision from you.',
+    q: 'How is this different from a copilot?',
+    a: 'A copilot helps a person do the work faster. Our agents do the work — they take the task, see it through, and come back when it is done or when they need a decision from you.',
   },
   {
-    q: 'How does it get better over time?',
-    a: 'It keeps plain-English notes on how your company actually works, learned from the requests it handles and the decisions you make on them. Notes that turn out to be wrong get dropped. You can read and edit them at any time.',
+    q: 'When can we use the software foundry?',
+    a: 'It is in development. Join the waitlist and we will contact you when it is ready for early teams.',
   },
   {
-    q: 'How long until it is useful?',
-    a: 'It starts handling requests the same day you connect it. It gets noticeably better over the first few weeks as it learns your policies, your people and your exceptions.',
+    q: 'Is our data used to train models?',
+    a: 'No. Your data is kept apart from every other customer’s and used only to do the work you ask for.',
   },
 ];
-
