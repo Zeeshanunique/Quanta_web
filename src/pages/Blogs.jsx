@@ -49,8 +49,8 @@ const BlogList = () => {
 
   return (
     <>
-      <PageMeta title="Blog | Quanta" description="Notes on AI employees, enterprise AI, security and how Quanta works." />
-      <PageHero label="Blog" title="Our blog." sub="Notes on AI employees, enterprise AI, security, and how Quanta works." />
+      <PageMeta title="Blog | Quanta" description="Notes on AI agents at work, security and how Quanta builds." />
+      <PageHero label="Blog" title="Our blog." sub="Notes on AI agents at work, security, and how Quanta builds." />
 
       {featured && cat === 'All' && (
         <Section tone="light" className="pt-16">

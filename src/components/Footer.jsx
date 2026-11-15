@@ -6,11 +6,10 @@ import { QuantaLogo } from './mono/ui';
 
 const COLUMNS = [
   {
-    title: 'Solutions',
+    title: 'Products',
     links: [
       { title: 'Factum', url: 'https://factum.quanta.co.in' },
-      { title: 'Quaero', url: 'https://quaero.quanta.co.in' },
-      { title: 'All solutions', url: '/#solutions' },
+      { title: 'All products', url: '/#solutions' },
       { title: 'Pricing', url: '/#economics' },
     ],
   },
@@ -68,7 +67,7 @@ const Footer = () => {
               <QuantaLogo />
             </Link>
             <p className="mt-6 max-w-xs font-inter text-[13px] leading-relaxed text-ink-3">
-              Join our newsletter to stay up to date on new AI employees and releases.
+              Join our newsletter to hear when new products launch.
             </p>
             <form
               className="mt-4 flex max-w-xs items-center rounded-[6px] bg-white p-1 shadow-[0_0_0_1px_rgba(10,10,11,0.06)]"

@@ -11,12 +11,12 @@ import { MonoCTA } from '../components/mono/HomeSections';
 
 const EXTRA = [
   {
-    q: 'Which systems does Quanta integrate with?',
-    a: 'Workday, SAP, BambooHR, ServiceNow, Okta, Jira, Confluence, Slack, Microsoft Teams, and more — Quanta sits above your system of record.',
+    q: 'Do we have to replace any of our systems?',
+    a: 'No. Our agents work inside the systems you already run and keep them as the record. An administrator connects each one once and decides whether the agent may only read it.',
   },
   {
-    q: 'Is employee data secure?',
-    a: 'Yes. Role-based access, approval chains, a full audit trail, and policy-bound actions are built in from day one. Your data never trains a shared model.',
+    q: 'Is our data secure?',
+    a: 'Your data is kept apart from every other customer’s, every change needs a person’s approval, and every run is on record. Your data never trains a shared model. We will walk your security team through the architecture.',
   },
 ];
 
@@ -30,12 +30,12 @@ const FAQs = () => {
     <>
       <PageMeta
         title="FAQs | Quanta"
-        description="Answers to common questions about Quanta's AI employees — integrations, security, and how they learn."
+        description="Answers to common questions about Quanta — our products, the systems they work with, security and approvals."
       />
       <PageHero
         label="FAQs"
         title="Frequently asked questions."
-        sub="Everything you need to know about hiring an AI employee from Quanta."
+        sub="Everything you need to know about putting Quanta’s AI agents to work."
       />
 
       <Section tone="light" className="py-20 sm:py-24">

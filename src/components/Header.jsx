@@ -9,7 +9,7 @@ import { Btn, QuantaLogo } from './mono/ui';
 
 const NAV = [
   {
-    label: 'Solutions',
+    label: 'Products',
     items: solutions.map((s) => ({
       title: s.name,
       sub: s.vertical,
@@ -18,7 +18,7 @@ const NAV = [
       soon: s.status !== 'live',
     })),
   },
-  { label: 'How it works', url: '/#learning' },
+  { label: 'How we build', url: '/#learning' },
   { label: 'Pricing', url: '/#economics' },
   { label: 'Security', url: '/#security' },
   { label: 'Blog', url: '/blogs' },
