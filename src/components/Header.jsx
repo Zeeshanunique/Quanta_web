@@ -18,11 +18,10 @@ const NAV = [
       soon: s.status !== 'live',
     })),
   },
-  { label: 'How we build', url: '/#learning' },
-  { label: 'Pricing', url: '/#economics' },
-  { label: 'Security', url: '/#security' },
+  { label: 'Our standard', url: '/#learning' },
+  { label: 'Trust', url: '/#security' },
+  { label: 'Company', url: '/#company' },
   { label: 'Blog', url: '/blogs' },
-  { label: 'About', url: '/about' },
 ];
 
 const ItemLink = ({ item, className, onClick, children }) =>

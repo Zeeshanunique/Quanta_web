@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, Eye, FileCheck2, Lock, ShieldCheck } from 'lucide-react';
 import { goToSection } from '../../lib/goToSection';
 import { submitDemoRequest } from '../../lib/submitDemoRequest';
-import { homeCopy, solutions, systems } from '../../config/seoContent';
+import { homeCopy, solutions } from '../../config/seoContent';
 import {
   Bracket,
   Btn,
@@ -23,12 +23,8 @@ import {
   IsoChip,
   IsoCube,
   IsoDocs,
-  IsoGlobe,
   IsoLayers,
-  IsoPlus,
   IsoPyramid,
-  IsoServer,
-  Tunnel,
 } from './iso';
 
 /* ───────────────────────── Hero ───────────────────────── */
@@ -66,8 +62,8 @@ export const MonoHero = () => {
           </div>
           <div className="mt-9 max-w-md">
             <MonoLabel className="text-[10px]">{hero.cardsLabel}</MonoLabel>
-            <div className="mt-3 grid grid-cols-3 overflow-hidden rounded-[6px] bg-white shadow-[0_0_0_1px_rgba(10,10,11,0.07)]">
-              {solutions.slice(0, 3).map((s, i) => {
+            <div className="mt-3 grid grid-cols-2 overflow-hidden rounded-[6px] bg-white shadow-[0_0_0_1px_rgba(10,10,11,0.07)]">
+              {solutions.map((s, i) => {
                 const live = s.status === 'live';
                 return (
                   <button
@@ -83,14 +79,10 @@ export const MonoHero = () => {
                         aria-hidden
                         className={`h-[7px] w-[7px] shrink-0 ${live ? 'bg-ink' : 'border border-ink-4'}`}
                       />
-                      {s.name}
+                      {s.door}
                     </span>
-                    <span
-                      className={`pl-[15px] font-mono text-[9.5px] uppercase tracking-[0.08em] ${
-                        live ? 'text-ink-3' : 'text-ink-4'
-                      }`}
-                    >
-                      {live ? 'Live' : 'Coming soon'}
+                    <span className="pl-[15px] font-mono text-[9.5px] uppercase tracking-[0.08em] text-ink-3">
+                      {s.name} · {homeCopy.solutions.statusLabel[s.status]}
                     </span>
                   </button>
                 );
@@ -229,57 +221,31 @@ const STEP_ART = [IsoDocs, IsoPyramid, IsoCube, IsoLayers];
 
 
 
-const Notebook = ({ active }) => {
-  const { notes: NOTES, noteStatus: NOTE_STATUS, notesTitle } = homeCopy.learning;
-  const visible = NOTES.filter((n) => n.at <= active);
-  const inUse = visible.filter((n) => !(n.pruneAt !== undefined && active >= n.pruneAt)).length;
-  return (
-    <div className="mt-7 hidden bg-white/70 p-4 shadow-[0_0_0_1px_rgba(10,10,11,0.06)] md:block">
-      <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.12em]">
-        <span className="text-ink-2">{notesTitle}</span>
-        <span className="text-ink-4">{inUse} lessons in use</span>
-      </div>
-      <ul className="space-y-1.5">
-        <AnimatePresence initial={false}>
-          {visible.map((n) => {
-            const fresh = n.at === active;
-            const pruned = n.pruneAt !== undefined && active >= n.pruneAt;
-            return (
-              <motion.li
-                key={n.id}
-                layout
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: pruned ? 0.55 : 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35, ease }}
-                className={`flex items-start gap-3 px-2.5 py-2 ${
-                  fresh && !pruned ? 'bg-[#2f6bff]/[0.06] shadow-[inset_2px_0_0_#2f6bff]' : ''
-                } ${pruned ? 'shadow-[inset_2px_0_0_#C4C4CA]' : ''}`}
-              >
-                <span className="mt-[2px] font-mono text-[10px] text-ink-4">{n.id}</span>
-                <span
-                  className={`flex-1 font-inter text-[12.5px] leading-snug text-ink-2 ${
-                    pruned ? 'line-through decoration-ink-4' : ''
-                  }`}
-                >
-                  {n.text}
-                </span>
-                <span className="shrink-0 font-mono text-[10px] tabular-nums text-ink-3">
-                  +{n.helped}
-                  {n.wrong > 0 && <span className="ml-1.5 text-ink-4">-{n.wrong}</span>}
-                </span>
-              </motion.li>
-            );
-          })}
-        </AnimatePresence>
-      </ul>
-      <p className="mt-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-4">
-        <span className="h-[6px] w-[6px] bg-ink" />
-        {NOTE_STATUS[active]}
-      </p>
+/** What the current rule looks like in each product, side by side: neither product leads. */
+const InBoth = ({ step }) => (
+  <div className="mt-7 hidden bg-white/70 p-4 shadow-[0_0_0_1px_rgba(10,10,11,0.06)] md:block">
+    <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+      {homeCopy.learning.panelTitle}
     </div>
-  );
-};
+    <AnimatePresence mode="wait">
+      <motion.ul
+        key={step.step}
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3, ease }}
+        className="grid grid-cols-2 gap-px overflow-hidden rounded-[4px] bg-paper-line"
+      >
+        {solutions.map((s) => (
+          <li key={s.key} className="bg-white px-3 py-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-ink-4">{s.name}</span>
+            <p className="mt-1.5 font-inter text-[13px] leading-snug text-ink">{step.in[s.key]}</p>
+          </li>
+        ))}
+      </motion.ul>
+    </AnimatePresence>
+  </div>
+);
 
 export const MonoPrinciples = () => {
   const { learning } = homeCopy;
@@ -363,7 +329,7 @@ export const MonoPrinciples = () => {
             {/* copy + notebook */}
             <div className="min-w-0">
               <div className="flex items-center justify-between border-b border-paper-line pb-2.5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-3">
-                <span>How we build</span>
+                <span>Our standard</span>
                 <span>
                   <span className="text-ink">0{active + 1}</span> / 0{steps.length}
                 </span>
@@ -384,7 +350,7 @@ export const MonoPrinciples = () => {
                 </motion.div>
               </AnimatePresence>
 
-              <Notebook active={active} />
+              <InBoth step={step} />
 
               <div className="mt-6 flex gap-1.5">
                 {steps.map((s, i) => (
@@ -413,7 +379,7 @@ export const MonoPrinciples = () => {
         <motion.div {...fadeUp(0)} className="mx-auto max-w-[880px] border-t border-paper-line pt-10">
           <div className="grid gap-8 md:grid-cols-[1.2fr_2fr]">
             <div>
-              <MonoLabel>On the record</MonoLabel>
+              <MonoLabel>Always</MonoLabel>
               <h3 className="mt-3 font-inter text-xl font-medium tracking-[-0.02em] text-ink">
                 {learning.proofTitle}
               </h3>
@@ -437,190 +403,81 @@ export const MonoPrinciples = () => {
 
 /* ───────────────────────── Solutions roster + logos ───────────────────────── */
 
-const SOLUTION_ART = {
-  factum: IsoLayers,
-  quaero: IsoGlobe,
-  resolvo: IsoChip,
-  solvo: IsoServer,
-  munera: IsoCube,
-  medeor: IsoDocs,
-  fides: IsoPyramid,
-};
+const SOLUTION_ART = { factum: IsoLayers, foundry: IsoChip };
 
-const LiveProduct = ({ s }) => {
+/** One product. Both products render through this, with the same fields and the same weight. */
+const ProductCard = ({ s, i, onWaitlist }) => {
   const { solutions: copy } = homeCopy;
   const Art = SOLUTION_ART[s.key] || IsoCube;
-  return (
-    <a
-      href={s.url}
-      target="_blank"
-      rel="noreferrer"
-      className="group relative grid gap-8 bg-white p-6 shadow-[0_0_0_1px_rgba(10,10,11,0.07)] transition-shadow hover:shadow-[0_0_0_1px_rgba(10,10,11,0.4)] sm:p-8 md:grid-cols-[1fr_1.3fr]"
-    >
+  const live = s.status === 'live';
+  const body = (
+    <>
       <CropMarks size={12} className="border-ink-4" />
-      <div className="flex flex-col">
-        <div className="flex items-center gap-2">
-          <Chip tone="dark">{copy.featuredLabel}</Chip>
-          <span className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-4">{s.vertical}</span>
-        </div>
-        <h3 className="mt-4 font-inter text-[2rem] font-semibold tracking-[-0.04em] text-ink">{s.name}</h3>
-        <p className="mt-3 max-w-sm font-inter text-[14px] leading-relaxed text-ink-3">{s.tagline}</p>
-        <span className="mt-auto inline-flex items-center gap-1 pt-6 font-inter text-[13px] font-medium text-ink">
-          Visit {s.name} <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-        </span>
+      <div className="flex items-center justify-between">
+        <span className="font-mono text-[10.5px] text-ink-4">[0{i + 1}]</span>
+        <Chip tone={live ? 'dark' : 'soft'}>{copy.statusLabel[s.status]}</Chip>
       </div>
-      <div className="flex flex-col">
-        <div className="mx-auto h-[150px] w-full max-w-[260px] transition-transform duration-500 group-hover:-translate-y-1">
-          <QuantumReveal className="h-full">
-            <Art className="h-[150px] w-full" />
-          </QuantumReveal>
-        </div>
-        <MonoLabel className="mt-6 text-[10px]">{copy.packsLabel}</MonoLabel>
-        <ul className="mt-3 grid grid-cols-2 gap-px overflow-hidden rounded-[6px] bg-paper-line">
-          {s.agents.map((a) => (
-            <li key={a} className="flex items-center gap-2 bg-paper-2 px-3 py-2.5 font-inter text-[13px] font-medium text-ink">
-              <span aria-hidden className="h-[6px] w-[6px] shrink-0 bg-ink" />
-              {a}
-            </li>
-          ))}
-        </ul>
+      <p className="mt-5 font-mono text-[10.5px] uppercase tracking-[0.12em] text-ink-3">{s.door}</p>
+      <h3 className="mt-2 font-inter text-[2rem] font-semibold tracking-[-0.04em] text-ink">{s.name}</h3>
+      <div className="relative my-6 h-[150px] transition-transform duration-500 group-hover:-translate-y-1">
+        <QuantumReveal className="h-full">
+          <Art className={`h-[150px] w-full ${live ? '' : 'opacity-70'}`} />
+        </QuantumReveal>
       </div>
+      <p className="font-inter text-[14px] leading-relaxed text-ink-3">{s.tagline}</p>
+      <ul className="mt-5 space-y-2 border-t border-paper-line pt-4">
+        {s.points.map((pt) => (
+          <li key={pt} className="flex items-center gap-2.5 font-inter text-[13px] text-ink-2">
+            <span aria-hidden className="h-[6px] w-[6px] shrink-0 bg-ink" />
+            {pt}
+          </li>
+        ))}
+      </ul>
+      <span className="mt-auto inline-flex items-center gap-1 pt-6 font-inter text-[13px] font-medium text-ink">
+        {s.cta} <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+      </span>
+    </>
+  );
+  const cls =
+    'group relative flex h-full w-full flex-col bg-white p-6 text-left shadow-[0_0_0_1px_rgba(10,10,11,0.07)] transition-shadow hover:shadow-[0_0_0_1px_rgba(10,10,11,0.4)] sm:p-8';
+  return live ? (
+    <a href={s.url} target="_blank" rel="noreferrer" className={cls}>
+      {body}
     </a>
+  ) : (
+    <button type="button" onClick={() => onWaitlist(s.key)} className={cls}>
+      {body}
+    </button>
   );
 };
 
-const SoonCard = ({ s, i }) => {
-  const Art = SOLUTION_ART[s.key] || IsoCube;
-  return (
-    <div className="group relative flex h-full flex-col border-t border-paper-line pb-6 pt-3">
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-[10.5px] text-ink-4">[{String(i + 1).padStart(2, '0')}]</span>
-        <Chip tone="soft">Soon</Chip>
-      </div>
-      <div className="mt-2 flex items-baseline gap-2">
-        <h3 className="font-inter text-[15px] font-medium text-ink">{s.name}</h3>
-        <span className="font-inter text-[12px] text-ink-3">{s.vertical}</span>
-      </div>
-      <div className="relative my-5 h-[100px]">
-        <QuantumReveal className="h-full">
-          <Art className="h-[100px] w-full opacity-60 grayscale" />
-        </QuantumReveal>
-      </div>
-      <p className="font-inter text-[12.5px] leading-snug text-ink-3">{s.tagline}</p>
-    </div>
-  );
-};
+/** Ask the contact form to preselect a product (it listens for this). */
+const preselectInterest = (value) =>
+  window.dispatchEvent(new CustomEvent('quanta:interest', { detail: value }));
 
 export const MonoRoster = () => {
   const navigate = useNavigate();
-  const { solutions: copy, hero } = homeCopy;
-  const live = solutions.filter((s) => s.status === 'live');
-  const soon = solutions.filter((s) => s.status !== 'live');
+  const { solutions: copy } = homeCopy;
+  const waitlist = (key) => {
+    preselectInterest(key);
+    goToSection(navigate, 'contact');
+  };
   return (
     <Section id="solutions" tone="light" className="py-24 sm:py-32">
-      <span id="ai-employees" className="absolute -top-16" aria-hidden />
+      <span id="products" className="absolute -top-16" aria-hidden />
       <SectionHeading label={copy.badge} title={`${copy.headline} ${copy.headlineAccent}`} sub={copy.subhead} />
-
-      <div className="mt-16 space-y-6">
-        {live.map((s) => (
-          <motion.div key={s.key} {...fadeUp(0.05)}>
-            <LiveProduct s={s} />
+      <div className="mt-16 grid gap-6 md:grid-cols-2">
+        {solutions.map((s, i) => (
+          <motion.div key={s.key} {...fadeUp(0.06 * i)} className="h-full">
+            <ProductCard s={s} i={i} onWaitlist={waitlist} />
           </motion.div>
         ))}
       </div>
-
-      <motion.div {...fadeUp(0)} className="mt-20">
-        <MonoLabel>{copy.soonLabel}</MonoLabel>
-      </motion.div>
-      <div className="mt-6 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-        {soon.map((s, i) => (
-          <motion.div key={s.key} {...fadeUp(0.04 * (i % 3))}>
-            <SoonCard s={s} i={i} />
-          </motion.div>
-        ))}
-        <motion.div {...fadeUp(0.12)}>
-          <button
-            type="button"
-            onClick={() => goToSection(navigate, 'contact')}
-            className="group flex h-full w-full flex-col border-t border-dashed border-ink-4 pb-6 pt-3 text-left"
-          >
-            <span className="font-mono text-[10.5px] text-ink-4">[{String(soon.length + 1).padStart(2, '0')}]</span>
-            <h3 className="mt-2 font-inter text-[15px] font-medium text-ink">Your team next</h3>
-            <div className="my-5 h-[100px] transition-transform duration-500 group-hover:-translate-y-1">
-              <QuantumReveal className="h-full">
-                <IsoPlus className="h-[100px] w-full" />
-              </QuantumReveal>
-            </div>
-            <p className="font-inter text-[12.5px] leading-snug text-ink-3">
-              Need one of these sooner, or something else? Tell us what your team handles every week.
-            </p>
-            <span className="mt-4 inline-flex items-center gap-1 font-inter text-[12px] font-medium text-ink">
-              Talk to us <ArrowUpRight size={13} />
-            </span>
-          </button>
-        </motion.div>
-      </div>
-
-      <motion.div {...fadeUp(0)} className="mt-24 text-center">
-        <MonoLabel>{hero.trustLabel}</MonoLabel>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {systems.map((name) => (
-            <span key={name} className="font-inter text-[17px] font-semibold tracking-[-0.03em] text-ink-2">
-              {name}
-            </span>
-          ))}
-        </div>
-      </motion.div>
       <motion.div {...fadeUp(0.08)} className="mt-12 flex justify-center">
         <Btn as={Link} to="/faqs" variant="light">
           Read the FAQs
         </Btn>
       </motion.div>
-      <HexEdge />
-    </Section>
-  );
-};
-
-/* ───────────────────────── Economics: announcement layout ───────────────────────── */
-
-export const MonoEconomics = () => {
-  const navigate = useNavigate();
-  const { economics } = homeCopy;
-  return (
-    <Section id="economics" className="py-24 sm:py-32">
-      <div className="grid items-center gap-12 lg:grid-cols-[1fr_auto_1fr] lg:gap-16">
-        <motion.div {...fadeUp(0)}>
-          <MonoLabel>{economics.badge}</MonoLabel>
-          <h2 className="mt-5 whitespace-pre-line font-inter text-[1.9rem] font-medium leading-[1.12] tracking-[-0.035em] text-ink sm:text-[2.2rem]">
-            <QuantumWrite text={economics.headline} />
-          </h2>
-          <Btn className="mt-8" onClick={() => goToSection(navigate, 'contact')}>
-            Get a quote
-          </Btn>
-        </motion.div>
-
-        <motion.div {...fadeUp(0.08)} className="relative mx-auto w-[200px] p-4 sm:w-[230px]">
-          <CropMarks size={26} />
-          <QuantumReveal>
-            <Tunnel className="h-auto w-full" />
-          </QuantumReveal>
-        </motion.div>
-
-        <motion.div {...fadeUp(0.16)} className="max-w-xs lg:justify-self-end">
-          <p className="font-inter text-[14px] leading-relaxed text-ink-3">{economics.subhead}</p>
-          <p className="mt-4 font-inter text-[14px] font-medium leading-relaxed text-ink">{economics.kicker}</p>
-        </motion.div>
-      </div>
-
-      <div className="mt-20 grid gap-8 sm:grid-cols-3">
-        {economics.columns.map((c, i) => (
-          <motion.div key={c.title} {...fadeUp(0.05 * i)} className="border-t border-paper-line pt-3">
-            <span className="font-mono text-[10.5px] text-ink-4">[0{i + 1}]</span>
-            <h3 className="mt-2 font-inter text-[15px] font-medium text-ink">{c.title}</h3>
-            <p className="mt-2 font-inter text-[13px] leading-relaxed text-ink-3">{c.body}</p>
-          </motion.div>
-        ))}
-      </div>
       <HexEdge />
     </Section>
   );
@@ -672,6 +529,38 @@ export const MonoSecurity = () => {
   );
 };
 
+/* ───────────────────────── Company ───────────────────────── */
+
+export const MonoCompany = () => {
+  const { company } = homeCopy;
+  return (
+    <Section id="company" className="py-24 sm:py-28">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
+        <motion.div {...fadeUp(0)}>
+          <MonoLabel>{company.badge}</MonoLabel>
+          <h2 className="mt-5 font-inter text-[2.2rem] font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl">
+            <QuantumWrite text={company.headline} />
+          </h2>
+          <p className="mt-5 max-w-md font-inter text-[14px] leading-relaxed text-ink-3">{company.body}</p>
+          <Btn as={Link} to="/about" variant="light" className="mt-8">
+            About Quanta
+          </Btn>
+        </motion.div>
+        <div className="grid gap-8 self-end sm:grid-cols-3">
+          {company.facts.map((f, i) => (
+            <motion.div key={f.k} {...fadeUp(0.05 * i)} className="border-t border-ink pt-4">
+              <MonoLabel bare className="text-[10px]">{f.k}</MonoLabel>
+              <p className="mt-3 font-inter text-[1.35rem] font-semibold tracking-[-0.03em] text-ink">{f.v}</p>
+              <p className="mt-1 font-mono text-[10.5px] uppercase tracking-[0.08em] text-ink-4">{f.sub}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <HexEdge />
+    </Section>
+  );
+};
+
 /* ───────────────────────── Contact ───────────────────────── */
 
 const field =
@@ -695,6 +584,11 @@ export const MonoContact = () => {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  useEffect(() => {
+    const pick = (e) => setForm((f) => ({ ...f, interest: e.detail }));
+    window.addEventListener('quanta:interest', pick);
+    return () => window.removeEventListener('quanta:interest', pick);
+  }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
     if (status === 'sending') return;

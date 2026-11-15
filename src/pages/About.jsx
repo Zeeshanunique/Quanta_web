@@ -12,15 +12,15 @@ import { MonoCTA } from '../components/mono/HomeSections';
 
 const STATS = [
   { label: 'Founded', value: '2023', sub: 'Bangalore, India' },
-  { label: 'Live today', value: 'Factum', sub: '4 ready-made agents' },
-  { label: 'On the way', value: '6', sub: 'Products in development' },
+  { label: 'Live', value: 'Factum', sub: 'Agents for operations' },
+  { label: 'In development', value: 'Software foundry', sub: 'Agents for engineering' },
 ];
 
 const VALUES = [
   {
     Art: IsoLayers,
     title: 'Simple',
-    body: 'Putting an agent to work should be as easy as briefing a new colleague: connect your systems, share your policy, approve its first changes.',
+    body: 'Putting an agent to work should be as easy as briefing a new colleague: connect your systems, share your rules, approve its first changes.',
   },
   {
     Art: IsoCube,
@@ -30,7 +30,7 @@ const VALUES = [
   {
     Art: IsoPyramid,
     title: 'Proven',
-    body: 'Every agent ships with a test suite of real cases and only goes live if it passes. When it is unsure, it hands off with the reason.',
+    body: 'Work is checked against real cases before it goes live. When an agent is unsure, it hands off to a person with the reason.',
   },
 ];
 
